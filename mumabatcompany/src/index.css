@@ -1,69 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  /* Definición de la paleta de colores MuMa para usar con clases de Tailwind */
+  --color-muma-dark: #050a0e;
+  --color-muma-surface: #111827;
+  --color-muma-accent: #bfff00;
+  --color-muma-accent-dim: #a6dd00;
+  --color-muma-bio: #0ea5e9;
+  --color-muma-text-primary: #f3f4f6;
+  --color-muma-text-secondary: #9ca3af;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Variables para vuestro uso manual si fuera necesario */
+  --color-primario: #bfff00;
+  --bg-principal: #050a0e;
 
-  font-synthesis: none;
+  color-scheme: dark; /* Forzamos dark mode para coherencia de marca */
+  color: var(--color-muma-text-primary);
+  background-color: var(--color-muma-dark);
+
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  /* Eliminamos el flex center para que la web fluya hacia abajo normalmente */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+/* Enlaces con el color de marca */
+a {
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  color: var(--color-muma-accent);
+  text-decoration: inherit;
+  transition: opacity 0.25s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+a:hover {
+  opacity: 0.8;
+}
+
+/* Estilo de botones corporativos  */
+@layer components {
+  .btn-muma {
+    @apply bg-muma-accent text-muma-dark px-6 py-3 rounded-full font-bold 
+           transition-all duration-300 hover:scale-105 hover:bg-muma-accent-dim 
+           shadow-[0_0_20px_rgba(191,255,0,0.2)];
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+
+  .bento-card {
+    @apply bg-muma-surface border border-white/5 rounded-3xl p-8
+           hover:border-muma-accent/30 transition-all duration-500;
   }
 }
-@import "tailwindcss";
+
+/* Eliminamos el media query de "light mode" porque MuMa Bat Company 
+   debe ser una experiencia nocturna/tech por defecto */
