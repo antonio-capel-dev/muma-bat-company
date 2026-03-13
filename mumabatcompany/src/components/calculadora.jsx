@@ -1,48 +1,117 @@
-'use client'
+// Calculadora de impacto ambiental — lógica: hectáreas → insectos controlados y pesticidas evitados
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
-export default function ImpactCalculator() {
-  const [hectares, setHectares] = useState(10)
-  
-  // Lógica de impacto estimada
-  const insectsEaten = hectares * 150000 // 150k insectos por hectárea/noche
-  const pesticideSaved = hectares * 12 // 12kg de químicos menos
+// Constantes de cálculo basadas en datos científicos publicados
+const INSECTOS_POR_MURCIELAGO_POR_NOCHE = 1200
+const MURCIÉLAGOS_POR_HECTAREA = 3
+const KG_PESTICIDA_EQUIVALENTE_POR_MURCIELAGO = 0.0007
+
+export default function Calculadora() {
+  const [hectareas, setHectareas] = useState(10)
+
+  // Cálculos derivados del valor de entrada
+  const murciélagos = Math.round(hectareas * MURCIÉLAGOS_POR_HECTAREA)
+  const insectosPorNoche = (murciélagos * INSECTOS_POR_MURCIELAGO_POR_NOCHE).toLocaleString('es-ES')
+  const pesticidaEvitado = (murciélagos * KG_PESTICIDA_EQUIVALENTE_POR_MURCIELAGO * 365).toFixed(1)
 
   return (
-    <section id="infra" className="py-24 px-6 bg-muma-dark">
-      <div className="container mx-auto max-w-5xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Calculate Your <span className="text-muma-accent">Impact</span></h2>
-          <p className="text-muma-text-secondary">Estimate the biological power of a MuMa Network on your land.</p>
-        </div>
+    <section
+      id="calculadora"
+      className="bg-fondo-secundario py-20 px-6"
+      aria-label="Calculadora de impacto ambiental"
+    >
+      <div className="max-w-3xl mx-auto">
 
-        <div className="grid md:grid-cols-2 gap-12 items-center bg-muma-surface p-10 rounded-[3rem] border border-white/5">
-          <div className="space-y-8">
-            <div>
-              <label className="block text-sm mb-4 text-muma-text-secondary uppercase tracking-widest">Farm Size (Hectares)</label>
-              <input 
-                type="range" 
-                min="1" 
-                max="500" 
-                value={hectares}
-                onChange={(e) => setHectares(Number(e.target.value))}
-                className="w-full accent-muma-accent bg-muma-dark h-2 rounded-lg appearance-none cursor-pointer"
-              />
-              <span className="text-4xl font-bold text-muma-accent mt-4 block">{hectares} ha</span>
+        {/* Cabecera */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">
+            Herramienta de estimación
+          </p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">
+            Calcula el impacto de una red de refugios
+          </h2>
+          <p className="text-texto-secundario max-w-xl mx-auto">
+            Introduce la superficie que quieres cubrir y obtén una estimación
+            del control natural de plagas que proporcionaría una red de refugios para murciélagos.
+          </p>
+        </motion.div>
+
+        {/* Panel de la calculadora */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="bg-fondo-superficie rounded-2xl p-8 border border-white/5"
+        >
+
+          {/* Control deslizante */}
+          <div className="mb-8">
+            <div className="flex justify-between items-baseline mb-3">
+              <label htmlFor="superficie" className="text-sm font-medium text-texto-principal">
+                Superficie a cubrir
+              </label>
+              <span className="text-2xl font-bold text-marca-principal">
+                {hectareas} ha
+              </span>
+            </div>
+            <input
+              id="superficie"
+              type="range"
+              min={1}
+              max={500}
+              value={hectareas}
+              onChange={(e) => setHectareas(Number(e.target.value))}
+              className="w-full h-1.5 rounded-full cursor-pointer accent-marca-principal"
+              aria-label={`Superficie: ${hectareas} hectáreas`}
+            />
+            <div className="flex justify-between text-xs text-texto-secundario mt-1.5">
+              <span>1 ha</span>
+              <span>500 ha</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-6">
-            <div className="p-6 bg-muma-dark/50 rounded-2xl border border-muma-accent/20">
-              <p className="text-sm text-muma-text-secondary">Pest Control Capacity</p>
-              <p className="text-3xl font-bold">{insectsEaten.toLocaleString()} <span className="text-sm font-normal text-muma-text-secondary">insects/night</span></p>
+          {/* Resultados */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {/* Murciélagos estimados */}
+            <div className="bg-fondo-elevado rounded-xl p-5 text-center border border-white/5">
+              <p className="text-3xl font-bold text-texto-titulo">{murciélagos}</p>
+              <p className="text-xs text-texto-secundario mt-1.5 leading-snug">
+                murciélagos estimados en la red
+              </p>
             </div>
-            <div className="p-6 bg-muma-dark/50 rounded-2xl border border-muma-bio/20">
-              <p className="text-sm text-muma-text-secondary">Chemical Reduction</p>
-              <p className="text-3xl font-bold text-muma-bio">-{pesticideSaved} <span className="text-sm font-normal text-muma-text-secondary">kg of pesticides/year</span></p>
+
+            {/* Insectos controlados */}
+            <div className="bg-fondo-elevado rounded-xl p-5 text-center border border-marca-principal/15">
+              <p className="text-3xl font-bold text-marca-principal">{insectosPorNoche}</p>
+              <p className="text-xs text-texto-secundario mt-1.5 leading-snug">
+                insectos controlados cada noche
+              </p>
+            </div>
+
+            {/* Pesticida evitado */}
+            <div className="bg-fondo-elevado rounded-xl p-5 text-center border border-white/5">
+              <p className="text-3xl font-bold text-texto-titulo">{pesticidaEvitado} kg</p>
+              <p className="text-xs text-texto-secundario mt-1.5 leading-snug">
+                de pesticida evitado al año
+              </p>
             </div>
           </div>
-        </div>
+
+          {/* Nota metodológica */}
+          <p className="text-xs text-texto-secundario mt-6 text-center leading-relaxed">
+            Estimación orientativa basada en promedios de consumo por especie (Eptesicus serotinus,
+            Pipistrellus sp.). Los datos reales dependen de la especie, hábitat y disponibilidad de presas.
+          </p>
+
+        </motion.div>
       </div>
     </section>
   )

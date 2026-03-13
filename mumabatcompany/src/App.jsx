@@ -1,13 +1,18 @@
+// Componente raíz — configuración de rutas
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { LangProvider } from './context/LangContext'
 import Navbar from './components/navbar'
 import Inicio from './pages/inicio'
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen bg-muma-dark">
-      <Navbar />
-      <Inicio />
-    </div>
+    <LangProvider>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+        </Routes>
+      </BrowserRouter>
+    </LangProvider>
   )
 }
-
-export default App
