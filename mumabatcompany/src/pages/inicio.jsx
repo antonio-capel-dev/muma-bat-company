@@ -1,4 +1,5 @@
 // Página de inicio — home completa de MUMA BAT COMPANY
+import Footer from '../components/footer'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
@@ -11,7 +12,7 @@ const servicios = [
   { id: 'bat-night', Icono: Moon, titulo: 'Bat Night', descripcion: 'Actividades nocturnas guiadas con detección de ultrasonidos, diseñadas para grupos, festivales, centros de naturaleza y ayuntamientos.', etiqueta: 'Experiencias', enlace: '/servicios/bat-night' },
   { id: 'museo-virtual', Icono: MonitorPlay, titulo: 'Museo Virtual y Realidad Virtual', descripcion: 'Exposiciones digitales e inmersivas sobre murciélagos. Contenidos para museos, centros de interpretación y espacios educativos.', etiqueta: 'Inmersivo', enlace: '/servicios/realidad-virtual' },
   { id: 'refugios', Icono: TreePine, titulo: 'Refugios para murciélagos', descripcion: 'Diseño, fabricación e instalación de refugios. Solución basada en la naturaleza para control de plagas y restauración de poblaciones.', etiqueta: 'Infraestructura', enlace: '/servicios/refugios' },
-  { id: 'educacion', Icono: BookOpen, titulo: 'Educación ambiental y consultoría', descripcion: 'Talleres, formación y consultoría técnica en divulgación científica, soluciones basadas en la naturaleza y gestión de fauna.', etiqueta: 'Formación · Consultoría', enlace: '#contacto' },
+  { id: 'educacion', Icono: BookOpen, titulo: 'Educación ambiental y consultoría', descripcion: 'Talleres, formación y consultoría técnica en divulgación científica, soluciones basadas en la naturaleza y gestión de fauna.', etiqueta: 'Formación · Consultoría', enlace: '/servicios/educacion-ambiental' },
 ]
 
 const pilares = [
@@ -34,7 +35,7 @@ const varianteSeccion = { oculto: { opacity: 0, y: 24 }, visible: { opacity: 1, 
 
 function SeccionServicios() {
   return (
-    <section id="servicios" className="bg-fondo-base py-20 px-6">
+    <section id="servicios" className="bg-fondo-base py-20 px-8 sm:px-12">
       <div className="max-w-6xl mx-auto">
         <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
           <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Lo que puedes contratar</p>
@@ -67,7 +68,7 @@ function SeccionServicios() {
 
 function SeccionPorQueMuma() {
   return (
-    <section id="por-que-muma" className="bg-fondo-secundario py-20 px-6">
+    <section id="por-que-muma" className="bg-fondo-secundario py-20 px-8 sm:px-12">
       <div className="max-w-6xl mx-auto">
         <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
           <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Criterio de trabajo</p>
@@ -90,7 +91,7 @@ function SeccionPorQueMuma() {
 
 function SeccionRedRefugios() {
   return (
-    <section id="red-refugios" className="bg-fondo-base py-20 px-6">
+    <section id="red-refugios" className="bg-fondo-base py-20 px-8 sm:px-12">
       <div className="max-w-6xl mx-auto">
         <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -149,7 +150,7 @@ function SeccionContacto() {
   }
 
   return (
-    <section id="contacto" className="bg-fondo-secundario py-20 px-6">
+    <section id="contacto" className="bg-fondo-secundario py-20 px-8 sm:px-12">
       <div className="max-w-2xl mx-auto">
         <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
           <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Empieza una conversación</p>
@@ -207,40 +208,6 @@ function SeccionContacto() {
   )
 }
 
-function Footer() {
-  const columnas = [
-    { titulo: 'Servicios', enlaces: [{ etiqueta: 'Bat Night', href: '#servicios' }, { etiqueta: 'Museo Virtual y VR', href: '#servicios' }, { etiqueta: 'Refugios para murciélagos', href: '#servicios' }, { etiqueta: 'Educación ambiental', href: '#servicios' }, { etiqueta: 'Consultoría', href: '#servicios' }] },
-    { titulo: 'Empresa', enlaces: [{ etiqueta: 'Sobre nosotros', href: '#sobre-nosotros' }, { etiqueta: 'Proyectos', href: '#proyectos' }, { etiqueta: 'Cómo trabajamos', href: '#como-trabajamos' }, { etiqueta: 'Blog', href: '#blog' }, { etiqueta: 'Contacto', href: '#contacto' }] },
-  ]
-  return (
-    <footer className="bg-fondo-base border-t border-white/5 pt-16 pb-8 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-12">
-          <div>
-            <p className="font-bold text-texto-titulo text-lg">MUMA <span className="text-marca-principal">BAT COMPANY</span></p>
-            <p className="text-sm text-texto-secundario mt-3 leading-relaxed">Ciencia, tecnología y naturaleza al servicio de los murciélagos y de las personas.</p>
-          </div>
-          {columnas.map((columna) => (
-            <div key={columna.titulo}>
-              <p className="text-xs font-semibold text-texto-titulo uppercase tracking-wider mb-4">{columna.titulo}</p>
-              <ul className="space-y-2.5">
-                {columna.enlaces.map((enlace) => (
-                  <li key={enlace.etiqueta}>
-                    <a href={enlace.href} className="text-sm text-texto-secundario hover:text-texto-principal transition-colors duration-200 no-underline">{enlace.etiqueta}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-xs text-texto-secundario">© {new Date().getFullYear()} MUMA BAT COMPANY. Todos los derechos reservados.</p>
-          <p className="text-xs text-texto-secundario/40">Diseño y desarrollo: interfaz MUMA</p>
-        </div>
-      </div>
-    </footer>
-  )
-}
 
 export default function Inicio() {
   return (
