@@ -38,8 +38,8 @@ export default function PlazaMayorMalaga() {
         <meta property="og:title" content="Bat Night Plaza Mayor Málaga | MUMA BAT COMPANY" />
         <meta property="og:description" content="200–300 participantes en 2 jornadas. VR, exposición fotográfica y talleres infantiles en el corazón de Málaga." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mumabatcompany.com/servicios/bat-night/plaza-mayor-malaga" />
-        <link rel="canonical" href="https://mumabatcompany.com/servicios/bat-night/plaza-mayor-malaga" />
+        <meta property="og:url" content="https://mumabatcompany.com/eventos/bat-night/plaza-mayor-malaga" />
+        <link rel="canonical" href="https://mumabatcompany.com/eventos/bat-night/plaza-mayor-malaga" />
       </Helmet>
 
       <main>

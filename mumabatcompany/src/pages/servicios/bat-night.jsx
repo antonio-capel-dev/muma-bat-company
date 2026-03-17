@@ -208,7 +208,7 @@ export default function BatNight() {
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {casosBatNight.map((caso, i) => (
-                <motion.article
+                <article
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1 } } }}
@@ -242,7 +242,7 @@ export default function BatNight() {
                   >
                     Ver detalle del evento <ArrowRight size={12} aria-hidden="true" />
                   </Link>
-                </motion.article>
+                </article>
               ))}
             </div>
           </div>
@@ -253,19 +253,19 @@ export default function BatNight() {
           <div className="max-w-4xl mx-auto">
 
             {/* Cabecera */}
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Turismo sostenible · Impacto real</p>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-texto-titulo leading-tight mb-5">
                 El turismo que<br />
                 <span className="text-marca-principal">protege lo que visita</span>
               </h2>
-            </motion.div>
+            </div>
 
             {/* Bloques alternados texto + imagen */}
             <div className="space-y-16 mb-16">
 
               {/* Fila 1: texto izquierda + imagen derecha */}
-              <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <p className="text-base sm:text-lg text-texto-secundario leading-relaxed">
                   Una de cada tres especies animales está en declive. El turismo masivo, aunque genera riqueza, es también una de las causas documentadas de pérdida de biodiversidad: fragmentación de hábitats, contaminación lumínica, presión sobre espacios naturales protegidos. La Costa del Sol recibe 14 millones de turistas al año. Con más de 200 hoteles, 80 museos y 700 centros educativos, la región tiene una responsabilidad y una oportunidad sin precedentes para liderar un modelo turístico distinto.
                 </p>
@@ -273,10 +273,10 @@ export default function BatNight() {
                   <Camera size={32} className="text-marca-principal/40" aria-hidden="true" />
                   <span className="text-xs text-texto-secundario/40 tracking-wide">Imagen próximamente</span>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Fila 2: imagen izquierda + texto derecha */}
-              <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="h-64 rounded-2xl bg-fondo-superficie border border-white/5 flex flex-col items-center justify-center gap-3 order-last md:order-first">
                   <Camera size={32} className="text-marca-principal/40" aria-hidden="true" />
                   <span className="text-xs text-texto-secundario/40 tracking-wide">Imagen próximamente</span>
@@ -284,7 +284,7 @@ export default function BatNight() {
                 <p className="text-base sm:text-lg text-texto-secundario leading-relaxed">
                   Los murciélagos son un ejemplo perfecto de lo que está en juego. Un solo individuo elimina hasta 3.000 mosquitos por noche. Su desaparición no solo rompe el equilibrio ecológico: dispara las poblaciones de insectos plaga, obliga a aumentar el uso de pesticidas y genera costes económicos reales para la agricultura y el turismo rural. Son animales invisibles, mal comprendidos y fundamentales. Las Bat Nights de MUMA están diseñadas para cambiar esa percepción desde la experiencia directa.
                 </p>
-              </motion.div>
+              </div>
 
               {/* Fila 3: texto izquierda + imagen derecha */}
               <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -295,7 +295,7 @@ export default function BatNight() {
               </div>
 
               {/* Fila 4: imagen izquierda + texto derecha */}
-              <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="h-64 rounded-2xl bg-fondo-superficie border border-white/5 flex flex-col items-center justify-center gap-3 order-last md:order-first">
                   <Camera size={32} className="text-marca-principal/40" aria-hidden="true" />
                   <span className="text-xs text-texto-secundario/40 tracking-wide">Imagen próximamente</span>
@@ -303,7 +303,7 @@ export default function BatNight() {
                 <p className="text-base sm:text-lg text-texto-secundario leading-relaxed">
                   Los resultados lo confirman. En la Laguna de Fuente de Piedra reserva natural protegida en Málaga combinamos interpretación ambiental in situ con VR para públicos familiares y escolares. En la Cueva de Nerja, el éxito de la primera edición llevó directamente a la instalación de refugios monitorizados en el entorno: conservación activa como consecuencia tangible de la divulgación. En Plaza Mayor demostramos que el modelo funciona también en entornos urbanos comerciales. Y en Portugal validamos el formato en un contexto turístico internacional con más de 200 visitantes en un solo día. MUMA opera desde el Polo Digital de Málaga con el respaldo de alianzas como SECEMU, Fundación Cueva de Nerja, Selwo Aventura y la Junta de Andalucía.
                 </p>
-              </motion.div>
+              </div>
 
             </div>
 
