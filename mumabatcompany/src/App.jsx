@@ -10,7 +10,7 @@ import BatNightPortugal from "./pages/servicios/bat-night/portugal-grutas-moeda"
 import BatNightNerja from "./pages/servicios/bat-night/cueva-nerja";
 import BatNightPlazaMayor from "./pages/servicios/bat-night/plaza-mayor-malaga";
 import BatNightFuentePiedra from "./pages/servicios/bat-night/fuente-de-piedra";
-import EducacionAmbiental from "./pages/servicios/educacion-ambiental";
+import Formacion from "./pages/servicios/formacion";
 import Voluntarios from "./pages/voluntarios";
 import Contacto from "./pages/contacto";
 
@@ -44,8 +44,8 @@ export default function App() {
             element={<BatNightFuentePiedra />}
           />
           <Route
-            path="/servicios/educacion-ambiental"
-            element={<EducacionAmbiental />}
+            path="/servicios/formacion"
+            element={<Formacion />}
           />
           <Route path="/voluntarios" element={<Voluntarios />} />
           <Route path="/contacto" element={<Contacto />} />{" "}

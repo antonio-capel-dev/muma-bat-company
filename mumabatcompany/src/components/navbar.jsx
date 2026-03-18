@@ -15,7 +15,7 @@ const navLinks = [
   { label: 'Realidad Virtual', to: '/servicios/realidad-virtual' },
   { label: 'Bat Night',        to: '/servicios/bat-night' },
   { label: 'Refugios',         to: '/servicios/refugios' },
-  { label: 'Formación',        to: '/servicios/educacion-ambiental' },
+  { label: 'Formación',        to: '/servicios/formacion' },
   { label: 'Contacto',         to: '/contacto' },
 ]
 
