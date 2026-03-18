@@ -118,7 +118,7 @@ export default function Nosotros() {
       <main>
 
         {/* ── ¿QUIÉNES SOMOS? ── sección hero con equipo y datos reales en voz de Antonio */}
-        <section className="relative bg-fondo-base pt-32 pb-20 px-6 overflow-hidden"> {/* fondo oscuro, padding top para el navbar */}
+        <section className="relative bg-fondo-base pt-40 pb-20 px-6 overflow-hidden"> {/* fondo oscuro, padding top para el navbar */}
 
           {/* resplandor decorativo de fondo, no interactivo */}
           <div
