@@ -123,7 +123,7 @@ export default function BatNight() {
 
           <div className="relative z-10 max-w-4xl mx-auto">
             {/* Etiqueta superior */}
-            <motion.div
+            <div
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-marca-principal/30 bg-marca-principal/5 mb-7"
             >
@@ -131,35 +131,35 @@ export default function BatNight() {
               <span className="text-xs font-semibold tracking-widest text-marca-principal uppercase">
                 Experiencias nocturnas · Conservación y ciencia
               </span>
-            </motion.div>
+            </div>
 
             {/* Título principal */}
-            <motion.h1
+            <h1
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.1 }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-texto-titulo mb-5"
             >
               La naturaleza<br />
               <span className="text-marca-principal">de noche.</span>
-            </motion.h1>
+            </h1>
 
             {/* Frase clave */}
-            <motion.p
+            <p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
               className="text-sm font-semibold tracking-wide text-marca-principal/70 uppercase mb-5"
             >
               "Llevamos la cueva a las personas, no las personas a la cueva"
-            </motion.p>
+            </p>
 
             {/* Subtítulo */}
-            <motion.p
+            <p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
               className="text-lg sm:text-xl text-texto-secundario max-w-2xl mx-auto leading-relaxed mb-12"
             >
               Eventos nocturnos de conservación y divulgación científica que combinan detección de ultrasonidos en tiempo real, experiencia VR inmersiva, charlas científicas y talleres educativos. Para museos, ayuntamientos, espacios naturales y festivales.
-            </motion.p>
+            </p>
 
             {/* Stats */}
-            <motion.div
+            <div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}
               className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/5 mb-12"
             >
@@ -175,10 +175,10 @@ export default function BatNight() {
                   <span className="text-xs text-texto-secundario/70 leading-snug text-center whitespace-pre-line">{etiqueta}</span>
                 </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* CTAs */}
-            <motion.div
+            <div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-3 justify-center"
             >
@@ -194,21 +194,21 @@ export default function BatNight() {
               >
                 Ver ediciones realizadas <ArrowRight size={15} aria-hidden="true" />
               </a>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* ── BAT NIGHTS REALIZADAS ── */}
         <section id="bat-nights-realizadas" className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-6xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Trayectoria</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Bat Nights realizadas</h2>
               <p className="text-texto-secundario max-w-xl mx-auto">Más de 700 personas han participado en nuestras Bat Nights en 2025, en entornos tan distintos como una gruta portuguesa, una reserva natural andaluza o una plaza urbana.</p>
-            </motion.div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {casosBatNight.map((caso, i) => (
-                <motion.article
+                <article
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1 } } }}
@@ -242,7 +242,7 @@ export default function BatNight() {
                   >
                     Ver detalle del evento <ArrowRight size={12} aria-hidden="true" />
                   </Link>
-                </motion.article>
+                </article>
               ))}
             </div>
           </div>
@@ -253,38 +253,32 @@ export default function BatNight() {
           <div className="max-w-4xl mx-auto">
 
             {/* Cabecera */}
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Turismo sostenible · Impacto real</p>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-texto-titulo leading-tight mb-5">
                 El turismo que<br />
                 <span className="text-marca-principal">protege lo que visita</span>
               </h2>
-            </motion.div>
+            </div>
 
             {/* Bloques alternados texto + imagen */}
             <div className="space-y-16 mb-16">
 
               {/* Fila 1: texto izquierda + imagen derecha */}
-              <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <p className="text-base sm:text-lg text-texto-secundario leading-relaxed">
                   Una de cada tres especies animales está en declive. El turismo masivo, aunque genera riqueza, es también una de las causas documentadas de pérdida de biodiversidad: fragmentación de hábitats, contaminación lumínica, presión sobre espacios naturales protegidos. La Costa del Sol recibe 14 millones de turistas al año. Con más de 200 hoteles, 80 museos y 700 centros educativos, la región tiene una responsabilidad y una oportunidad sin precedentes para liderar un modelo turístico distinto.
                 </p>
-                <div className="h-64 rounded-2xl bg-fondo-superficie border border-white/5 flex flex-col items-center justify-center gap-3">
-                  <Camera size={32} className="text-marca-principal/40" aria-hidden="true" />
-                  <span className="text-xs text-texto-secundario/40 tracking-wide">Imagen próximamente</span>
-                </div>
-              </motion.div>
+                <img src="/images/1batnights.webp" alt="Refugio para murciélagos instalado en árbol" className="w-full h-72 object-cover rounded-2xl" />
+              </div>
 
               {/* Fila 2: imagen izquierda + texto derecha */}
-              <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div className="h-64 rounded-2xl bg-fondo-superficie border border-white/5 flex flex-col items-center justify-center gap-3 order-last md:order-first">
-                  <Camera size={32} className="text-marca-principal/40" aria-hidden="true" />
-                  <span className="text-xs text-texto-secundario/40 tracking-wide">Imagen próximamente</span>
-                </div>
+              <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <img src="/images/murcielago.webp" alt="Murciélago en vuelo al atardecer" className="w-full h-72 object-cover rounded-2xl order-last md:order-first" />
                 <p className="text-base sm:text-lg text-texto-secundario leading-relaxed">
                   Los murciélagos son un ejemplo perfecto de lo que está en juego. Un solo individuo elimina hasta 3.000 mosquitos por noche. Su desaparición no solo rompe el equilibrio ecológico: dispara las poblaciones de insectos plaga, obliga a aumentar el uso de pesticidas y genera costes económicos reales para la agricultura y el turismo rural. Son animales invisibles, mal comprendidos y fundamentales. Las Bat Nights de MUMA están diseñadas para cambiar esa percepción desde la experiencia directa.
                 </p>
-              </motion.div>
+              </div>
 
               {/* Fila 3: texto izquierda + imagen derecha */}
               <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -295,15 +289,12 @@ export default function BatNight() {
               </div>
 
               {/* Fila 4: imagen izquierda + texto derecha */}
-              <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div className="h-64 rounded-2xl bg-fondo-superficie border border-white/5 flex flex-col items-center justify-center gap-3 order-last md:order-first">
-                  <Camera size={32} className="text-marca-principal/40" aria-hidden="true" />
-                  <span className="text-xs text-texto-secundario/40 tracking-wide">Imagen próximamente</span>
-                </div>
+              <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <img src="/images/bat-night-eslovenia.webp" alt="Bat Night en el Museo de Eslovenia" className="w-full h-72 object-cover rounded-2xl" />
                 <p className="text-base sm:text-lg text-texto-secundario leading-relaxed">
                   Los resultados lo confirman. En la Laguna de Fuente de Piedra reserva natural protegida en Málaga combinamos interpretación ambiental in situ con VR para públicos familiares y escolares. En la Cueva de Nerja, el éxito de la primera edición llevó directamente a la instalación de refugios monitorizados en el entorno: conservación activa como consecuencia tangible de la divulgación. En Plaza Mayor demostramos que el modelo funciona también en entornos urbanos comerciales. Y en Portugal validamos el formato en un contexto turístico internacional con más de 200 visitantes en un solo día. MUMA opera desde el Polo Digital de Málaga con el respaldo de alianzas como SECEMU, Fundación Cueva de Nerja, Selwo Aventura y la Junta de Andalucía.
                 </p>
-              </motion.div>
+              </div>
 
             </div>
 
@@ -318,7 +309,7 @@ export default function BatNight() {
                 {
                   Icono: BookOpen,
                   titulo: 'Educación inmersiva sin huella',
-                  texto: 'La tecnología VR permite llevar la experiencia de una cueva de murciélagos a cualquier espacio — urbano o natural — sin generar impacto ecológico. El visitante aprende más en 10 minutos de inmersión que en una hora de charla. No se altera el hábitat. No se disturba a los animales.',
+                  texto: 'La tecnología VR permite llevar la experiencia de una cueva de murciélagos a cualquier espacio urbano o natural  sin generar impacto ecológico. El visitante aprende más en 10 minutos de inmersión que en una hora de charla. No se altera el hábitat. No se disturba a los animales.',
                 },
                 {
                   Icono: Shield,
@@ -326,7 +317,7 @@ export default function BatNight() {
                   texto: 'Las Bat Nights no terminan cuando se apagan los proyectores. En varios casos han derivado en instalación de refugios monitorizados, acuerdos de seguimiento científico y programas educativos continuados. El evento es el primer paso de un compromiso más amplio con el territorio.',
                 },
               ].map(({ Icono, titulo, texto }, i) => (
-                <motion.div
+                <div
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1 } } }}
@@ -337,12 +328,12 @@ export default function BatNight() {
                   </div>
                   <h3 className="text-base font-bold text-texto-titulo mb-3 leading-snug">{titulo}</h3>
                   <p className="text-sm text-texto-secundario leading-relaxed">{texto}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Cita destacada */}
-            <motion.blockquote
+            <blockquote
               initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}
               className="relative rounded-2xl border border-marca-principal/20 bg-fondo-superficie px-8 py-10 text-center overflow-hidden"
             >
@@ -364,7 +355,7 @@ export default function BatNight() {
                   <span className="text-xs font-semibold tracking-widest text-marca-principal uppercase">MUMA BAT COMPANY · Polo Digital de Málaga</span>
                 </div>
               </div>
-            </motion.blockquote>
+            </blockquote>
 
           </div>
         </section>
@@ -372,14 +363,14 @@ export default function BatNight() {
         {/* ── FORMATOS ── */}
         <section className="bg-fondo-base py-20 px-6">
           <div className="max-w-6xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Formatos disponibles</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Diseñamos la Bat Night a tu medida</h2>
               <p className="text-texto-secundario max-w-xl mx-auto">Adaptamos el formato, la duración y el contenido al tipo de espacio, al público y a los objetivos de tu institución.</p>
-            </motion.div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {formatosBatNight.map((formato, i) => (
-                <motion.article
+                <article
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
@@ -389,7 +380,7 @@ export default function BatNight() {
                   <h3 className="text-base font-bold text-texto-titulo mb-3 leading-snug">{formato.titulo}</h3>
                   <p className="text-sm text-texto-secundario leading-relaxed flex-grow">{formato.descripcion}</p>
                   <p className="mt-4 text-xs text-marca-principal/70 leading-relaxed">{formato.publico}</p>
-                </motion.article>
+                </article>
               ))}
             </div>
           </div>
@@ -398,14 +389,14 @@ export default function BatNight() {
         {/* ── PRÓXIMAS BAT NIGHTS ── */}
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-4xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Agenda 2026</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-5">Próximas Bat Nights</h2>
               <p className="text-texto-secundario max-w-xl mx-auto leading-relaxed">
                 Estamos ampliando el calendario para 2026. Si representas a un museo, ayuntamiento, espacio natural, hotel o cualquier institución con vocación divulgativa, podemos diseñar una Bat Night para tu entorno.
               </p>
-            </motion.div>
-            <motion.div
+            </div>
+            <div
               initial="oculto" whileInView="visible" viewport={{ once: true }}
               variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } } }}
               className="bg-fondo-superficie rounded-2xl p-8 border border-marca-principal/20 text-center"
@@ -434,14 +425,14 @@ export default function BatNight() {
                   Consultar por WhatsApp
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* ── CTA / CONTACTO ── */}
         <section id="contacto" className="bg-fondo-base py-20 px-6">
           <div className="max-w-2xl mx-auto text-center">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-4">Siguiente paso</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-5">Llevamos la noche a tu espacio</h2>
               <p className="text-texto-secundario leading-relaxed mb-8">
@@ -472,7 +463,7 @@ export default function BatNight() {
                   Ver todos los servicios
                 </Link>
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
