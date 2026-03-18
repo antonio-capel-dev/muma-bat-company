@@ -269,18 +269,12 @@ export default function BatNight() {
                 <p className="text-base sm:text-lg text-texto-secundario leading-relaxed">
                   Una de cada tres especies animales está en declive. El turismo masivo, aunque genera riqueza, es también una de las causas documentadas de pérdida de biodiversidad: fragmentación de hábitats, contaminación lumínica, presión sobre espacios naturales protegidos. La Costa del Sol recibe 14 millones de turistas al año. Con más de 200 hoteles, 80 museos y 700 centros educativos, la región tiene una responsabilidad y una oportunidad sin precedentes para liderar un modelo turístico distinto.
                 </p>
-                <div className="h-64 rounded-2xl bg-fondo-superficie border border-white/5 flex flex-col items-center justify-center gap-3">
-                  <Camera size={32} className="text-marca-principal/40" aria-hidden="true" />
-                  <span className="text-xs text-texto-secundario/40 tracking-wide">Imagen próximamente</span>
-                </div>
+                <img src="/images/1batnights.webp" alt="Refugio para murciélagos instalado en árbol" className="w-full h-72 object-cover rounded-2xl" />
               </div>
 
               {/* Fila 2: imagen izquierda + texto derecha */}
               <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div className="h-64 rounded-2xl bg-fondo-superficie border border-white/5 flex flex-col items-center justify-center gap-3 order-last md:order-first">
-                  <Camera size={32} className="text-marca-principal/40" aria-hidden="true" />
-                  <span className="text-xs text-texto-secundario/40 tracking-wide">Imagen próximamente</span>
-                </div>
+                <img src="/images/murcielago.webp" alt="Murciélago en vuelo al atardecer" className="w-full h-72 object-cover rounded-2xl order-last md:order-first" />
                 <p className="text-base sm:text-lg text-texto-secundario leading-relaxed">
                   Los murciélagos son un ejemplo perfecto de lo que está en juego. Un solo individuo elimina hasta 3.000 mosquitos por noche. Su desaparición no solo rompe el equilibrio ecológico: dispara las poblaciones de insectos plaga, obliga a aumentar el uso de pesticidas y genera costes económicos reales para la agricultura y el turismo rural. Son animales invisibles, mal comprendidos y fundamentales. Las Bat Nights de MUMA están diseñadas para cambiar esa percepción desde la experiencia directa.
                 </p>
@@ -296,10 +290,7 @@ export default function BatNight() {
 
               {/* Fila 4: imagen izquierda + texto derecha */}
               <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div className="h-64 rounded-2xl bg-fondo-superficie border border-white/5 flex flex-col items-center justify-center gap-3 order-last md:order-first">
-                  <Camera size={32} className="text-marca-principal/40" aria-hidden="true" />
-                  <span className="text-xs text-texto-secundario/40 tracking-wide">Imagen próximamente</span>
-                </div>
+                <img src="/images/bat-night-eslovenia.webp" alt="Bat Night en el Museo de Eslovenia" className="w-full h-72 object-cover rounded-2xl" />
                 <p className="text-base sm:text-lg text-texto-secundario leading-relaxed">
                   Los resultados lo confirman. En la Laguna de Fuente de Piedra reserva natural protegida en Málaga combinamos interpretación ambiental in situ con VR para públicos familiares y escolares. En la Cueva de Nerja, el éxito de la primera edición llevó directamente a la instalación de refugios monitorizados en el entorno: conservación activa como consecuencia tangible de la divulgación. En Plaza Mayor demostramos que el modelo funciona también en entornos urbanos comerciales. Y en Portugal validamos el formato en un contexto turístico internacional con más de 200 visitantes en un solo día. MUMA opera desde el Polo Digital de Málaga con el respaldo de alianzas como SECEMU, Fundación Cueva de Nerja, Selwo Aventura y la Junta de Andalucía.
                 </p>
@@ -318,7 +309,7 @@ export default function BatNight() {
                 {
                   Icono: BookOpen,
                   titulo: 'Educación inmersiva sin huella',
-                  texto: 'La tecnología VR permite llevar la experiencia de una cueva de murciélagos a cualquier espacio — urbano o natural — sin generar impacto ecológico. El visitante aprende más en 10 minutos de inmersión que en una hora de charla. No se altera el hábitat. No se disturba a los animales.',
+                  texto: 'La tecnología VR permite llevar la experiencia de una cueva de murciélagos a cualquier espacio urbano o natural  sin generar impacto ecológico. El visitante aprende más en 10 minutos de inmersión que en una hora de charla. No se altera el hábitat. No se disturba a los animales.',
                 },
                 {
                   Icono: Shield,

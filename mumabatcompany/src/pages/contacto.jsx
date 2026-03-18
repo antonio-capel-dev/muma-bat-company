@@ -182,24 +182,24 @@ export default function Contacto() {
           {metodos.map(({ Icono, titulo, valor, href, etiqueta }) => (
             <div
               key={titulo}
-              className="bg-[#0d1f12] border border-[#00FF9D]/20 rounded-2xl p-5 flex flex-col gap-2"
+              className="bg-fondo-secundario border border-slate-700 rounded-2xl p-5 flex flex-col gap-2"  // fondo y borde del footer
             >
-              {/* Icono del método */}
+              {/* Icono del método — color principal de marca */}
               <Icono className="text-marca-principal" size={22} />
 
-              {/* Nombre del método (Email, Teléfono…) */}
-              <p className="text-xs text-gray-500 uppercase tracking-widest">{titulo}</p>
+              {/* Nombre del método — texto secundario de la paleta del footer */}
+              <p className="text-xs text-texto-secundario uppercase tracking-widest">{titulo}</p>
 
-              {/* Valor del método (dirección, número…) */}
-              <p className="text-sm font-semibold">{valor}</p>
+              {/* Valor del método — texto de título de la paleta del footer */}
+              <p className="text-sm font-semibold text-texto-titulo">{valor}</p>
 
-              {/* Enlace de acción, solo si existe href */}
+              {/* Enlace de acción — color de marca, solo si existe href */}
               {href && (
                 <a
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-marca-principal text-xs font-semibold hover:underline mt-auto"
+                  className="text-marca-principal text-xs font-semibold hover:underline mt-auto"  // enlace en verde cyan
                 >
                   {etiqueta} →
                 </a>
@@ -221,7 +221,7 @@ export default function Contacto() {
           {/* Formulario: al hacer submit llama a handleSubmit */}
           <form
             onSubmit={handleSubmit}
-            className="bg-[#0d1f12] border border-[#00FF9D]/20 rounded-3xl p-8 flex flex-col gap-6"
+            className="bg-fondo-secundario border border-slate-700 rounded-3xl p-8 flex flex-col gap-6"  // fondo y borde del footer
           >
 
             {/* ── Cuadrícula de 2 columnas para los campos cortos ── */}
@@ -229,7 +229,7 @@ export default function Contacto() {
 
               {/* Campo: Nombre completo */}
               <div className="flex flex-col gap-1">
-                <label htmlFor="nombre" className="text-xs text-gray-400 uppercase tracking-widest">
+                <label htmlFor="nombre" className="text-xs text-texto-secundario uppercase tracking-widest"  /* etiqueta: color secundario del footer */>
                   Nombre completo <span className="text-marca-principal">*</span>
                 </label>
                 <input
@@ -240,13 +240,13 @@ export default function Contacto() {
                   value={form.nombre}                       // Valor controlado por el estado
                   onChange={handleChange}                   // Actualiza el estado al escribir
                   placeholder="Tu nombre"
-                  className="bg-[#060f09] border border-[#00FF9D]/25 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#00FF9D] transition-colors"
+                  className="bg-fondo-secundario border border-slate-700 rounded-xl px-4 py-3 text-sm text-texto-titulo placeholder-gray-600 focus:outline-none focus:border-marca-principal transition-colors"  // campo con paleta del footer, foco en verde cyan
                 />
               </div>
 
               {/* Campo: Correo electrónico */}
               <div className="flex flex-col gap-1">
-                <label htmlFor="email" className="text-xs text-gray-400 uppercase tracking-widest">
+                <label htmlFor="email" className="text-xs text-texto-secundario uppercase tracking-widest"  /* etiqueta: color secundario del footer */>
                   Correo electrónico <span className="text-marca-principal">*</span>
                 </label>
                 <input
@@ -257,13 +257,13 @@ export default function Contacto() {
                   value={form.email}
                   onChange={handleChange}
                   placeholder="tu@email.com"
-                  className="bg-[#060f09] border border-[#00FF9D]/25 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#00FF9D] transition-colors"
+                  className="bg-fondo-secundario border border-slate-700 rounded-xl px-4 py-3 text-sm text-texto-titulo placeholder-gray-600 focus:outline-none focus:border-marca-principal transition-colors"  // campo con paleta del footer, foco en verde cyan
                 />
               </div>
 
               {/* Campo: Número de teléfono */}
               <div className="flex flex-col gap-1">
-                <label htmlFor="telefono" className="text-xs text-gray-400 uppercase tracking-widest">
+                <label htmlFor="telefono" className="text-xs text-texto-secundario uppercase tracking-widest"  /* etiqueta: color secundario del footer */>
                   Número de teléfono <span className="text-marca-principal">*</span>
                 </label>
                 <input
@@ -274,13 +274,13 @@ export default function Contacto() {
                   value={form.telefono}
                   onChange={handleChange}
                   placeholder="+34 600 000 000"
-                  className="bg-[#060f09] border border-[#00FF9D]/25 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#00FF9D] transition-colors"
+                  className="bg-fondo-secundario border border-slate-700 rounded-xl px-4 py-3 text-sm text-texto-titulo placeholder-gray-600 focus:outline-none focus:border-marca-principal transition-colors"  // campo con paleta del footer, foco en verde cyan
                 />
               </div>
 
               {/* Campo: ¿Por qué nos contactas? */}
               <div className="flex flex-col gap-1">
-                <label htmlFor="motivo" className="text-xs text-gray-400 uppercase tracking-widest">
+                <label htmlFor="motivo" className="text-xs text-texto-secundario uppercase tracking-widest"  /* etiqueta: color secundario del footer */>
                   ¿Por qué nos contactas? <span className="text-marca-principal">*</span>
                 </label>
                 <select
@@ -289,7 +289,7 @@ export default function Contacto() {
                   required
                   value={form.motivo}
                   onChange={handleChange}
-                  className="bg-[#060f09] border border-[#00FF9D]/25 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00FF9D] transition-colors appearance-none"
+                  className="bg-fondo-secundario border border-slate-700 rounded-xl px-4 py-3 text-sm text-texto-titulo focus:outline-none focus:border-marca-principal transition-colors appearance-none"  // select con paleta del footer
                 >
                   {/* Opción placeholder vacía */}
                   <option value="" disabled>Selecciona una opción</option>
@@ -304,7 +304,7 @@ export default function Contacto() {
 
               {/* Campo: Mejor momento para contactar */}
               <div className="flex flex-col gap-1 md:col-span-2">
-                <label htmlFor="momento" className="text-xs text-gray-400 uppercase tracking-widest">
+                <label htmlFor="momento" className="text-xs text-texto-secundario uppercase tracking-widest"  /* etiqueta: color secundario del footer */>
                   ¿Cuál es el mejor momento para contactarte? <span className="text-marca-principal">*</span>
                 </label>
                 <select
@@ -313,7 +313,7 @@ export default function Contacto() {
                   required
                   value={form.momento}
                   onChange={handleChange}
-                  className="bg-[#060f09] border border-[#00FF9D]/25 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00FF9D] transition-colors appearance-none"
+                  className="bg-fondo-secundario border border-slate-700 rounded-xl px-4 py-3 text-sm text-texto-titulo focus:outline-none focus:border-marca-principal transition-colors appearance-none"  // select con paleta del footer
                 >
                   {/* Opción placeholder vacía */}
                   <option value="" disabled>Selecciona una franja horaria</option>
@@ -327,7 +327,7 @@ export default function Contacto() {
 
             {/* Campo: Motivo / asunto breve — ocupa el ancho completo */}
             <div className="flex flex-col gap-1">
-              <label htmlFor="asunto" className="text-xs text-gray-400 uppercase tracking-widest">
+              <label htmlFor="asunto" className="text-xs text-texto-secundario uppercase tracking-widest"  /* etiqueta: color secundario del footer */>
                 Motivo <span className="text-marca-principal">*</span>
               </label>
               <input
@@ -338,13 +338,13 @@ export default function Contacto() {
                 value={form.asunto}
                 onChange={handleChange}
                 placeholder="Resumen breve de tu consulta"
-                className="bg-[#060f09] border border-[#00FF9D]/25 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#00FF9D] transition-colors"
+                className="bg-fondo-secundario border border-slate-700 rounded-xl px-4 py-3 text-sm text-texto-titulo placeholder-gray-600 focus:outline-none focus:border-marca-principal transition-colors"  // campo con paleta del footer, foco en verde cyan
               />
             </div>
 
             {/* Campo: Mensaje largo — ocupa el ancho completo */}
             <div className="flex flex-col gap-1">
-              <label htmlFor="mensaje" className="text-xs text-gray-400 uppercase tracking-widest">
+              <label htmlFor="mensaje" className="text-xs text-texto-secundario uppercase tracking-widest"  /* etiqueta: color secundario del footer */>
                 Mensaje <span className="text-marca-principal">*</span>
               </label>
               <textarea
@@ -355,7 +355,7 @@ export default function Contacto() {
                 value={form.mensaje}
                 onChange={handleChange}
                 placeholder="Cuéntanos con detalle en qué podemos ayudarte…"
-                className="bg-[#060f09] border border-[#00FF9D]/25 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#00FF9D] transition-colors resize-none"
+                className="bg-fondo-secundario border border-slate-700 rounded-xl px-4 py-3 text-sm text-texto-titulo placeholder-gray-600 focus:outline-none focus:border-marca-principal transition-colors resize-none"  // textarea con paleta del footer
               />
             </div>
 
@@ -369,7 +369,7 @@ export default function Contacto() {
                 onChange={handleChange}
                 className="mt-0.5 accent-[#00FF9D] w-4 h-4 shrink-0"  // accent colorea el check en verde
               />
-              <span className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+              <span className="text-sm text-texto-secundario group-hover:text-texto-titulo transition-colors">  {/* texto del checkbox en paleta del footer */}
                 Estoy de acuerdo con la{' '}
                 <span className="text-marca-principal">política de privacidad, términos y condiciones</span>
               </span>
@@ -403,7 +403,7 @@ export default function Contacto() {
           </p>
 
           {/* Contenedor del mapa con borde y esquinas redondeadas al estilo de la web */}
-          <div className="rounded-3xl overflow-hidden border border-[#00FF9D]/20">  {/* overflow-hidden recorta las esquinas del iframe */}
+          <div className="rounded-3xl overflow-hidden border border-slate-700">  {/* borde del footer; overflow-hidden recorta las esquinas del iframe */}
 
             {/* Iframe de Google Maps con la ubicación del Polo Digital de Málaga */}
             <iframe
@@ -445,10 +445,10 @@ export default function Contacto() {
           <div className="flex flex-col gap-3">
             {faqs.map((faq, i) => (
 
-              // Contenedor de cada ítem del acordeón
+              // Contenedor de cada ítem del acordeón — fondo de la paleta del footer
               <div
                 key={i}
-                className="border border-[#00FF9D]/20 rounded-2xl overflow-hidden bg-[#0d1f12]"  // overflow-hidden recorta la respuesta al expandirse
+                className="border border-[#00FF9D]/20 rounded-2xl overflow-hidden bg-fondo-secundario"  // bg-fondo-secundario: misma paleta que el footer
               >
 
                 {/* Botón que abre o cierra la pregunta */}
@@ -457,12 +457,12 @@ export default function Contacto() {
                   className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
                   aria-expanded={abierta === i}                             // Accesibilidad: indica si está expandido
                 >
-                  {/* Texto de la pregunta */}
-                  <span className="text-sm font-semibold text-white leading-snug">
+                  {/* Texto de la pregunta — color de título de la paleta del footer */}
+                  <span className="text-sm font-semibold text-texto-titulo leading-snug">
                     {faq.pregunta}
                   </span>
 
-                  {/* Icono de flecha que rota 180° cuando la pregunta está abierta */}
+                  {/* Icono de flecha — color principal de la marca */}
                   <ChevronDown
                     size={18}
                     className={`text-marca-principal shrink-0 transition-transform duration-300 ${abierta === i ? 'rotate-180' : ''}`}
@@ -474,8 +474,8 @@ export default function Contacto() {
                   <div className="px-6 pb-5">                              {/* Mismo padding horizontal que el botón */}
                     {/* Separador visual entre pregunta y respuesta */}
                     <div className="border-t border-[#00FF9D]/10 mb-4" />
-                    {/* Texto de la respuesta */}
-                    <p className="text-sm text-gray-400 leading-relaxed">
+                    {/* Texto de la respuesta — color secundario de la paleta del footer */}
+                    <p className="text-sm text-texto-secundario leading-relaxed">
                       {faq.respuesta}
                     </p>
                   </div>
