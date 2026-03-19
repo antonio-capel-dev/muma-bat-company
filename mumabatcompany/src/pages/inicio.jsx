@@ -77,7 +77,7 @@ const bloques = [
     texto:
       "Eventos nocturnos de conservación que combinan detección de ultrasonidos, realidad virtual y charlas científicas. Ya celebradas en Portugal, Cueva de Nerja, Plaza Mayor Málaga y Laguna de Fuente de Piedra con más de 700 participantes en 2025.", // Descripción del servicio
     enlaceTexto: "Ver ediciones", // Texto del enlace CTA
-    enlaceHref: "../assets/images/bat-nights-espana.png", // Ruta de destino
+    enlaceHref: "/servicios/bat-night", // Ruta de destino
     imgFondo: "/images/bat-night-eslovenia.webp",
   },
 ];

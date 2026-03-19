@@ -1,246 +1,814 @@
-// Página de servicio — Museo Virtual y Realidad Virtual
+// Página — Realidad Virtual (ecosistema de 5 módulos)
+//
+// Estructura final según acuerdo de equipo:
+//   1. Cabecera general "Realidad Virtual" (dentro-cueva.webp)
+//   2. Bloque protagonista: MuMa VR² Cave Experience
+//      — grid texto / stack de imágenes
+//      — 4 pilares del servicio
+//   3. Separador visual + grid 4 módulos complementarios (2×2)
+//   4. Franja de logos de alianzas
+//   5. CTA de conversión + formulario integrado
+
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { MonitorPlay, Headset, Box, Users, Check, ArrowRight } from 'lucide-react'
+import {
+  ArrowRight,
+  Award, Truck, Headset, Users,
+  Globe, BookOpen, Gamepad2, Landmark,
+  CheckCircle,
+} from 'lucide-react'
+import Footer from '../../components/footer'
 
-const schemaOrg = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Museo Virtual y Realidad Virtual para museos e instituciones",
-  "provider": {
-    "@type": "Organization",
-    "name": "MUMA BAT COMPANY",
-    "url": "https://mumabatcompany.com"
+/* ═══════════════════════════════════════════════════════════════════════════
+   DATOS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+const PILARES = [
+  { Icono: Headset, titulo: 'Contenido de cueva real',        desc: 'Desarrollado desde el conocimiento directo del hábitat subterráneo. No es recreación — es documentación.' },
+  { Icono: Truck,   titulo: 'Llegamos con la cueva',          desc: 'Montamos, operamos y recogemos. Tu espacio acoge la experiencia sin obra ni infraestructura adicional.' },
+  { Icono: Users,   titulo: 'Divulgador científico incluido', desc: 'Cada sesión la conduce alguien que conoce los murciélagos de verdad. La tecnología tiene fondo.' },
+  { Icono: Award,   titulo: 'Aval de proyecto europeo',       desc: 'Investigación respaldada por SECEMU, Fundación Cueva de Nerja y Fondo Europeo de Desarrollo Regional (FEDER).' },
+]
+
+// Acento visual por módulo — muy sutil, diferencia sin romper coherencia
+const MODULOS = [
+  {
+    Icono: Globe,
+    titulo: 'MuMa Bats 360',
+    descripcion:
+      'Vídeos inmersivos en 360° grabados en entornos reales de murciélagos. Accesibles desde navegador o gafas VR, sin alterar los hábitats documentados.',
+    acento: 'rgba(31,225,167,0.04)',
+    proximamente: true,
   },
-  "description": "Exposiciones digitales e inmersivas sobre murciélagos para museos, centros de interpretación y espacios educativos. Realidad virtual, modelos 3D y visitas virtuales.",
-  "areaServed": "ES",
-  "serviceType": "Museo Virtual y Realidad Virtual"
-})
+  {
+    Icono: BookOpen,
+    titulo: 'MuMa Virtual Bats',
+    descripcion:
+      'Fichas interactivas de especies con modelos 3D, hábitat, estado de conservación y archivo acústico. Un recurso científico y visual para museos, centros educativos y divulgación.',
+    acento: 'rgba(96,165,250,0.04)',
+    proximamente: true,
+  },
+  {
+    Icono: Gamepad2,
+    titulo: 'MuMa Game',
+    descripcion:
+      'Experiencia gamificada basada en conocimiento científico real. Para reforzar aprendizaje y participación en aulas, eventos y actividades de sensibilización.',
+    acento: 'rgba(31,225,167,0.04)',
+    proximamente: true,
+  },
+  {
+    Icono: Landmark,
+    titulo: 'Virtual Museum',
+    descripcion:
+      'Espacio digital para explorar el archivo visual, sonoro y narrativo de MUMA. Una experiencia expositiva online que no necesita paredes.',
+    acento: 'rgba(96,165,250,0.04)',
+    proximamente: true,
+  },
+]
 
-const varianteSeccion = {
-  oculto: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } }
+const ALIANZAS = [
+  { nombre: 'Junta de Andalucía',          logo: '/images/junta-andalucia.webp' },
+  { nombre: 'Fundación Cueva de Nerja',     logo: '/images/cueva de nerja.webp' },
+  { nombre: 'Málaga TechPark',              logo: '/images/malaga-tech-park.webp' },
+  { nombre: 'BIC Euronova',                 logo: '/images/centro-europeo-empresas.webp' },
+  { nombre: 'Fundación Bioparc',            logo: '/images/fundacion biopark.webp' },
+  { nombre: 'Polo de Contenidos Digitales', logo: '/images/polo-contenido-digital.webp' },
+  { nombre: 'Plaza Mayor',                  logo: '/images/plaza-mayor.webp' },
+  { nombre: 'Red de Emprendedores',         logo: '/images/red-emprendedores.webp' },
+]
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VARIANTES DE ANIMACIÓN
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+const fadeUp = {
+  oculto:  { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
 }
 
-const modalidades = [
-  {
-    Icono: MonitorPlay,
-    titulo: 'Visita virtual 360°',
-    descripcion: 'Recorridos inmersivos por hábitats de murciélagos accesibles desde cualquier dispositivo. Sin instalación ni hardware especial.',
-    publico: 'Museos · Centros de interpretación · Web institucional',
-  },
-  {
-    Icono: Headset,
-    titulo: 'Experiencia en Realidad Virtual',
-    descripcion: 'Sesiones presenciales con gafas VR. El visitante entra en una cueva, observa colonias, detecta ultrasonidos. Impacto máximo en exposiciones y ferias.',
-    publico: 'Museos de ciencia · Espacios naturales · Ferias y eventos',
-  },
-  {
-    Icono: Box,
-    titulo: 'Modelos 3D interactivos',
-    descripcion: 'Anatomía, especies y comportamiento en modelos tridimensionales explorables. Integración en web, tablets o pantallas táctiles.',
-    publico: 'Centros educativos · Exposiciones itinerantes · Aulas digitales',
-  },
-  {
-    Icono: Users,
-    titulo: 'Exposición digital llave en mano',
-    descripcion: 'Diseño, producción e instalación de la exposición completa. Desde el guión científico hasta la pantalla. Incluye mantenimiento y actualización de contenidos.',
-    publico: 'Ayuntamientos · Diputaciones · Museos de historia natural',
-  },
-]
+const fadeIn = {
+  oculto:  { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.5 } },
+}
 
-const paraQuien = [
-  { perfil: 'Museos y centros de interpretación', necesidad: 'Renovar exposiciones con tecnología inmersiva sin obra ni inversión en infraestructura permanente.' },
-  { perfil: 'Ayuntamientos y espacios naturales', necesidad: 'Divulgar el patrimonio natural local de forma accesible, atractiva y con respaldo científico.' },
-  { perfil: 'Centros educativos e institutos', necesidad: 'Complementar el currículo de Ciencias Naturales con experiencias que no se olvidan.' },
-  { perfil: 'Paradores, hoteles con naturaleza y campings', necesidad: 'Ofrecer una experiencia diferenciadora a huéspedes y visitantes con alto valor ambiental.' },
-]
+/* ═══════════════════════════════════════════════════════════════════════════
+   SUB-COMPONENTES
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-const diferenciadores = [
-  'Contenido científico real: especies presentes en España y Europa, comportamientos verificados, datos de conservación actualizados.',
-  'Producción propia: no compramos recursos genéricos. Diseñamos y producimos cada exposición con materiales originales de MUMA.',
-  'Integrable con el resto de servicios: el museo virtual puede complementarse con una Bat Night, refugios o formación en el mismo espacio.',
-  'Avales institucionales: SECEMU, EUROBATS y REV. El rigor científico es parte del producto.',
-]
+// Campo de formulario reutilizable
+function Campo({ id, name, label, type = 'text', placeholder, required = false, autoComplete }) {
+  return (
+    <div>
+      <label
+        htmlFor={id}
+        className="block text-[10px] font-bold text-texto-secundario uppercase tracking-[0.12em] mb-1.5"
+      >
+        {label}
+      </label>
+      <input
+        id={id}
+        name={name}
+        type={type}
+        required={required}
+        autoComplete={autoComplete}
+        placeholder={placeholder}
+        className="w-full bg-fondo-base border border-white/10 rounded-xl px-4 py-3 text-sm text-texto-principal placeholder-texto-secundario/40 focus:outline-none focus:border-marca-principal/50 transition-colors duration-200"
+      />
+    </div>
+  )
+}
+
+// Card de módulo secundario
+function CardModulo({ Icono, titulo, descripcion, acento, proximamente, index }) {
+  return (
+    <motion.article
+      initial="oculto"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={{
+        oculto:  { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.08 } },
+      }}
+      className="rounded-2xl p-6 border border-white/5 hover:border-white/12 transition-colors duration-300 flex flex-col"
+      style={{ background: `linear-gradient(135deg, #16212d 0%, #16212d 60%, ${acento} 100%)` }}
+    >
+      {/* Cabecera */}
+      <div className="flex items-start gap-3 mb-5">
+        <div className="w-11 h-11 rounded-xl bg-marca-principal/10 border border-marca-principal/20 flex items-center justify-center shrink-0 mt-0.5">
+          <Icono size={20} className="text-marca-principal" aria-hidden="true" />
+        </div>
+        <div className="flex-1 min-w-0 pt-1">
+          <h3 className="text-base font-bold text-texto-titulo leading-tight">{titulo}</h3>
+        </div>
+        {proximamente && (
+          <span className="text-[9px] font-bold tracking-[0.1em] text-marca-principal/70 uppercase bg-marca-principal/10 border border-marca-principal/20 px-2.5 py-1 rounded-lg shrink-0 mt-1">
+            Próximamente
+          </span>
+        )}
+      </div>
+
+      {/* Descripción */}
+      <p className="text-sm text-texto-secundario leading-relaxed">
+        {descripcion}
+      </p>
+    </motion.article>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMPONENTE PRINCIPAL
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 export default function RealidadVirtual() {
+  const [enviado, setEnviado] = useState(false)
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const form = e.target
+    const data = new FormData(form)
+    const nombre       = data.get('nombre') || ''
+    const email        = data.get('email') || ''
+    const organizacion = data.get('organizacion') || ''
+    const tipoEspacio  = data.get('tipo_espacio') || ''
+    const participantes = data.get('participantes') || ''
+    const fecha        = data.get('fecha') || ''
+
+    const cuerpo = [
+      `Nombre: ${nombre}`,
+      `Email: ${email}`,
+      `Organización: ${organizacion}`,
+      `Tipo de espacio: ${tipoEspacio}`,
+      `Participantes estimados: ${participantes}`,
+      `Fecha tentativa: ${fecha}`,
+    ].join('\n')
+
+    const subject = encodeURIComponent(`[Web VR] Solicitud demostración — ${nombre}`)
+    const body    = encodeURIComponent(cuerpo)
+
+    window.location.href = `mailto:info@murcielagosmalaga.com?subject=${subject}&body=${body}`
+    setEnviado(true)
+    form.reset()
+  }
+
   return (
     <>
       <Helmet>
         <html lang="es" />
-        <title>Museo Virtual y Realidad Virtual sobre murciélagos | MUMA BAT COMPANY</title>
-        <meta name="description" content="Exposiciones inmersivas sobre murciélagos para museos, centros de interpretación y espacios educativos. Visitas virtuales 360°, realidad virtual y modelos 3D con rigor científico." />
-        <meta property="og:title" content="Museo Virtual y Realidad Virtual | MUMA BAT COMPANY" />
-        <meta property="og:description" content="Exposiciones inmersivas sobre murciélagos para museos, centros de interpretación y espacios educativos." />
+        <title>
+          Realidad Virtual — Experiencias inmersivas sobre murciélagos | MUMA BAT COMPANY
+        </title>
+        <meta
+          name="description"
+          content="Tecnología inmersiva al servicio de los murciélagos. MuMa VR² Cave Experience y cuatro herramientas digitales para museos, ayuntamientos, hoteles y centros educativos."
+        />
+        <meta property="og:title" content="Realidad Virtual | MUMA BAT COMPANY" />
+        <meta
+          property="og:description"
+          content="Cinco herramientas digitales para acercar a las personas a una especie que casi nadie ha visto de cerca."
+        />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mumabatcompany.com/servicios/realidad-virtual" />
-        <link rel="canonical" href="https://mumabatcompany.com/servicios/realidad-virtual" />
-        <script type="application/ld+json">{schemaOrg}</script>
+        <meta property="og:url" content="https://murcielagosmalaga.com/servicios/realidad-virtual" />
+        <meta property="og:image" content="https://murcielagosmalaga.com/images/Image_VRglases.webp" />
+        <link rel="canonical" href="https://murcielagosmalaga.com/servicios/realidad-virtual" />
       </Helmet>
 
       <main>
 
-        {/* ── HERO ── */}
-        <section className="relative min-h-[70vh] flex flex-col justify-center items-center text-center px-6 pt-28 pb-16 bg-fondo-base overflow-hidden">
+        {/* ══════════════════════════════════════════════════════════════════
+            1. CABECERA GENERAL — Realidad Virtual
+            ══════════════════════════════════════════════════════════════════ */}
+        <section
+          className="relative flex items-center justify-center text-center overflow-hidden"
+          style={{ minHeight: '62vh' }}
+          aria-label="Cabecera Realidad Virtual"
+        >
+          <img
+            src="/images/dentro-cueva.webp"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            fetchpriority="high"
+          />
+          {/* Overlay oscuro */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse, rgba(31,225,167,0.07) 0%, transparent 70%)' }}
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to bottom, rgba(11,17,23,0.82) 0%, rgba(11,17,23,0.65) 50%, rgba(11,17,23,0.94) 100%)',
+            }}
             aria-hidden="true"
           />
-          <div className="relative z-10 max-w-3xl mx-auto">
+          {/* Halo marca */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                'radial-gradient(ellipse 70% 50% at 50% 60%, rgba(31,225,167,0.07) 0%, transparent 70%)',
+            }}
+            aria-hidden="true"
+          />
+
+          <div className="relative z-10 max-w-3xl mx-auto px-6 py-32 lg:py-40">
             <motion.p
-              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-              className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-5"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
+              className="text-[10px] font-bold tracking-[0.25em] text-marca-principal uppercase mb-5"
             >
-              Servicio · Inmersivo
+              Realidad Virtual · MUMA BAT COMPANY
             </motion.p>
             <motion.h1
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-texto-titulo mb-6"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.08 }}
+              className="font-bold leading-[1.08] tracking-tight text-texto-titulo mb-6"
+              style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)' }}
             >
-              Museo Virtual y{' '}
-              <span className="text-marca-principal">Realidad Virtual</span>
+              Tecnología inmersiva al servicio de los murciélagos.
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg sm:text-xl text-texto-secundario max-w-2xl mx-auto leading-relaxed mb-10"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.16 }}
+              className="text-lg text-texto-secundario leading-relaxed max-w-xl mx-auto mb-10"
             >
-              Exposiciones digitales e inmersivas sobre murciélagos. Para museos, centros de interpretación, espacios naturales y centros educativos que quieren ofrecer una experiencia que no se olvida.
+              Cinco herramientas digitales para acercar a las personas
+              a una especie que casi nadie ha visto de cerca.
             </motion.p>
             <motion.div
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-3 justify-center"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.28 }}
             >
               <a
-                href="#contacto"
+                href="#demo"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
               >
-                Solicitar propuesta
+                Pedir demostración <ArrowRight size={15} aria-hidden="true" />
               </a>
-              <a
-                href="#modalidades"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/15 text-texto-principal hover:bg-fondo-superficie hover:border-white/25 transition-all duration-200 no-underline"
+            </motion.div>
+          </div>
+
+          {/* Degradado inferior de fusión */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-28 pointer-events-none"
+            style={{ background: 'linear-gradient(to bottom, transparent 0%, #0b1117 100%)' }}
+            aria-hidden="true"
+          />
+        </section>
+
+        {/* ══════════════════════════════════════════════════════════════════
+            2. BLOQUE PROTAGONISTA — MuMa VR² Cave Experience
+            ══════════════════════════════════════════════════════════════════ */}
+        <section
+          className="relative overflow-hidden bg-fondo-base"
+          aria-labelledby="cave-experience-titulo"
+        >
+          <div className="max-w-6xl mx-auto px-6 py-20 lg:py-28">
+
+            {/* Encabezado de sección sobre el grid */}
+            <motion.div
+              initial="oculto" whileInView="visible" viewport={{ once: true }}
+              variants={fadeUp}
+              className="mb-14"
+            >
+              <p className="text-[10px] font-bold tracking-[0.22em] text-marca-principal uppercase mb-3">
+                Investigación aplicada · Experiencia llave en mano
+              </p>
+              <h2
+                id="cave-experience-titulo"
+                className="font-bold leading-[1.1] tracking-tight text-texto-titulo"
+                style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.75rem)' }}
               >
-                Ver modalidades <ArrowRight size={15} aria-hidden="true" />
-              </a>
+                MuMa VR² Cave Experience
+              </h2>
             </motion.div>
-          </div>
-        </section>
 
-        {/* ── PARA QUIÉN ── */}
-        <section className="bg-fondo-secundario py-20 px-6">
-          <div className="max-w-6xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
-              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Diseñado para</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">¿Tu organización necesita esto?</h2>
-              <p className="text-texto-secundario max-w-xl mx-auto">Trabajamos con instituciones que quieren integrar tecnología inmersiva sin renunciar al rigor científico.</p>
-            </motion.div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {paraQuien.map((item, i) => (
+            {/* Grid principal: texto ↔ stack de imágenes */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16">
+
+              {/* ── Texto ── */}
+              <motion.div
+                initial="oculto" whileInView="visible" viewport={{ once: true }}
+                variants={fadeUp}
+              >
+                <p
+                  className="font-bold leading-[1.12] tracking-tight text-texto-titulo mb-6"
+                  style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.15rem)' }}
+                >
+                  Lleva una{' '}
+                  <span className="text-marca-principal">cueva de murciélagos</span>
+                  {' '}a tu espacio.
+                </p>
+                <p className="text-texto-secundario leading-relaxed mb-4">
+                  Visitarlas en persona sería inviable: el acceso humano daña los hábitats donde nacen. MUMA lleva la cueva a tu espacio para que tu público viva lo que de otro modo destruiría.
+                </p>
+                <p className="text-texto-secundario leading-relaxed mb-8">
+                  Con gafas de realidad virtual, el visitante entra en una cueva habitada por murciélagos y comprende su papel en el ecosistema. Sin pisar la cueva. Sin alterar nada. Con el rigor de quien lleva años documentando ese mundo.
+                </p>
+
+                {/* Citas de posicionamiento */}
+                <blockquote className="border-l-2 border-marca-principal pl-5 mb-8">
+                  <p className="text-texto-principal italic leading-relaxed text-sm">
+                    "Llevamos la cueva a las personas, no las personas a la cueva."
+                  </p>
+                  <cite className="text-xs text-texto-secundario/60 not-italic mt-1 block">
+                    MUMA BAT COMPANY
+                  </cite>
+                </blockquote>
+
+                {/* Badges compactos */}
+                <div className="flex flex-wrap items-center gap-3 mb-8">
+                  <div className="flex items-center gap-2 bg-fondo-superficie border border-white/8 rounded-xl px-4 py-2.5">
+                    <Award size={14} className="text-marca-principal shrink-0" aria-hidden="true" />
+                    <span className="text-xs text-texto-secundario">Aval científico SECEMU</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-fondo-superficie border border-white/8 rounded-xl px-4 py-2.5">
+                    <Truck size={14} className="text-marca-principal shrink-0" aria-hidden="true" />
+                    <span className="text-xs text-texto-secundario">Servicio llave en mano</span>
+                  </div>
+                </div>
+
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href="#demo"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
+                  >
+                    Pedir demostración en tu espacio
+                  </a>
+                  <a
+                    href="mailto:info@murcielagosmalaga.com"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/20 text-texto-principal hover:bg-white/8 hover:border-white/35 transition-all duration-200 no-underline"
+                  >
+                    Escribir al equipo <ArrowRight size={15} aria-hidden="true" />
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* ── Stack de imágenes ── */}
+              <div className="flex flex-col gap-3 lg:gap-4">
+                {/* Imagen principal */}
                 <motion.div
-                  key={i}
-                  initial="oculto" whileInView="visible" viewport={{ once: true }}
-                  variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
-                  className="bg-fondo-superficie rounded-2xl p-7 border border-white/5"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7 }}
+                  className="relative rounded-2xl overflow-hidden aspect-[16/9] bg-fondo-superficie border border-white/5"
                 >
-                  <p className="text-sm font-bold text-marca-principal mb-2">{item.perfil}</p>
-                  <p className="text-sm text-texto-secundario leading-relaxed">{item.necesidad}</p>
+                  <img
+                    src="/images/Image_VRglases.webp"
+                    alt="Persona experimentando MuMa VR² Cave Experience con gafas de realidad virtual"
+                    className="w-full h-full object-cover object-center"
+                    loading="eager"
+                  />
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{ background: 'linear-gradient(to top, rgba(11,17,23,0.4) 0%, transparent 50%)' }}
+                    aria-hidden="true"
+                  />
                 </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* ── MODALIDADES ── */}
-        <section id="modalidades" className="bg-fondo-base py-20 px-6">
-          <div className="max-w-6xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
-              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Formatos disponibles</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Modalidades del servicio</h2>
-              <p className="text-texto-secundario max-w-xl mx-auto">Cada proyecto es diferente. Adaptamos el formato al espacio, al presupuesto y al público.</p>
-            </motion.div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {modalidades.map((modalidad, i) => (
-                <motion.article
-                  key={i}
-                  initial="oculto" whileInView="visible" viewport={{ once: true }}
-                  variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
-                  className="bg-fondo-superficie rounded-2xl p-6 border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 flex flex-col"
-                >
-                  <modalidad.Icono size={28} className="text-marca-principal mb-4" aria-hidden="true" />
-                  <h3 className="text-base font-bold text-texto-titulo mb-3 leading-snug">{modalidad.titulo}</h3>
-                  <p className="text-sm text-texto-secundario leading-relaxed flex-grow">{modalidad.descripcion}</p>
-                  <p className="mt-4 text-xs text-marca-principal/70 leading-relaxed">{modalidad.publico}</p>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── POR QUÉ MUMA ── */}
-        <section className="bg-fondo-secundario py-20 px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
-              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Lo que nos diferencia</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">No es tecnología por tecnología</h2>
-              <p className="text-texto-secundario max-w-xl mx-auto">La realidad virtual es la herramienta. El objetivo es que el visitante salga sabiendo más sobre murciélagos y quiera protegerlos.</p>
-            </motion.div>
-            <div className="space-y-4">
-              {diferenciadores.map((punto, i) => (
+                {/* Imagen secundaria de apoyo */}
                 <motion.div
-                  key={i}
-                  initial="oculto" whileInView="visible" viewport={{ once: true }}
-                  variants={{ oculto: { opacity: 0, x: -16 }, visible: { opacity: 1, x: 0, transition: { duration: 0.45, delay: i * 0.07 } } }}
-                  className="flex gap-3 items-start bg-fondo-superficie rounded-xl p-5 border border-white/5"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.14 }}
+                  className="relative rounded-xl overflow-hidden aspect-[16/8] bg-fondo-superficie border border-white/5"
                 >
-                  <Check size={18} className="text-marca-principal mt-0.5 shrink-0" aria-hidden="true" />
-                  <p className="text-sm text-texto-secundario leading-relaxed">{punto}</p>
+                  <img
+                    src="/images/VR-Malaga.jpg"
+                    alt="Murciélagos Málaga — experiencia de realidad virtual en entorno natural"
+                    className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    style={{ filter: 'brightness(1.15) contrast(1.05) saturate(1.1)' }}
+                  />
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{ background: 'linear-gradient(to top, rgba(11,17,23,0.15) 0%, transparent 60%)' }}
+                    aria-hidden="true"
+                  />
                 </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── CTA / CONTACTO ── */}
-        <section id="contacto" className="bg-fondo-base py-20 px-6">
-          <div className="max-w-2xl mx-auto text-center">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
-              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-4">Siguiente paso</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-5">¿Tienes un espacio en mente?</h2>
-              <p className="text-texto-secundario leading-relaxed mb-8">
-                Cuéntanos el tipo de espacio, el público y el presupuesto aproximado. En 24 horas te enviamos una propuesta adaptada.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <a
-                  href="mailto:info@murcielagosmalaga.com"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
-                >
-                  Escribir por email
-                </a>
-                <a
-                  href="https://wa.me/34664213450"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/15 text-texto-principal hover:bg-fondo-superficie hover:border-white/25 transition-all duration-200 no-underline"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-estado-exito" aria-hidden="true">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                  </svg>
-                  WhatsApp
-                </a>
               </div>
-              <p className="mt-8 text-sm text-texto-secundario/60">
-                ¿Buscas otro servicio?{' '}
-                <Link to="/#servicios" className="text-marca-principal hover:opacity-80 transition-opacity duration-200 no-underline">
-                  Ver todos los servicios
-                </Link>
+            </div>
+
+            {/* ── 4 pilares del servicio — fila compacta ── */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {PILARES.map(({ Icono, titulo, desc }, i) => (
+                <motion.div
+                  key={titulo}
+                  initial="oculto" whileInView="visible" viewport={{ once: true }}
+                  variants={{
+                    oculto:  { opacity: 0, y: 16 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.45, delay: i * 0.07 } },
+                  }}
+                  className="bg-fondo-superficie rounded-xl p-5 border border-white/5"
+                >
+                  <Icono size={22} className="text-marca-principal mb-3" aria-hidden="true" />
+                  <p className="text-sm font-bold text-texto-titulo mb-1">{titulo}</p>
+                  <p className="text-xs text-texto-secundario leading-relaxed">{desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Franja de financiación europea */}
+            <motion.div
+              initial="oculto" whileInView="visible" viewport={{ once: true }}
+              variants={{ oculto: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.5, delay: 0.2 } } }}
+              className="mt-10 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center gap-6"
+            >
+              <p className="text-[10px] font-bold tracking-[0.18em] text-texto-secundario/50 uppercase shrink-0">
+                Proyecto financiado por
+              </p>
+              <img
+                src="/images/europa.png"
+                alt="Financiado por el Fondo Europeo de Desarrollo Regional — Unión Europea, Una manera de hacer Europa. La Brújula XR and Metaverse Digital Coworking. Ayuntamiento de Málaga, Polo de Contenidos Digitales, Cámara de Málaga."
+                className="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-200"
+                loading="lazy"
+              />
+            </motion.div>
+
+          </div>
+
+          {/* Separador visual hacia el ecosistema */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
+            style={{ background: 'linear-gradient(to right, transparent 0%, rgba(31,225,167,0.2) 30%, rgba(31,225,167,0.2) 70%, transparent 100%)' }}
+            aria-hidden="true"
+          />
+        </section>
+
+        {/* ══════════════════════════════════════════════════════════════════
+            3. ECOSISTEMA — Grid de 4 módulos complementarios (2×2)
+            ══════════════════════════════════════════════════════════════════ */}
+        <section
+          className="relative py-20 px-6 overflow-hidden"
+          aria-labelledby="ecosistema-titulo"
+        >
+          {/* Fondo diferenciado */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(160deg, #101923 0%, #0f1d28 40%, #101923 100%)',
+            }}
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                'radial-gradient(ellipse 60% 35% at 50% 20%, rgba(31,225,167,0.04) 0%, transparent 70%)',
+            }}
+            aria-hidden="true"
+          />
+
+          <div className="relative z-10 max-w-5xl mx-auto">
+
+            {/* Cabecera de sección */}
+            <motion.div
+              initial="oculto" whileInView="visible" viewport={{ once: true }}
+              variants={fadeUp}
+              className="text-center mb-14"
+            >
+              <p className="text-[10px] font-bold tracking-[0.25em] text-marca-principal uppercase mb-4">
+                El ecosistema digital completo
+              </p>
+              <h2
+                id="ecosistema-titulo"
+                className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-5 leading-snug"
+              >
+                La experiencia presencial es el centro.{' '}
+                <span className="text-marca-principal">Estos cuatro módulos la amplían.</span>
+              </h2>
+              <p className="text-texto-secundario leading-relaxed max-w-xl mx-auto">
+                Contenido interactivo, educativo y gamificado que extiende
+                el impacto de MuMa más allá del evento.
               </p>
             </motion.div>
+
+            {/* Grid 2×2 */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {MODULOS.map((modulo, i) => (
+                <CardModulo key={modulo.titulo} {...modulo} index={i} />
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════════════════
+            4. FRANJA DE LOGOS DE ALIANZAS — carrusel horizontal infinito
+            ══════════════════════════════════════════════════════════════════ */}
+        <section
+          className="bg-fondo-base py-16 border-t border-white/5 overflow-hidden"
+          aria-label="Alianzas y avaladores de MUMA"
+        >
+          {/* Keyframe inyectado en el JSX — sin dependencia de archivo CSS externo */}
+          <style>{`
+            @keyframes scroll-logos {
+              0%   { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+          `}</style>
+
+          {/* Título de sección */}
+          <motion.p
+            initial="oculto"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="text-[10px] font-bold tracking-[0.2em] text-texto-secundario/60 uppercase text-center mb-12 px-6"
+          >
+            Avalan y colaboran con MuMa
+          </motion.p>
+
+          {/* Contenedor exterior: máscara lateral + interacción ratón */}
+          <div
+            style={{
+              maskImage:
+                'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+              cursor: 'grab',
+            }}
+            onMouseEnter={(e) => {
+              const track = e.currentTarget.querySelector('[data-carousel-track]')
+              if (track) track.style.animationPlayState = 'paused'
+            }}
+            onMouseLeave={(e) => {
+              const track = e.currentTarget.querySelector('[data-carousel-track]')
+              if (track) {
+                setTimeout(() => {
+                  if (track) track.style.animationPlayState = 'running'
+                }, 1500)
+              }
+            }}
+            onMouseDown={(e) => {
+              e.currentTarget.style.cursor = 'grabbing'
+            }}
+            onMouseUp={(e) => {
+              e.currentTarget.style.cursor = 'grab'
+            }}
+          >
+            {/* Track animado: contiene los logos × 2 para el loop sin salto */}
+            <div
+              data-carousel-track
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                width: 'max-content',
+                animation: 'scroll-logos 45s linear infinite',
+                paddingTop: '1.5rem',
+                paddingBottom: '1.5rem',
+              }}
+            >
+              {[...ALIANZAS, ...ALIANZAS].map((alianza, i) => (
+                <img
+                  key={`${alianza.nombre}-${i}`}
+                  src={alianza.logo}
+                  alt={alianza.nombre}
+                  title={alianza.nombre}
+                  className="h-16 w-auto max-w-[160px] object-contain mx-14 opacity-80 hover:opacity-100 transition-opacity duration-200"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════════════════
+            5. CTA DE CONVERSIÓN + FORMULARIO
+            ══════════════════════════════════════════════════════════════════ */}
+        <section
+          id="demo"
+          className="relative py-24 px-6 overflow-hidden"
+          aria-labelledby="cta-titulo"
+        >
+          {/* Fondo */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(135deg, #1b2836 0%, #101923 50%, #0b1117 100%)',
+            }}
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse 55% 55% at 50% 50%, rgba(31,225,167,0.04) 0%, transparent 70%)',
+            }}
+            aria-hidden="true"
+          />
+
+          <div className="relative z-10 max-w-2xl mx-auto">
+
+            {/* Cabecera del CTA */}
+            <motion.div
+              initial="oculto" whileInView="visible" viewport={{ once: true }}
+              variants={fadeUp}
+              className="text-center mb-12"
+            >
+              <p className="text-[10px] font-bold tracking-[0.22em] text-marca-principal uppercase mb-4">
+                Con MuMa, la realidad virtual no sustituye la naturaleza
+              </p>
+              <h2
+                id="cta-titulo"
+                className="font-bold leading-tight tracking-tight text-texto-titulo mb-4"
+                style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)' }}
+              >
+                La protege.
+              </h2>
+              <p className="text-texto-secundario leading-relaxed max-w-md mx-auto mb-8">
+                Cada experiencia impulsa investigación, divulgación
+                y acciones de conservación. Pide una demostración en tu espacio.
+              </p>
+              {/* Garantías breves */}
+              <div className="flex flex-col sm:flex-row justify-center gap-4 text-xs text-texto-secundario/70">
+                {[
+                  'Sin compromiso de contratación',
+                  'MUMA lleva todo el equipo',
+                  'Respuesta en 48 h',
+                ].map((item) => (
+                  <span key={item} className="flex items-center justify-center gap-1.5">
+                    <CheckCircle size={12} className="text-marca-principal shrink-0" aria-hidden="true" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Formulario */}
+            {enviado ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+                className="bg-fondo-superficie rounded-2xl p-10 border border-marca-principal/20 text-center"
+              >
+                <CheckCircle size={40} className="text-marca-principal mx-auto mb-4" aria-hidden="true" />
+                <h3 className="text-xl font-bold text-texto-titulo mb-2">Solicitud recibida</h3>
+                <p className="text-texto-secundario text-sm leading-relaxed">
+                  Nos pondremos en contacto contigo en menos de 48 horas
+                  para coordinar la demostración.
+                </p>
+              </motion.div>
+            ) : (
+              <motion.form
+                initial="oculto" whileInView="visible" viewport={{ once: true }}
+                variants={{
+                  oculto:  { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } },
+                }}
+                onSubmit={handleSubmit}
+                className="bg-fondo-superficie rounded-2xl p-8 border border-white/5 space-y-5"
+                noValidate
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <Campo
+                    id="nombre" name="nombre" label="Nombre"
+                    placeholder="Tu nombre" required autoComplete="name"
+                  />
+                  <Campo
+                    id="email" name="email" type="email" label="Correo electrónico"
+                    placeholder="tu@email.com" required autoComplete="email"
+                  />
+                </div>
+                <Campo
+                  id="organizacion" name="organizacion" label="Organización"
+                  placeholder="Museo, ayuntamiento, hotel…" required
+                />
+
+                {/* Select — tipo de espacio */}
+                <div>
+                  <label
+                    htmlFor="tipo-espacio"
+                    className="block text-[10px] font-bold text-texto-secundario uppercase tracking-[0.12em] mb-1.5"
+                  >
+                    Tipo de espacio
+                  </label>
+                  <select
+                    id="tipo-espacio" name="tipo_espacio" required
+                    defaultValue=""
+                    className="w-full bg-fondo-base border border-white/10 rounded-xl px-4 py-3 text-sm text-texto-principal focus:outline-none focus:border-marca-principal/50 transition-colors duration-200 appearance-none"
+                  >
+                    <option value="" disabled>Selecciona una opción</option>
+                    <option value="museo">Museo o centro de interpretación</option>
+                    <option value="ayuntamiento">Ayuntamiento o diputación</option>
+                    <option value="hotel">Hotel o espacio turístico</option>
+                    <option value="educativo">Centro educativo</option>
+                    <option value="evento">Evento o feria</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <Campo
+                    id="participantes" name="participantes" label="Participantes estimados"
+                    placeholder="Ej: 100–200 personas"
+                  />
+                  <Campo
+                    id="fecha" name="fecha" label="Fecha tentativa"
+                    placeholder="Ej: junio 2026"
+                  />
+                </div>
+
+                <input
+                  type="hidden" name="_subject"
+                  value="Solicitud demostración VR — MuMa VR² Cave Experience"
+                />
+
+                <button
+                  type="submit"
+                  className="w-full inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200"
+                >
+                  Pedir demostración en tu espacio
+                </button>
+
+                <p className="text-xs text-center text-texto-secundario/50">
+                  O escríbenos a{' '}
+                  <a
+                    href="mailto:info@murcielagosmalaga.com"
+                    className="text-marca-principal hover:opacity-80 transition-opacity no-underline"
+                  >
+                    info@murcielagosmalaga.com
+                  </a>
+                  {' '}o por{' '}
+                  <a
+                    href="https://wa.me/34664213450"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-marca-principal hover:opacity-80 transition-opacity no-underline"
+                  >
+                    WhatsApp
+                  </a>
+                </p>
+              </motion.form>
+            )}
+
+            {/* Link de salida */}
+            <motion.p
+              initial="oculto" whileInView="visible" viewport={{ once: true }}
+              variants={fadeIn}
+              className="text-center text-sm text-texto-secundario/60 mt-8"
+            >
+              ¿Buscas otro servicio?{' '}
+              <Link
+                to="/#servicios"
+                className="text-marca-principal hover:opacity-80 transition-opacity duration-200 no-underline"
+              >
+                Ver todos los servicios
+              </Link>
+            </motion.p>
           </div>
         </section>
 
       </main>
+
+      <Footer />
     </>
   )
 }

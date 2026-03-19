@@ -12,7 +12,7 @@ import Contacto from "./pages/contacto";
 // Páginas de Servicios
 import RealidadVirtual from "./pages/servicios/realidad-virtual";
 import Refugios from "./pages/servicios/refugios";
-import Formacion from "./pages/servicios/formacion"; // Centralizamos aquí Consultoría/Formación
+import EducacionAmbiental from "./pages/servicios/educacion-ambiental";
 
 // Sección Bat Night
 import BatNight from "./pages/servicios/bat-night";
@@ -41,7 +41,8 @@ export default function App() {
           {/* Eje de Servicios */}
           <Route path="/servicios/refugios" element={<Refugios />} />
           <Route path="/servicios/realidad-virtual" element={<RealidadVirtual />} />
-          <Route path="/servicios/formacion" element={<Formacion />} />
+          <Route path="/servicios/educacion-ambiental" element={<EducacionAmbiental />} />
+          <Route path="/servicios/formacion" element={<EducacionAmbiental />} />
 
           {/* Rutas Específicas de Bat Night */}
           <Route path="/servicios/bat-night" element={<BatNight />} />
