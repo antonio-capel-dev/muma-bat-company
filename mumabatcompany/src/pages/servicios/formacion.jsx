@@ -59,7 +59,7 @@ export default function FormacionConsultoria() {
       </Helmet>
       <Navbar />
       
-      <main className="min-h-screen bg-[#050505] pt-44 pb-20 px-6">
+      <main className="min-h-screen bg-fondo-base pt-44 pb-20 px-6">
         <div className="max-w-7xl mx-auto">
           
           <header className="mb-24">

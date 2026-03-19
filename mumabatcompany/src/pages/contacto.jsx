@@ -90,7 +90,7 @@ export default function Contacto() {
       
       <Navbar />
 
-      <main className="min-h-screen bg-[#030a06] text-white">
+      <main className="min-h-screen bg-fondo-base text-white">
         
         {/* Cabecera */}
         <motion.section variants={varianteSeccion} initial="oculto" animate="visible" className="pt-44 pb-12 text-center px-6">
