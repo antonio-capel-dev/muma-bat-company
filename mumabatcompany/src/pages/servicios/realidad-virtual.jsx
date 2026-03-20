@@ -458,18 +458,32 @@ export default function RealidadVirtual() {
             {/* Franja de financiación europea */}
             <motion.div
               initial="oculto" whileInView="visible" viewport={{ once: true }}
-              variants={{ oculto: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.5, delay: 0.2 } } }}
-              className="mt-10 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center gap-6"
+              variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2 } } }}
+              className="mt-16 rounded-2xl bg-white/5 border border-white/10 px-8 py-10"
             >
-              <p className="text-[10px] font-bold tracking-[0.18em] text-texto-secundario/50 uppercase shrink-0">
+              <p className="text-xs font-bold tracking-[0.2em] text-marca-principal uppercase mb-8 text-center">
                 Proyecto financiado por
               </p>
-              <img
-                src="/images/europa.png"
-                alt="Financiado por el Fondo Europeo de Desarrollo Regional — Unión Europea, Una manera de hacer Europa. La Brújula XR and Metaverse Digital Coworking. Ayuntamiento de Málaga, Polo de Contenidos Digitales, Cámara de Málaga."
-                className="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-200"
-                loading="lazy"
-              />
+              <div className="flex flex-wrap items-center justify-center gap-6">
+                {[
+                  { src: '/images/europa.png', alt: 'Unión Europea — Fondo Europeo de Desarrollo Regional' },
+                  { src: '/images/polo-contenido-digital.webp', alt: 'Polo de Contenidos Digitales de Málaga' },
+                  { src: '/images/Camara-malaga-150x150.jpg', alt: 'Cámara de Comercio de Málaga' },
+                  { src: '/images/centro-europeo-empresas.webp', alt: 'Centro Europeo de Empresas e Innovación' },
+                ].map((logo, i) => (
+                  <div key={i} className="bg-white rounded-xl px-5 py-3 flex items-center justify-center">
+                    <img
+                      src={logo.src}
+                      alt={logo.alt}
+                      className="h-12 w-auto object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+              <p className="text-center text-xs text-texto-secundario/50 mt-8 max-w-xl mx-auto leading-relaxed">
+                La Batcave Experience es el resultado comercial del proyecto europeo ST3ER, financiado por el programa SMP COSME de la Unión Europea e impulsado por la red La Brújula XR.
+              </p>
             </motion.div>
 
           </div>
