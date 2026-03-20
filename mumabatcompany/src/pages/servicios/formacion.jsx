@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import {
   Mic2, TreePine, Leaf, Droplets, Scale, Wheat,
-  Building2, Globe, ArrowRight, FlaskConical
+  Building2, Globe, ArrowRight, FlaskConical, Lightbulb, Gamepad2
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/navbar";
@@ -19,6 +19,24 @@ const servicios = [
     titulo: "Consultoría bioacústica",
     desc: "Auditoría de fauna mediante análisis ultrasónico. Identificamos qué especies están presentes en tu territorio, cómo se distribuyen y qué estado tienen las colonias. Datos reales de campo, no estimaciones.",
     para: "Administraciones, reservas naturales, promotores",
+  },
+  {
+    Icono: TreePine,
+    titulo: "Gestión forestal",
+    desc: "Diseño de refugios y corredores biológicos en masas forestales para recuperar la presencia de murciélagos como controladores naturales de insectos y plagas.",
+    para: "Gestores forestales, administraciones, propietarios de fincas",
+  },
+  {
+    Icono: Lightbulb,
+    titulo: "Innovación aplicada",
+    desc: "Desarrollo de metodologías propias que combinan trabajo de campo, tecnología inmersiva y archivo bioacústico. La innovación como forma de mirar, no solo como herramienta.",
+    para: "Centros de investigación, universidades, empresas tecnológicas",
+  },
+  {
+    Icono: Gamepad2,
+    titulo: "Serious Games y gamificación",
+    desc: "Experiencias gamificadas basadas en conocimiento científico real para reforzar el aprendizaje sobre murciélagos y conservación en aulas, museos y eventos.",
+    para: "Centros educativos, museos, actividades infantiles",
   },
   {
     Icono: FlaskConical,
