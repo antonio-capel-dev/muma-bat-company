@@ -23,18 +23,21 @@ const grupos = [
         titulo: "Consultoría bioacústica",
         desc: "Auditoría de fauna mediante análisis ultrasónico. Identificamos qué especies están presentes, cómo se distribuyen y qué estado tienen las colonias.",
         para: "Administraciones, reservas naturales, promotores",
+        img: "/images/dentro-cueva.webp",
       },
       {
         Icono: FlaskConical,
         titulo: "Monitorización de colonias",
         desc: "Seguimiento continuo con sensores y grabación bioacústica. Informes periódicos con datos de actividad, especies detectadas y tendencias de población.",
         para: "Parques naturales, cuevas turísticas, fincas",
+        img: "/images/monitorizacion.jpg",
       },
       {
         Icono: Scale,
         titulo: "Consultoría jurídico-ambiental",
         desc: "Los murciélagos están protegidos por legislación europea (EUROBATS) y nacional. Asesoramos sobre cumplimiento normativo y gestión legal en proyectos que afecten a sus hábitats.",
         para: "Promotoras, administraciones, gestores de cuevas",
+        img: "/images/colonia_murcielago01.JPG",
       },
     ],
   },
@@ -47,24 +50,28 @@ const grupos = [
         titulo: "Agricultura y control biológico",
         desc: "Una colonia elimina hasta 3.000 insectos por noche. Asesoramos a fincas para integrar colonias naturales como alternativa real a los pesticidas.",
         para: "Viñedos, olivares, fincas hortícolas",
+        img: "/images/agricultura-control-biologico.webp",
       },
       {
         Icono: TreePine,
         titulo: "Gestión forestal y restauración ecológica",
         desc: "Diseño de microhábitats, refugios y corredores biológicos en masas forestales para recuperar la función del murciélago en el ecosistema.",
         para: "Gestores forestales, ayuntamientos, promotoras",
+        img: "/images/agricultores.jpg",
       },
       {
         Icono: Leaf,
         titulo: "Soluciones basadas en la naturaleza (SbN)",
         desc: "Metodologías de conservación reconocidas internacionalmente para resolver problemas concretos: plagas, pérdida de biodiversidad, degradación de suelos.",
         para: "Administraciones públicas, empresas con compromisos ambientales",
+        img: "/images/instituciones.jpg",
       },
       {
         Icono: Building2,
         titulo: "Ciudades y entornos urbanos",
         desc: "Los murciélagos son indicadores de la salud del ecosistema urbano. Diseñamos estrategias de integración de fauna en espacios verdes, parques y edificios.",
         para: "Ayuntamientos, arquitectos, gestores de espacios",
+        img: "/images/ayuntamientos.jpg",
       },
     ],
   },
@@ -77,18 +84,23 @@ const grupos = [
         titulo: "Educación ambiental",
         desc: "Talleres, charlas y programas formativos sobre quirópteros para colegios, universidades y técnicos ambientales. Contenidos desarrollados desde investigación de campo real.",
         para: "Centros educativos, equipos técnicos, museos",
+        img: "/images/educacion-ambiental.jpg",
       },
       {
         Icono: Gamepad2,
         titulo: "Serious Games y gamificación",
         desc: "Experiencias gamificadas con base científica para reforzar el aprendizaje sobre murciélagos y conservación en aulas, museos y eventos.",
         para: "Centros educativos, museos, actividades infantiles",
+        img: "/images/serous-game.jpg",
+        acento: true,
       },
       {
         Icono: Lightbulb,
         titulo: "Innovación y metodología propia",
         desc: "Desarrollo de metodologías que combinan trabajo de campo, tecnología inmersiva y archivo bioacústico. La innovación como forma de mirar, no solo como herramienta.",
         para: "Centros de investigación, universidades, empresas tecnológicas",
+        img: "/images/innovacion-metodologia-propia.jpg",
+        acento: true,
       },
     ],
   },
@@ -169,17 +181,31 @@ export default function FormacionConsultoria() {
 
                 {/* Tarjetas */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {grupo.servicios.map(({ Icono, titulo, desc, para }, i) => (
+                  {grupo.servicios.map(({ Icono, titulo, desc, para, img, acento }, i) => (
                     <div
                       key={i}
-                      className="bg-fondo-superficie rounded-2xl p-7 border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 flex flex-col"
+                      className="bg-fondo-superficie rounded-2xl border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 flex flex-col overflow-hidden"
                     >
-                      <div className="w-11 h-11 rounded-xl bg-marca-principal/10 border border-marca-principal/20 flex items-center justify-center mb-5 shrink-0">
-                        <Icono size={20} className="text-marca-principal" aria-hidden="true" />
+                      {img && (
+                        <div className="aspect-video overflow-hidden">
+                          <img src={img} alt={titulo} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                        </div>
+                      )}
+                      <div className="p-7 flex flex-col flex-1">
+                        <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 shrink-0 ${acento ? 'bg-acento-tecnologico-suave border border-acento-tecnologico-borde' : 'bg-marca-principal/10 border border-marca-principal/20'}`}>
+                          <Icono size={20} className={acento ? 'text-acento-tecnologico' : 'text-marca-principal'} aria-hidden="true" />
+                        </div>
+                        <h3 className="text-base font-bold text-texto-titulo mb-3 leading-tight">{titulo}</h3>
+                        <p className="text-sm text-texto-secundario leading-relaxed mb-4 flex-1">{desc}</p>
+                        <p className="text-[10px] font-bold tracking-widest text-marca-principal/60 uppercase mb-5">{para}</p>
+                        <Link
+                          to="/contacto"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold border border-marca-principal/40 text-marca-principal hover:bg-marca-principal hover:text-texto-sobre-accion hover:border-marca-principal transition-all duration-200 no-underline group self-start"
+                        >
+                          Solicitar información
+                          <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform duration-200" aria-hidden="true" />
+                        </Link>
                       </div>
-                      <h3 className="text-base font-bold text-texto-titulo mb-3 leading-tight">{titulo}</h3>
-                      <p className="text-sm text-texto-secundario leading-relaxed mb-5 flex-1">{desc}</p>
-                      <p className="text-[10px] font-bold tracking-widest text-marca-principal/60 uppercase">{para}</p>
                     </div>
                   ))}
                 </div>
@@ -204,12 +230,11 @@ export default function FormacionConsultoria() {
                   Somos miembros activos de SECEMU, alineados con el marco EUROBATS y ex-investigadores del proyecto europeo ST3ER en España, Portugal y Eslovenia. Eso es lo que convierte nuestros informes en documentos con peso real ante administraciones e instituciones.
                 </p>
               </div>
-              <div className="flex flex-col gap-3 shrink-0">
-                {["SECEMU", "EUROBATS", "ST3ER — SMP COSME UE", "FEDER"].map((aval, i) => (
-                  <div key={i} className="px-5 py-2.5 rounded-xl bg-marca-principal/10 border border-marca-principal/20 text-xs font-bold text-marca-principal tracking-widest uppercase text-center">
-                    {aval}
-                  </div>
-                ))}
+              <div className="flex flex-wrap md:flex-col gap-4 shrink-0 items-center">
+                <img src="/images/Logo_SECEMU.png" alt="SECEMU" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
+                <img src="/images/EUROBATS_logo.png" alt="EUROBATS" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
+                <img src="/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.png" alt="ST3ER — SMP COSME UE" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
+                <img src="/images/europa.png" alt="Fondos FEDER — Unión Europea" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
               </div>
             </motion.div>
           </div>

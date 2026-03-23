@@ -19,21 +19,25 @@ const porQueUnirte = [
     Icono: Moon,
     titulo: 'Participa en Bat Nights',
     descripcion: 'Colabora en nuestras noches de avistamiento de murciélagos. Aprende detección acústica, conoce especies y vive la naturaleza nocturna de Málaga junto a un equipo científico.',
+    img: '/images/Bat-Nigt-Malaga-1.jpg',
   },
   {
     Icono: Home,
     titulo: 'Instala refugios',
     descripcion: 'Ayuda a instalar y mantener refugios monitorizados para colonias de murciélagos. Una acción directa y tangible que mejora el hábitat de especies protegidas.',
+    img: '/images/refugio_doble.png',
   },
   {
     Icono: Microscope,
     titulo: 'Investigación científica',
     descripcion: 'Participa en la recogida de datos de campo, monitorización de colonias y proyectos de ciencia ciudadana junto a biólogos especializados en quirópteros.',
+    img: '/images/colonia_murcielago01.JPG',
   },
   {
     Icono: Megaphone,
     titulo: 'Divulgación ambiental',
     descripcion: 'Apoya talleres educativos, eventos y experiencias VR. Comparte conocimiento sobre la importancia de los murciélagos en los ecosistemas mediterráneos.',
+    img: '/images/educacion-ambiental.jpg',
   },
 ]
 
@@ -42,21 +46,25 @@ const actividades = [
     Icono: MapPin,
     titulo: 'Monitorización de refugios',
     descripcion: 'Visitas periódicas a refugios instalados para registrar ocupación, especies y estado de las colonias. Datos reales que alimentan nuestra investigación.',
+    img: '/images/monitorizacion-refugios-voluntarios.jpg',
   },
   {
     Icono: Headset,
     titulo: 'Apoyo en eventos VR',
     descripcion: 'Asistencia técnica y de atención al público en nuestras experiencias de realidad virtual. Guías de la experiencia MuMa BAT CAVE para visitantes y grupos escolares.',
+    img: '/images/apoyo-eventos-vr-voluntarios.webp',
   },
   {
     Icono: Radio,
     titulo: 'Detección de ultrasonidos',
     descripcion: 'Uso de detectores acústicos durante salidas nocturnas para identificar especies de murciélagos por su ecolocalización. Formación incluida.',
+    img: '/images/deteccion-ultrasonidos-voluntariado.jpg',
   },
   {
     Icono: BookOpen,
     titulo: 'Talleres educativos',
     descripcion: 'Colaboración en la impartición de talleres en colegios, institutos y centros cívicos. Transmite el valor ecológico de los murciélagos a nuevas generaciones.',
+    img: '/images/educacion-ambiental.jpg',
   },
 ]
 
@@ -97,10 +105,17 @@ export default function Voluntarios() {
       <main>
 
         {/* ── HERO ── */}
-        <section className="relative min-h-[70vh] flex flex-col justify-center items-center text-center px-6 pt-28 pb-16 bg-fondo-base overflow-hidden">
+        <section className="relative min-h-[70vh] flex flex-col justify-center items-center text-center px-6 pt-28 pb-16 overflow-hidden">
+          {/* Imagen de fondo */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[420px] rounded-full pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse, rgba(31,225,167,0.07) 0%, transparent 70%)' }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/images/Bat-Nigt-Malaga2.jpg')" }}
+            aria-hidden="true"
+          />
+          {/* Overlay oscuro */}
+          <div
+            className="absolute inset-0"
+            style={{ background: 'linear-gradient(to bottom, rgba(11,17,23,0.72) 0%, rgba(11,17,23,0.55) 50%, rgba(11,17,23,0.80) 100%)' }}
             aria-hidden="true"
           />
           <div className="relative z-10 max-w-3xl mx-auto">
@@ -158,11 +173,18 @@ export default function Voluntarios() {
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
-                  className="bg-fondo-superficie rounded-2xl p-6 border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 flex flex-col"
+                  className="bg-fondo-superficie rounded-2xl border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 overflow-hidden flex flex-col"
                 >
-                  <item.Icono size={28} className="text-marca-principal mb-4" aria-hidden="true" />
-                  <h3 className="text-base font-bold text-texto-titulo mb-3 leading-snug">{item.titulo}</h3>
-                  <p className="text-sm text-texto-secundario leading-relaxed flex-grow">{item.descripcion}</p>
+                  {item.img && (
+                    <div className="aspect-video overflow-hidden">
+                      <img src={item.img} alt={item.titulo} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    </div>
+                  )}
+                  <div className="p-6 flex flex-col grow">
+                    <item.Icono size={28} className="text-marca-principal mb-4" aria-hidden="true" />
+                    <h3 className="text-base font-bold text-texto-titulo mb-3 leading-snug">{item.titulo}</h3>
+                    <p className="text-sm text-texto-secundario leading-relaxed grow">{item.descripcion}</p>
+                  </div>
                 </motion.article>
               ))}
             </div>
@@ -183,14 +205,21 @@ export default function Voluntarios() {
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
-                  className="bg-fondo-superficie rounded-2xl p-7 border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 flex gap-5 items-start"
+                  className="bg-fondo-superficie rounded-2xl border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 overflow-hidden flex flex-col"
                 >
-                  <div className="shrink-0 w-11 h-11 rounded-xl bg-marca-principal/10 flex items-center justify-center">
-                    <item.Icono size={22} className="text-marca-principal" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-texto-titulo mb-2 leading-snug">{item.titulo}</h3>
-                    <p className="text-sm text-texto-secundario leading-relaxed">{item.descripcion}</p>
+                  {item.img && (
+                    <div className="aspect-video overflow-hidden">
+                      <img src={item.img} alt={item.titulo} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    </div>
+                  )}
+                  <div className="p-7 flex gap-5 items-start">
+                    <div className="shrink-0 w-11 h-11 rounded-xl bg-marca-principal/10 flex items-center justify-center">
+                      <item.Icono size={22} className="text-marca-principal" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-texto-titulo mb-2 leading-snug">{item.titulo}</h3>
+                      <p className="text-sm text-texto-secundario leading-relaxed">{item.descripcion}</p>
+                    </div>
                   </div>
                 </motion.div>
               ))}

@@ -90,6 +90,33 @@ export default function Refugios() {
       <Navbar />
 
       <main className="min-h-screen bg-fondo-base pt-24">
+
+        {/* ── BANNER CTA SUPERIOR ── */}
+        <div className="bg-fondo-secundario border-b border-white/5 px-6 py-5">
+          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-texto-secundario">
+              <span className="text-texto-titulo font-semibold">Refugios para murciélagos fabricados en Málaga.</span>{' '}
+              Control biológico de plagas, monitorización científica e infraestructura de conservación.
+            </p>
+            <div className="flex gap-3 shrink-0">
+              <a
+                href="mailto:info@murcielagosmalaga.com?subject=Solicitud%20presupuesto%20refugios%20MUMA"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
+              >
+                Solicitar presupuesto
+              </a>
+              <a
+                href="https://wa.me/34664213450"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold border border-white/15 text-texto-principal hover:bg-fondo-superficie transition-all duration-200 no-underline"
+              >
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* ── SECCIÓN 1: DEFINICIÓN TÉCNICA ── */}
         <section id="definicion" className="py-24 px-6 border-t border-white/5">
           <div className="max-w-6xl mx-auto">
@@ -260,7 +287,7 @@ export default function Refugios() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.1 }}
                     transition={{ duration: 0.5 }}
-                    className={`relative aspect-square rounded-3xl bg-gradient-to-br ${modelos[indiceActivo].color} to-transparent border border-white/10 overflow-hidden shadow-2xl flex items-center justify-center`}
+                    className={`relative aspect-square rounded-3xl bg-linear-to-br ${modelos[indiceActivo].color} to-transparent border border-white/10 overflow-hidden shadow-2xl flex items-center justify-center`}
                   >
                     <img
                       src={modelos[indiceActivo].imagen}

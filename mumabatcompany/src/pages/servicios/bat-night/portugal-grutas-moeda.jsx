@@ -20,12 +20,12 @@ const destacados = [
 ]
 
 const fotos = [
-  'Actividad de detección de ultrasonidos con público',
-  'Investigador Danilo Guimarães en charla científica',
-  'Familias participando en el open-stand',
-  'Equipo MUMA con material de detección',
-  'Exterior de las Grutas da Moeda durante el evento',
-  'Público interactuando con los expositores',
+  { src: '/images/1batnights.webp', alt: 'Actividad de detección de ultrasonidos con público' },
+  { src: '/images/niña-feliz-realidad-virtual.webp', alt: 'Familias participando en el open-stand' },
+  { src: null, alt: 'Investigador Danilo Guimarães en charla científica' },
+  { src: null, alt: 'Equipo MUMA con material de detección' },
+  { src: null, alt: 'Exterior de las Grutas da Moeda durante el evento' },
+  { src: null, alt: 'Público interactuando con los expositores' },
 ]
 
 export default function PortugalGrutasMoeda() {

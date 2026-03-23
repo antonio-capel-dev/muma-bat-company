@@ -20,12 +20,12 @@ const destacados = [
 ]
 
 const fotos = [
-  'Entrada a la Cueva de Nerja durante la Bat Night',
-  'Instalación de refugios monitorizados',
-  'Charla nocturna con detección de ultrasonidos',
-  'Participantes con equipo de detección',
-  'Colaboración con Fundación Cueva de Nerja',
-  'Parador de Turismo de Nerja como sede del evento',
+  { src: '/images/cueva de nerja.webp', alt: 'Cueva de Nerja durante la Bat Night' },
+  { src: '/images/cuevas-nerja.jpg', alt: 'Interior de la Cueva de Nerja' },
+  { src: '/images/Bat-Nigt-Malaga-1.jpg', alt: 'Actividad de detección de ultrasonidos' },
+  { src: null, alt: 'Instalación de refugios monitorizados' },
+  { src: null, alt: 'Colaboración con Fundación Cueva de Nerja' },
+  { src: null, alt: 'Parador de Turismo de Nerja' },
 ]
 
 export default function CuevaNerja() {

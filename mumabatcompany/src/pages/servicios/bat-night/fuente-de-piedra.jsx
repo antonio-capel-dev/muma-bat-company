@@ -20,12 +20,12 @@ const destacados = [
 ]
 
 const fotos = [
-  'Laguna de Fuente de Piedra al atardecer',
-  'Participantes en actividad de detección nocturna',
-  'Grupo escolar en taller de educación ambiental',
-  'Experiencia VR en entorno natural',
-  'Familias observando murciélagos al anochecer',
-  'Equipo MUMA con equipos de detección de ultrasonidos',
+  { src: '/images/Proyecto-Batnight-Guaro.jpg', alt: 'Actividad nocturna Bat Night en entorno natural' },
+  { src: '/images/Image_VRglases.webp', alt: 'Experiencia VR en entorno natural' },
+  { src: null, alt: 'Laguna de Fuente de Piedra al atardecer' },
+  { src: null, alt: 'Grupo escolar en taller de educación ambiental' },
+  { src: null, alt: 'Familias observando murciélagos al anochecer' },
+  { src: null, alt: 'Equipo MUMA con equipos de detección de ultrasonidos' },
 ]
 
 export default function FuenteDePiedra() {
