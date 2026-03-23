@@ -61,6 +61,20 @@ body {
   box-sizing: border-box;
 }
 
+/* Carrusel de logos infinito */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+  display: flex;
+  width: max-content;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* Foco visible accesible */
 :focus-visible {
   outline: 2px solid #1fe1a7;

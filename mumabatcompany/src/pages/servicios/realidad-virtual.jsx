@@ -225,7 +225,7 @@ export default function RealidadVirtual() {
           aria-label="Cabecera Realidad Virtual"
         >
           <img
-            src="/images/dentro-cueva.webp"
+            src="/images/Image_VRglases.webp"
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover"
@@ -421,7 +421,7 @@ export default function RealidadVirtual() {
                   className="relative rounded-xl overflow-hidden aspect-[16/8] bg-fondo-superficie border border-white/5"
                 >
                   <img
-                    src="/images/VR-Malaga.jpg"
+                    src="/images/niña-feliz-realidad-virtual.webp"
                     alt="Murciélagos Málaga — experiencia de realidad virtual en entorno natural"
                     className="w-full h-full object-cover object-center"
                     loading="lazy"
