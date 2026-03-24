@@ -92,7 +92,7 @@ const EVENTOS = [
     fecha: 'Septiembre 2025',
     asistentes: '50+',
     destacado: 'Instalación de refugios e inicio de colaboración científica con futuras investigaciones programadas.',
-    img: '/images/Bat-Nigt-Malaga-1.jpg',
+    img: '/images/Bat-Nigt-Malaga-1.webp',
   },
   {
     lugar: 'Grutas da Moeda',
@@ -539,9 +539,9 @@ export default function RealidadVirtual() {
               </p>
               <div className="flex flex-wrap items-center justify-center gap-6">
                 {[
-                  { src: '/images/europa.png', alt: 'Unión Europea — Fondo Europeo de Desarrollo Regional' },
+                  { src: '/images/europa.webp', alt: 'Unión Europea — Fondo Europeo de Desarrollo Regional' },
                   { src: '/images/polo-contenido-digital.webp', alt: 'Polo de Contenidos Digitales de Málaga' },
-                  { src: '/images/Camara-malaga-150x150.jpg', alt: 'Cámara de Comercio de Málaga' },
+                  { src: '/images/Camara-malaga-150x150.webp', alt: 'Cámara de Comercio de Málaga' },
                   { src: '/images/centro-europeo-empresas.webp', alt: 'Centro Europeo de Empresas e Innovación' },
                 ].map((logo, i) => (
                   <div key={i} className="bg-white rounded-xl px-5 py-3 flex items-center justify-center">

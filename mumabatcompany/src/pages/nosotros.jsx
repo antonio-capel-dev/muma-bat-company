@@ -40,28 +40,28 @@ const credenciales = [
     sigla: 'ST3ER',
     nombre: 'Proyecto europeo ST3ER',
     descripcion: 'Investigación en 3 países (España, Portugal, Eslovenia). Financiado por SMP COSME de la UE. Resultado: Batcave Experience — producto comercial activo, más de 700 personas en 2025, sin fase piloto.',
-    img: '/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.png',
+    img: '/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.webp',
     imgAlt: 'Logo Proyecto ST3ER — Murciélagos Málaga',
   },
   {
     sigla: 'SECEMU',
     nombre: 'Sociedad Española para la Conservación y Estudio de los Murciélagos',
     descripcion: 'Miembros activos de SECEMU. Colaboramos en el Atlas de Distribución de Quirópteros Ibéricos y en programas de seguimiento de colonias.',
-    img: '/images/Logo_SECEMU.png',
+    img: '/images/Logo_SECEMU.webp',
     imgAlt: 'Logo SECEMU',
   },
   {
     sigla: 'EUROBATS',
     nombre: 'Acuerdo EUROBATS',
     descripcion: 'Alineados con el marco de conservación de murciélagos de la Unión Europea. Nuestros proyectos siguen los protocolos de monitorización reconocidos internacionalmente.',
-    img: '/images/EUROBATS_logo.png',
+    img: '/images/EUROBATS_logo.webp',
     imgAlt: 'Logo EUROBATS',
   },
   {
     sigla: 'FEDER',
     nombre: 'La Brújula — Cámara de Comercio de Málaga',
     descripcion: 'Apoyo institucional de La Brújula (financiado FEDER). Validación por parte del ecosistema empresarial e institucional de Málaga.',
-    img: '/images/La-Brujula-150x150.jpg',
+    img: '/images/La-Brujula-150x150.webp',
     imgAlt: 'Logo La Brújula — Cámara de Comercio de Málaga',
   },
 ]
@@ -98,16 +98,16 @@ const alianzasImagenes = [
   { nombre: 'Centro Europeo de Empresas',       img: '/images/centro-europeo-empresas.webp',  url: 'https://www.ceei.es' },
   { nombre: 'Polo de Contenido Digital',        img: '/images/polo-contenido-digital.webp',   url: '#' },
   { nombre: 'Red de Emprendedores',             img: '/images/red-emprendedores.webp',        url: '#' },
-  { nombre: 'Unión Europea — Proyecto ST3ER',   img: '/images/europa.png',                    url: '#' },
+  { nombre: 'Unión Europea — Proyecto ST3ER',   img: '/images/europa.webp',                    url: '#' },
 ]
 
 const medios = [
-  { nombre: 'La Opinión de Málaga', img: '/images/La-opinion-de-Malaga.jpg' },
-  { nombre: 'Málaga Hoy',           img: '/images/malaga-hoy.png' },
-  { nombre: 'El Español',           img: '/images/El-Espanol-de-Malaga.jpg' },
-  { nombre: 'Andalucía Lab',        img: '/images/Andalucia-Lab.jpg' },
-  { nombre: 'Hola Andalucía',       img: '/images/hola-andalucia.png' },
-  { nombre: 'Canal Málaga',         img: '/images/canal_malaga.png' },
+  { nombre: 'La Opinión de Málaga', img: '/images/La-opinion-de-Malaga.webp' },
+  { nombre: 'Málaga Hoy',           img: '/images/malaga-hoy.webp' },
+  { nombre: 'El Español',           img: '/images/El-Espanol-de-Malaga.webp' },
+  { nombre: 'Andalucía Lab',        img: '/images/Andalucia-Lab.webp' },
+  { nombre: 'Hola Andalucía',       img: '/images/hola-andalucia.webp' },
+  { nombre: 'Canal Málaga',         img: '/images/canal_malaga.webp' },
 ]
 
 export default function Nosotros() {
@@ -183,7 +183,7 @@ export default function Nosotros() {
             style={{ height: '420px' }}
           >
             <img
-              src="/images/colonia_murcielago01.JPG"
+              src="/images/colonia_murcielago01.webp"
               alt="Colonia de murciélagos en cueva natural — trabajo de campo de MUMA"
               className="w-full h-full object-cover object-center"
             />
@@ -237,7 +237,7 @@ export default function Nosotros() {
                 style={{ height: '580px' }}
               >
                 <img
-                  src="/images/solucion-ecologica-murcielagos-727x1024.jpg"
+                  src="/images/solucion-ecologica-murcielagos-727x1024.webp"
                   alt="Instalación de refugio ecológico para murciélagos — trabajo de campo de MUMA"
                   className="w-full h-full object-cover object-top"
                 />
@@ -373,7 +373,7 @@ export default function Nosotros() {
                   descripcion: 'Quieres reducir el uso de pesticidas con soluciones basadas en la naturaleza. Cada colonia de murciélagos elimina hasta 3.000 insectos por noche.',
                   ejemplo: 'Viñedos, olivares, fincas hortícolas',
                   servicio: 'Refugios + Control biológico',
-                  img: '/images/refugio_doble.png',
+                  img: '/images/refugio_doble.webp',
                   imgAlt: 'Refugios de madera para murciélagos — solución ecológica MUMA',
                   imgPos: 'object-center',
                 },
@@ -494,7 +494,7 @@ export default function Nosotros() {
               {/* Antonio Moret */}
               <div className="bg-fondo-superficie rounded-2xl overflow-hidden border border-white/5 hover:border-marca-principal/25 transition-colors duration-300">
                 <img
-                  src="/images/antonio-moret.jpg"
+                  src="/images/antonio-moret.webp"
                   alt="Antonio Moret, CEO de MUMA BAT COMPANY"
                   className="w-full h-64 object-cover object-top"
                 />
@@ -513,7 +513,7 @@ export default function Nosotros() {
               {/* Laura Smit */}
               <div className="bg-fondo-superficie rounded-2xl overflow-hidden border border-white/5 hover:border-marca-principal/25 transition-colors duration-300">
                 <img
-                  src="/images/laura.png"
+                  src="/images/laura.webp"
                   alt="Laura Smit, Manager de MUMA BAT COMPANY"
                   className="w-full h-64 object-cover object-top"
                 />

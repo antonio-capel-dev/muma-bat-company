@@ -20,7 +20,7 @@ const destacados = [
 ]
 
 const fotos = [
-  { src: '/images/Proyecto-Batnight-Guaro.jpg', alt: 'Actividad nocturna Bat Night en entorno natural' },
+  { src: '/images/Proyecto-Batnight-Guaro.webp', alt: 'Actividad nocturna Bat Night en entorno natural' },
   { src: '/images/Image_VRglases.webp', alt: 'Experiencia VR en entorno natural' },
   { src: null, alt: 'Laguna de Fuente de Piedra al atardecer' },
   { src: null, alt: 'Grupo escolar en taller de educación ambiental' },

@@ -43,7 +43,7 @@ export default function Refugios() {
         "Diseño compacto de 2 cámaras. Fabricado a mano con madera selecta y detalles en impresión 3D. Ideal para fachadas o árboles en entornos residenciales.",
       iconos: ["Madera Técnica", "Resistente UV", "Artesanal"],
       color: "from-emerald-500/20",
-      imagen: "/images/refugio_simple.png",
+      imagen: "/images/refugio_simple_resultado.webp",
     },
     {
       titulo: "Modelo Finca Agrícola",
@@ -52,7 +52,7 @@ export default function Refugios() {
         "Refugio de gran formato diseñado para maximizar la colonización en cultivos. Ventilación reforzada y aislamiento térmico superior para insolación intensa.",
       iconos: ["Gran Formato", "Aislamiento Pro", "Agrícola"],
       color: "from-marca-principal/20",
-      imagen: "/images/refugio_doble.png",
+      imagen: "/images/refugio_doble.webp",
     },
     {
       titulo: "Estación Smart IoT",
@@ -61,7 +61,7 @@ export default function Refugios() {
         "Equipado con sensores infrarrojos de ocupación y telemetría de temperatura/humedad. Envía datos en tiempo real para estudios de biodiversidad.",
       iconos: ["Sensores 4.0", "Telemetría", "Resistente"],
       color: "from-blue-500/20",
-      imagen: "/images/refugio_simple.png", // Cambiar por imagen real si existe
+      imagen: "/images/refugio_simple_resultado.webp", // Cambiar por imagen real si existe
     },
   ];
 

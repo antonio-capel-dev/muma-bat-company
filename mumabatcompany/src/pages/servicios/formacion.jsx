@@ -30,14 +30,14 @@ const grupos = [
         titulo: "Monitorización de colonias",
         desc: "Seguimiento continuo con sensores y grabación bioacústica. Informes periódicos con datos de actividad, especies detectadas y tendencias de población.",
         para: "Parques naturales, cuevas turísticas, fincas",
-        img: "/images/monitorizacion.jpg",
+        img: "/images/monitorizacion.webp",
       },
       {
         Icono: Scale,
         titulo: "Consultoría jurídico-ambiental",
         desc: "Los murciélagos están protegidos por legislación europea (EUROBATS) y nacional. Asesoramos sobre cumplimiento normativo y gestión legal en proyectos que afecten a sus hábitats.",
         para: "Promotoras, administraciones, gestores de cuevas",
-        img: "/images/colonia_murcielago01.JPG",
+        img: "/images/colonia_murcielago01.webp",
       },
     ],
   },
@@ -50,28 +50,28 @@ const grupos = [
         titulo: "Agricultura y control biológico",
         desc: "Una colonia elimina hasta 3.000 insectos por noche. Asesoramos a fincas para integrar colonias naturales como alternativa real a los pesticidas.",
         para: "Viñedos, olivares, fincas hortícolas",
-        img: "/images/agricultura-control-biologico.webp",
+        img: "/images/agricultura-control-biologico_resultado.webp",
       },
       {
         Icono: TreePine,
         titulo: "Gestión forestal y restauración ecológica",
         desc: "Diseño de microhábitats, refugios y corredores biológicos en masas forestales para recuperar la función del murciélago en el ecosistema.",
         para: "Gestores forestales, ayuntamientos, promotoras",
-        img: "/images/agricultores.jpg",
+        img: "/images/agricultores.webp",
       },
       {
         Icono: Leaf,
         titulo: "Soluciones basadas en la naturaleza (SbN)",
         desc: "Metodologías de conservación reconocidas internacionalmente para resolver problemas concretos: plagas, pérdida de biodiversidad, degradación de suelos.",
         para: "Administraciones públicas, empresas con compromisos ambientales",
-        img: "/images/instituciones.jpg",
+        img: "/images/instituciones.webp",
       },
       {
         Icono: Building2,
         titulo: "Ciudades y entornos urbanos",
         desc: "Los murciélagos son indicadores de la salud del ecosistema urbano. Diseñamos estrategias de integración de fauna en espacios verdes, parques y edificios.",
         para: "Ayuntamientos, arquitectos, gestores de espacios",
-        img: "/images/ayuntamientos.jpg",
+        img: "/images/ayuntamientos.webp",
       },
     ],
   },
@@ -84,14 +84,14 @@ const grupos = [
         titulo: "Educación ambiental",
         desc: "Talleres, charlas y programas formativos sobre quirópteros para colegios, universidades y técnicos ambientales. Contenidos desarrollados desde investigación de campo real.",
         para: "Centros educativos, equipos técnicos, museos",
-        img: "/images/educacion-ambiental.jpg",
+        img: "/images/educacion-ambiental.webp",
       },
       {
         Icono: Gamepad2,
         titulo: "Serious Games y gamificación",
         desc: "Experiencias gamificadas con base científica para reforzar el aprendizaje sobre murciélagos y conservación en aulas, museos y eventos.",
         para: "Centros educativos, museos, actividades infantiles",
-        img: "/images/serous-game.jpg",
+        img: "/images/serous-game.webp",
         acento: true,
       },
       {
@@ -99,7 +99,7 @@ const grupos = [
         titulo: "Innovación y metodología propia",
         desc: "Desarrollo de metodologías que combinan trabajo de campo, tecnología inmersiva y archivo bioacústico. La innovación como forma de mirar, no solo como herramienta.",
         para: "Centros de investigación, universidades, empresas tecnológicas",
-        img: "/images/innovacion-metodologia-propia.jpg",
+        img: "/images/innovacion-metodologia-propia.webp",
         acento: true,
       },
     ],
@@ -231,10 +231,10 @@ export default function FormacionConsultoria() {
                 </p>
               </div>
               <div className="flex flex-wrap md:flex-col gap-4 shrink-0 items-center">
-                <img src="/images/Logo_SECEMU.png" alt="SECEMU" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
-                <img src="/images/EUROBATS_logo.png" alt="EUROBATS" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
-                <img src="/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.png" alt="ST3ER — SMP COSME UE" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
-                <img src="/images/europa.png" alt="Fondos FEDER — Unión Europea" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
+                <img src="/images/Logo_SECEMU.webp" alt="SECEMU" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
+                <img src="/images/EUROBATS_logo.webp" alt="EUROBATS" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
+                <img src="/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.webp" alt="ST3ER — SMP COSME UE" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
+                <img src="/images/europa.webp" alt="Fondos FEDER — Unión Europea" className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-200" />
               </div>
             </motion.div>
           </div>

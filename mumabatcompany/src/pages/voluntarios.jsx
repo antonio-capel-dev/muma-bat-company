@@ -19,25 +19,25 @@ const porQueUnirte = [
     Icono: Moon,
     titulo: 'Participa en Bat Nights',
     descripcion: 'Colabora en nuestras noches de avistamiento de murciélagos. Aprende detección acústica, conoce especies y vive la naturaleza nocturna de Málaga junto a un equipo científico.',
-    img: '/images/Bat-Nigt-Malaga-1.jpg',
+    img: '/images/Bat-Nigt-Malaga-1.webp',
   },
   {
     Icono: Home,
     titulo: 'Instala refugios',
     descripcion: 'Ayuda a instalar y mantener refugios monitorizados para colonias de murciélagos. Una acción directa y tangible que mejora el hábitat de especies protegidas.',
-    img: '/images/refugio_doble.png',
+    img: '/images/refugio_doble.webp',
   },
   {
     Icono: Microscope,
     titulo: 'Investigación científica',
     descripcion: 'Participa en la recogida de datos de campo, monitorización de colonias y proyectos de ciencia ciudadana junto a biólogos especializados en quirópteros.',
-    img: '/images/colonia_murcielago01.JPG',
+    img: '/images/colonia_murcielago01.webp',
   },
   {
     Icono: Megaphone,
     titulo: 'Divulgación ambiental',
     descripcion: 'Apoya talleres educativos, eventos y experiencias VR. Comparte conocimiento sobre la importancia de los murciélagos en los ecosistemas mediterráneos.',
-    img: '/images/educacion-ambiental.jpg',
+    img: '/images/educacion-ambiental.webp',
   },
 ]
 
@@ -46,7 +46,7 @@ const actividades = [
     Icono: MapPin,
     titulo: 'Monitorización de refugios',
     descripcion: 'Visitas periódicas a refugios instalados para registrar ocupación, especies y estado de las colonias. Datos reales que alimentan nuestra investigación.',
-    img: '/images/monitorizacion-refugios-voluntarios.jpg',
+    img: '/images/monitorizacion-refugios-voluntarios.webp',
   },
   {
     Icono: Headset,
@@ -58,13 +58,13 @@ const actividades = [
     Icono: Radio,
     titulo: 'Detección de ultrasonidos',
     descripcion: 'Uso de detectores acústicos durante salidas nocturnas para identificar especies de murciélagos por su ecolocalización. Formación incluida.',
-    img: '/images/deteccion-ultrasonidos-voluntariado.jpg',
+    img: '/images/deteccion-ultrasonidos-voluntariado.webp',
   },
   {
     Icono: BookOpen,
     titulo: 'Talleres educativos',
     descripcion: 'Colaboración en la impartición de talleres en colegios, institutos y centros cívicos. Transmite el valor ecológico de los murciélagos a nuevas generaciones.',
-    img: '/images/educacion-ambiental.jpg',
+    img: '/images/educacion-ambiental.webp',
   },
 ]
 
@@ -109,7 +109,7 @@ export default function Voluntarios() {
           {/* Imagen de fondo */}
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/images/Bat-Nigt-Malaga2.jpg')" }}
+            style={{ backgroundImage: "url('/images/Bat-Nigt-Malaga2.webp')" }}
             aria-hidden="true"
           />
           {/* Overlay oscuro */}

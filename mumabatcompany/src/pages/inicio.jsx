@@ -104,7 +104,7 @@ const Diferenciacion = () => {
       icon: <FlaskConical strokeWidth={1.5} />,
       title: "Ciencia de campo",
       desc: "Más de una década estudiando colonias, grabando ultrasonidos y construyendo el único archivo bioacústico privado de quirópteros ibéricos. El conocimiento no es decoración — es la base de cada servicio.",
-      bg: "/images/colonia_murcielago01.JPG",
+      bg: "/images/colonia_murcielago01.webp",
       link: "/nosotros",
       cta: "Conocer el equipo",
     },
@@ -202,7 +202,7 @@ const Segmentacion = () => {
       desc: "Instala la Batcave Experience en tu espacio. Sin obra, sin infraestructura. Montamos, operamos y recogemos.",
       etiqueta: "Realidad Virtual",
       link: "/servicios/realidad-virtual",
-      img: "/images/museos.png",
+      img: "/images/museos.webp",
       cta: "Ver la experiencia",
     },
     {
@@ -210,7 +210,7 @@ const Segmentacion = () => {
       desc: "Bat Nights para tu municipio o reserva. Eventos nocturnos con ultrasonidos y VR para conectar al público con la naturaleza.",
       etiqueta: "Bat Nights",
       link: "/servicios/bat-night",
-      img: "/images/ayuntamientos.jpg",
+      img: "/images/ayuntamientos.webp",
       cta: "Ver Bat Nights",
     },
     {
@@ -218,7 +218,7 @@ const Segmentacion = () => {
       desc: "Una colonia de murciélagos elimina hasta 3.000 insectos por noche. Instalamos refugios certificados como alternativa real a los pesticidas.",
       etiqueta: "Refugios",
       link: "/servicios/refugios",
-      img: "/images/agricultores.jpg",
+      img: "/images/agricultores.webp",
       cta: "Ver refugios",
     },
     {
@@ -226,7 +226,7 @@ const Segmentacion = () => {
       desc: "Informes bioacústicos, consultoría jurídico-ambiental y formación técnica con respaldo SECEMU y marco EUROBATS.",
       etiqueta: "Consultoría",
       link: "/servicios/formacion",
-      img: "/images/instituciones.jpg",
+      img: "/images/instituciones.webp",
       cta: "Ver consultoría",
     },
   ];
@@ -310,13 +310,13 @@ const Servicios = () => {
       title: "Refugios",
       desc: "Refugios artesanales para colonias de murciélagos. Control biológico de plagas sin pesticidas.",
       link: "/servicios/refugios",
-      img: "/images/refugio_doble.png",
+      img: "/images/refugio_doble.webp",
     },
     {
       title: "Consultoría",
       desc: "Asesoramiento científico con respaldo SECEMU y proyecto europeo ST3ER.",
       link: "/servicios/formacion",
-      img: "/images/Eventos-cientificos-Plaza-Mayor5-300x300.jpg",
+      img: "/images/Eventos-cientificos-Plaza-Mayor5-300x300.webp",
     },
   ];
 
@@ -358,9 +358,9 @@ const Servicios = () => {
 
 const ProximosEventos = () => {
   const eventos = [
-    { dia: "24", mes: "ABR", lugar: "Guaro",    provincia: "Málaga", img: "/images/Proyecto-Batnight-Guaro.jpg" },
-    { dia: "22", mes: "MAY", lugar: "Almargen", provincia: "Málaga", img: "/images/Bat-Nigt-Malaga2.jpg" },
-    { dia: "5",  mes: "JUN", lugar: "Pizarra",  provincia: "Málaga", img: "/images/Bat-Nigt-Malaga3.jpg" },
+    { dia: "24", mes: "ABR", lugar: "Guaro",    provincia: "Málaga", img: "/images/Proyecto-Batnight-Guaro.webp" },
+    { dia: "22", mes: "MAY", lugar: "Almargen", provincia: "Málaga", img: "/images/Bat-Nigt-Malaga2.webp" },
+    { dia: "5",  mes: "JUN", lugar: "Pizarra",  provincia: "Málaga", img: "/images/Bat-Nigt-Malaga3.webp" },
   ];
 
   return (
@@ -440,7 +440,7 @@ const Credibilidad = () => (
     {/* Logo único centrado */}
     <div className="flex justify-center">
       <img
-        src="/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.png"
+        src="/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.webp"
         alt="Proyecto ST3ER — FEDER"
         className="h-24 object-contain"
       />
@@ -486,10 +486,10 @@ const Vision = () => (
       </div>
       <div className="flex-1 grid grid-cols-2 gap-4">
         {[
-          { img: "/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.png", alt: "Proyecto ST3ER" },
-          { img: "/images/Logo_SECEMU.png",   alt: "SECEMU" },
-          { img: "/images/EUROBATS_logo.png", alt: "EUROBATS" },
-          { img: "/images/europa.png",        alt: "Unión Europea — FEDER" },
+          { img: "/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.webp", alt: "Proyecto ST3ER" },
+          { img: "/images/Logo_SECEMU.webp",   alt: "SECEMU" },
+          { img: "/images/EUROBATS_logo.webp", alt: "EUROBATS" },
+          { img: "/images/europa.webp",        alt: "Unión Europea — FEDER" },
         ].map((item, i) => (
           <div key={i} className="p-6 rounded-2xl bg-white border border-white/10 shadow-md flex items-center justify-center" style={{ minHeight: 110 }}>
             <img src={item.img} alt={item.alt} className="max-h-14 max-w-full object-contain" />
