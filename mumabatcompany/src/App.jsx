@@ -28,6 +28,7 @@ import BatNightFuentePiedra from "./pages/servicios/bat-night/fuente-de-piedra";
 // Comunidad y Voluntariado
 import Voluntarios from "./pages/voluntarios";
 import CienciaCiudadana from "./pages/ciencia-ciudadana";
+import Donar from './pages/donar';
 
 export default function App() {
   return (
@@ -59,6 +60,7 @@ export default function App() {
           {/* Comunidad */}
           <Route path="/voluntarios" element={<Voluntarios />} />
           <Route path="/ciencia-ciudadana" element={<CienciaCiudadana />} />
+          <Route path="/donar" element={<Donar />} />
 
           {/* 404 — cualquier ruta no definida */}
           <Route path="*" element={<NotFound />} />

@@ -1,7 +1,9 @@
 // Componente compartido — Footer
+import { Link } from 'react-router-dom'
+
 const columnas = [
-  { titulo: 'Servicios', enlaces: [{ etiqueta: 'Bat Night', href: '/#servicios' }, { etiqueta: 'Museo Virtual y VR', href: '/#servicios' }, { etiqueta: 'Refugios para murciélagos', href: '/#servicios' }, { etiqueta: 'Educación ambiental', href: '/#servicios' }, { etiqueta: 'Consultoría', href: '/#servicios' }] },
-  { titulo: 'Empresa', enlaces: [{ etiqueta: 'Sobre nosotros', href: '/#sobre-nosotros' }, { etiqueta: 'Proyectos', href: '/#proyectos' }, { etiqueta: 'Cómo trabajamos', href: '/#como-trabajamos' }, { etiqueta: 'Blog', href: '/#blog' }, { etiqueta: 'Contacto', href: '/#contacto' }] },
+  { titulo: 'Servicios', enlaces: [{ etiqueta: 'Bat Night', href: '/servicios/bat-night' }, { etiqueta: 'Museo Virtual y VR', href: '/servicios/realidad-virtual' }, { etiqueta: 'Refugios para murciélagos', href: '/servicios/refugios' }, { etiqueta: 'Educación ambiental', href: '/servicios/educacion-ambiental' }, { etiqueta: 'Consultoría', href: '/servicios/formacion' }] },
+  { titulo: 'Empresa', enlaces: [{ etiqueta: 'Sobre nosotros', href: '/nosotros' }, { etiqueta: 'Cómo trabajamos', href: '/nosotros' }, { etiqueta: 'Ciencia ciudadana', href: '/ciencia-ciudadana' }, { etiqueta: 'Voluntarios', href: '/voluntarios' }, { etiqueta: 'Contacto', href: '/contacto' }] },
 ]
 
 export default function Footer() {
@@ -19,7 +21,7 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {columna.enlaces.map((enlace) => (
                   <li key={enlace.etiqueta}>
-                    <a href={enlace.href} className="text-sm text-texto-secundario hover:text-texto-principal transition-colors duration-200 no-underline">{enlace.etiqueta}</a>
+                    <Link to={enlace.href} className="text-sm text-texto-secundario hover:text-texto-principal transition-colors duration-200 no-underline">{enlace.etiqueta}</Link>
                   </li>
                 ))}
               </ul>

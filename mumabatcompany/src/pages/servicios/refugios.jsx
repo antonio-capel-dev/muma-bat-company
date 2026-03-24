@@ -92,7 +92,7 @@ export default function Refugios() {
       <main className="min-h-screen bg-fondo-base pt-24">
 
         {/* ── BANNER CTA SUPERIOR ── */}
-        <div className="bg-fondo-secundario border-b border-white/5 px-6 py-5">
+        <div className="bg-fondo-secundario border-b border-white/5 px-6 py-5 pt-20">
           <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-texto-secundario">
               <span className="text-texto-titulo font-semibold">Refugios para murciélagos fabricados en Málaga.</span>{' '}

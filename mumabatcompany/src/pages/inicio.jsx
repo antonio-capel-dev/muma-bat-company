@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Footer from '../components/footer'
 import {
   MessageCircle,
   ArrowRight,
@@ -616,9 +617,7 @@ export default function Home() {
       <Vision />
       <Captacion />
       <CTAFinal />
-      <footer className="py-12 text-center text-gray-600 border-t border-white/5 text-sm uppercase tracking-widest">
-        &copy; 2026 MUMA BAT COMPANY &mdash; Ciencia, Tecnología y Conservación.
-      </footer>
+      <Footer/>
     </main>
   );
 }

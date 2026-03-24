@@ -20,12 +20,12 @@ const destacados = [
 ]
 
 const fotos = [
-  { src: '/images/1batnights.webp', alt: 'Actividad de detección de ultrasonidos con público' },
-  { src: '/images/niña-feliz-realidad-virtual.webp', alt: 'Familias participando en el open-stand' },
-  { src: null, alt: 'Investigador Danilo Guimarães en charla científica' },
-  { src: null, alt: 'Equipo MUMA con material de detección' },
-  { src: null, alt: 'Exterior de las Grutas da Moeda durante el evento' },
-  { src: null, alt: 'Público interactuando con los expositores' },
+  { src: '/images/fotos_batnight/moeda-1.webp', alt: 'Actividad de detección de ultrasonidos con público' },
+  { src: '/images/fotos_batnight/moeda-2.webp', alt: 'Familias participando en el open-stand' },
+  { src: '/images/fotos_batnight/moeda-3.webp', alt: 'Investigador Danilo Guimarães en charla científica' },
+  { src: '/images/fotos_batnight/moeda-4.webp', alt: 'Equipo MUMA con material de detección' },
+  { src: '/images/fotos_batnight/moeda-5.webp', alt: 'Exterior de las Grutas da Moeda durante el evento' },
+  { src: '/images/fotos_batnight/moeda-6.webp', alt: 'Público interactuando con los expositores' },
 ]
 
 export default function PortugalGrutasMoeda() {
@@ -144,16 +144,22 @@ export default function PortugalGrutasMoeda() {
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Galería del evento</h2>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {fotos.map((descripcion, i) => (
+              {fotos.map((foto, i) => (
                 <motion.div
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.07 } } }}
-                  className="bg-fondo-superficie rounded-2xl border border-white/5 aspect-video flex flex-col items-center justify-center gap-3 p-6"
+                  className="rounded-2xl overflow-hidden aspect-video"
                 >
-                  <Camera size={28} className="text-marca-principal/40" aria-hidden="true" />
-                  <p className="text-xs text-texto-secundario/50 text-center leading-snug">Foto próximamente</p>
-                  <p className="text-xs text-texto-secundario/30 text-center leading-snug italic">{descripcion}</p>
+                  {foto.src ? (
+                    <img src={foto.src} alt={foto.alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  ) : (
+                    <div className="w-full h-full bg-fondo-superficie border border-white/5 flex flex-col items-center justify-center gap-3 p-6">
+                      <Camera size={28} className="text-marca-principal/40" aria-hidden="true" />
+                      <p className="text-xs text-texto-secundario/50 text-center leading-snug">Foto próximamente</p>
+                      <p className="text-xs text-texto-secundario/30 text-center leading-snug italic">{foto.alt}</p>
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </div>
