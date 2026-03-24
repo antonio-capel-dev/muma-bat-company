@@ -64,22 +64,22 @@ export default function PlazaMayorMalaga() {
             aria-hidden="true"
           />
           <div className="relative z-10 max-w-3xl mx-auto">
-            <motion.p
+            <p
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
               className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-5"
             >
               Bat Night · Evento urbano de gran formato
-            </motion.p>
-            <motion.h1
+            </p>
+            <h1
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-texto-titulo mb-6"
             >
               Bat Night{' '}
               <span className="text-marca-principal">Plaza Mayor</span>
               <br />Málaga
-            </motion.h1>
+            </h1>
 
-            <motion.div
+            <div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10"
             >
@@ -95,9 +95,9 @@ export default function PlazaMayorMalaga() {
                 <Users size={14} className="text-marca-principal" aria-hidden="true" />
                 200–300 participantes
               </span>
-            </motion.div>
+            </div>
 
-            <motion.div
+            <div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-3 justify-center"
             >
@@ -107,14 +107,14 @@ export default function PlazaMayorMalaga() {
               >
                 Quiero apuntarme a la próxima Bat Night
               </a>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* ── DESCRIPCIÓN ── */}
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-4xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">El evento</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-6">El mayor evento urbano de MUMA hasta la fecha</h2>
               <div className="space-y-4 text-texto-secundario leading-relaxed">
@@ -131,20 +131,20 @@ export default function PlazaMayorMalaga() {
                   Plaza Mayor se consolidó como aliado estratégico de MUMA para futuras ediciones de gran formato en Málaga y otras ciudades del Mediterráneo.
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* ── GALERÍA ── */}
         <section className="bg-fondo-base py-20 px-6">
           <div className="max-w-6xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Imágenes</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Galería del evento</h2>
-            </motion.div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {fotos.map((foto, i) => (
-                <motion.div
+                <div
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.07 } } }}
@@ -155,7 +155,7 @@ export default function PlazaMayorMalaga() {
                     alt={foto.alt}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -164,14 +164,14 @@ export default function PlazaMayorMalaga() {
         {/* ── DESTACADOS ── */}
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-4xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="mb-12">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="mb-12">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Logros</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Puntos destacados</h2>
               <p className="text-texto-secundario max-w-xl leading-relaxed">Lo que hicimos posible en esta edición.</p>
-            </motion.div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {destacados.map((punto, i) => (
-                <motion.div
+                <div
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, x: -16 }, visible: { opacity: 1, x: 0, transition: { duration: 0.45, delay: i * 0.07 } } }}
@@ -179,7 +179,7 @@ export default function PlazaMayorMalaga() {
                 >
                   <Check size={16} className="text-marca-principal mt-0.5 shrink-0" aria-hidden="true" />
                   <p className="text-sm text-texto-secundario leading-relaxed">{punto}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -188,7 +188,7 @@ export default function PlazaMayorMalaga() {
         {/* ── CTA ORGANIZAR ── */}
         <section className="bg-fondo-base py-20 px-6">
           <div className="max-w-3xl mx-auto">
-            <motion.div
+            <div
               initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}
               className="bg-fondo-superficie rounded-2xl p-10 border border-marca-principal/20 text-center"
             >
@@ -216,14 +216,14 @@ export default function PlazaMayorMalaga() {
                   Consultar por WhatsApp
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* ── APUNTARSE CTA ── */}
         <section className="bg-fondo-secundario py-16 px-6">
           <div className="max-w-2xl mx-auto text-center">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
               <h2 className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-5">¿No quieres perderte la próxima edición?</h2>
               <p className="text-texto-secundario leading-relaxed mb-8">
                 Escríbenos y te avisamos cuando lancemos nuevas Bat Nights. Sin compromiso.
@@ -238,7 +238,7 @@ export default function PlazaMayorMalaga() {
               <p className="mt-6 text-xs text-texto-secundario/50">
                 Al hacer clic se abrirá tu cliente de correo con el asunto predefinido.
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 

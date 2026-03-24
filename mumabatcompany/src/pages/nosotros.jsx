@@ -40,28 +40,28 @@ const credenciales = [
     sigla: 'ST3ER',
     nombre: 'Proyecto europeo ST3ER',
     descripcion: 'Investigación en 3 países (España, Portugal, Eslovenia). Financiado por SMP COSME de la UE. Resultado: Batcave Experience — producto comercial activo, más de 700 personas en 2025, sin fase piloto.',
-    img: '/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.webp',
+    img: '/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.png',
     imgAlt: 'Logo Proyecto ST3ER — Murciélagos Málaga',
   },
   {
     sigla: 'SECEMU',
     nombre: 'Sociedad Española para la Conservación y Estudio de los Murciélagos',
     descripcion: 'Miembros activos de SECEMU. Colaboramos en el Atlas de Distribución de Quirópteros Ibéricos y en programas de seguimiento de colonias.',
-    img: '/images/Logo_SECEMU.webp',
+    img: '/images/Logo_SECEMU.png',
     imgAlt: 'Logo SECEMU',
   },
   {
     sigla: 'EUROBATS',
     nombre: 'Acuerdo EUROBATS',
     descripcion: 'Alineados con el marco de conservación de murciélagos de la Unión Europea. Nuestros proyectos siguen los protocolos de monitorización reconocidos internacionalmente.',
-    img: '/images/EUROBATS_logo.webp',
+    img: '/images/EUROBATS_logo.png',
     imgAlt: 'Logo EUROBATS',
   },
   {
     sigla: 'FEDER',
     nombre: 'La Brújula — Cámara de Comercio de Málaga',
     descripcion: 'Apoyo institucional de La Brújula (financiado FEDER). Validación por parte del ecosistema empresarial e institucional de Málaga.',
-    img: '/images/La-Brujula-150x150.webp',
+    img: '/images/La-Brujula-150x150.jpg',
     imgAlt: 'Logo La Brújula — Cámara de Comercio de Málaga',
   },
 ]
@@ -98,16 +98,16 @@ const alianzasImagenes = [
   { nombre: 'Centro Europeo de Empresas',       img: '/images/centro-europeo-empresas.webp',  url: 'https://www.ceei.es' },
   { nombre: 'Polo de Contenido Digital',        img: '/images/polo-contenido-digital.webp',   url: '#' },
   { nombre: 'Red de Emprendedores',             img: '/images/red-emprendedores.webp',        url: '#' },
-  { nombre: 'Unión Europea — Proyecto ST3ER',   img: '/images/europa.webp',                    url: '#' },
+  { nombre: 'Unión Europea — Proyecto ST3ER',   img: '/images/europa.png',                    url: '#' },
 ]
 
 const medios = [
-  { nombre: 'La Opinión de Málaga', img: '/images/La-opinion-de-Malaga.webp' },
-  { nombre: 'Málaga Hoy',           img: '/images/malaga-hoy.webp' },
-  { nombre: 'El Español',           img: '/images/El-Espanol-de-Malaga.webp' },
-  { nombre: 'Andalucía Lab',        img: '/images/Andalucia-Lab.webp' },
-  { nombre: 'Hola Andalucía',       img: '/images/hola-andalucia.webp' },
-  { nombre: 'Canal Málaga',         img: '/images/canal_malaga.webp' },
+  { nombre: 'La Opinión de Málaga', img: '/images/La-opinion-de-Malaga.jpg' },
+  { nombre: 'Málaga Hoy',           img: '/images/malaga-hoy.png' },
+  { nombre: 'El Español',           img: '/images/El-Espanol-de-Malaga.jpg' },
+  { nombre: 'Andalucía Lab',        img: '/images/Andalucia-Lab.jpg' },
+  { nombre: 'Hola Andalucía',       img: '/images/hola-andalucia.png' },
+  { nombre: 'Canal Málaga',         img: '/images/canal_malaga.png' },
 ]
 
 export default function Nosotros() {
@@ -136,30 +136,30 @@ export default function Nosotros() {
 
           <div className="relative z-10 max-w-4xl mx-auto text-center pb-16">
 
-            <motion.p
+            <p
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
               className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-5"
             >
               Polo Digital de Málaga · Desde 2018
-            </motion.p>
+            </p>
 
-            <motion.h1
+            <h1
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-texto-titulo mb-6"
             >
               Empezamos protegiendo murciélagos.<br />
               <span className="text-marca-principal">Hoy convertimos ese conocimiento en servicios reales.</span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
+            <p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-texto-secundario leading-relaxed max-w-2xl mx-auto mb-10"
             >
               Todo lo que hacemos parte de la misma idea: no imponemos soluciones a la naturaleza, aprendemos de ella para colaborar con ella. MUMA nace de la cooperación y la escucha — del campo, de las colonias, del territorio. No somos divulgadores ni una ONG. Somos una empresa especializada que trabaja con instituciones, administraciones y empresas que necesitan soluciones con base científica real.
-            </motion.p>
+            </p>
 
             {/* Stats de credibilidad rápida */}
-            <motion.div
+            <div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.35 }}
               className="flex flex-wrap justify-center gap-8"
             >
@@ -173,17 +173,17 @@ export default function Nosotros() {
                   <p className="text-xs text-texto-secundario mt-1 tracking-wide">{stat.label}</p>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           {/* Imagen de colonia — ancho completo, pegada al borde inferior del hero */}
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
             className="relative max-w-5xl mx-auto rounded-t-3xl overflow-hidden"
             style={{ height: '420px' }}
           >
             <img
-              src="/images/colonia_murcielago01.webp"
+              src="/images/colonia_murcielago01.JPG"
               alt="Colonia de murciélagos en cueva natural — trabajo de campo de MUMA"
               className="w-full h-full object-cover object-center"
             />
@@ -194,7 +194,7 @@ export default function Nosotros() {
               <p className="text-xs font-semibold text-marca-principal uppercase tracking-widest">Trabajo de campo real</p>
               <p className="text-xs text-texto-secundario mt-0.5">Seguimiento de colonias · Proyecto ST3ER</p>
             </div>
-          </motion.div>
+          </div>
 
         </section>
 
@@ -204,7 +204,7 @@ export default function Nosotros() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
               {/* Columna texto */}
-              <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
+              <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
                 <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">De dónde venimos</p>
                 <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-8">
                   Empezamos con refugios de madera.<br />La tecnología nos abrió otro camino.
@@ -227,21 +227,21 @@ export default function Nosotros() {
                     De ahí surgió el ecosistema completo de MUMA: experiencias inmersivas, consultoría bioacústica, control biológico de plagas, educación ambiental, Bat Nights. <span className="text-texto-titulo font-medium">Se llama company porque es exactamente eso:</span> muchas líneas de acción con el mismo punto de vista debajo.
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Columna imagen */}
-              <motion.div
+              <div
                 initial="oculto" whileInView="visible" viewport={{ once: true }}
                 variants={{ oculto: { opacity: 0, x: 24 }, visible: { opacity: 1, x: 0, transition: { duration: 0.65, delay: 0.15 } } }}
                 className="rounded-2xl overflow-hidden"
                 style={{ height: '580px' }}
               >
                 <img
-                  src="/images/solucion-ecologica-murcielagos-727x1024.webp"
+                  src="/images/solucion-ecologica-murcielagos-727x1024.jpg"
                   alt="Instalación de refugio ecológico para murciélagos — trabajo de campo de MUMA"
                   className="w-full h-full object-cover object-top"
                 />
-              </motion.div>
+              </div>
 
             </div>
           </div>
@@ -250,15 +250,15 @@ export default function Nosotros() {
         {/* ── SECCIÓN 3: TRES PILARES — los que Francisco identificó como fundamentales ── */}
         <section className="bg-fondo-base py-20 px-6">
           <div className="max-w-6xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Cómo trabajamos</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Tres pilares. Un mismo criterio.</h2>
               <p className="text-texto-secundario max-w-xl mx-auto">No elegimos uno de los tres. Los tres están presentes en cada proyecto que hacemos.</p>
-            </motion.div>
+            </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {pilares.map(({ titulo, texto, img, imgAlt, imgPos }, i) => (
-                <motion.div
+                <div
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.12 } } }}
@@ -279,7 +279,7 @@ export default function Nosotros() {
                     <h3 className="text-lg font-bold text-texto-titulo mb-3 leading-snug">{titulo}</h3>
                     <p className="text-sm text-texto-secundario leading-relaxed">{texto}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -288,7 +288,7 @@ export default function Nosotros() {
         {/* ── SECCIÓN 3B: BATCAVE EXPERIENCE — producto estrella ── */}
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-6xl mx-auto">
-            <motion.div
+            <div
               initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
             >
@@ -333,20 +333,20 @@ export default function Nosotros() {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* ── SECCIÓN 3D: A QUIÉN AYUDAMOS ── */}
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-6xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Clientes</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">¿Trabajamos con tu organización?</h2>
               <p className="text-texto-secundario max-w-xl mx-auto">
                 Nuestros servicios están diseñados para perfiles muy concretos. Si te reconoces en alguno de estos, probablemente podemos ayudarte.
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {[
@@ -373,7 +373,7 @@ export default function Nosotros() {
                   descripcion: 'Quieres reducir el uso de pesticidas con soluciones basadas en la naturaleza. Cada colonia de murciélagos elimina hasta 3.000 insectos por noche.',
                   ejemplo: 'Viñedos, olivares, fincas hortícolas',
                   servicio: 'Refugios + Control biológico',
-                  img: '/images/refugio_doble.webp',
+                  img: '/images/refugio_doble.png',
                   imgAlt: 'Refugios de madera para murciélagos — solución ecológica MUMA',
                   imgPos: 'object-center',
                 },
@@ -387,7 +387,7 @@ export default function Nosotros() {
                   imgPos: 'object-center',
                 },
               ].map((perfil, i) => (
-                <motion.div
+                <div
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1 } } }}
@@ -412,11 +412,11 @@ export default function Nosotros() {
                     <p className="text-sm text-texto-secundario leading-relaxed">{perfil.descripcion}</p>
                     <p className="text-xs text-texto-secundario/50 mt-auto pt-3 border-t border-white/5">{perfil.ejemplo}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
-            <motion.div
+            <div
               initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}
               className="text-center mt-10"
             >
@@ -427,24 +427,24 @@ export default function Nosotros() {
                 No estoy seguro — hablamos y lo vemos
                 <ArrowRight size={14} aria-hidden="true" />
               </a>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* ── SECCIÓN 4: CREDENCIALES — el proyecto europeo y avales científicos ── */}
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-6xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Avales y credenciales</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Base real, no solo storytelling</h2>
               <p className="text-texto-secundario max-w-xl mx-auto">
                 El proyecto europeo, las asociaciones científicas y los programas institucionales no son decoración. Son la base desde la que se toman decisiones.
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {credenciales.map((cred, i) => (
-                <motion.div
+                <div
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
@@ -473,7 +473,7 @@ export default function Nosotros() {
                       <p className="text-sm text-texto-secundario leading-relaxed">{cred.descripcion}</p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -482,19 +482,19 @@ export default function Nosotros() {
         {/* ── SECCIÓN 5: EQUIPO ── */}
         <section className="bg-fondo-base py-20 px-6">
           <div className="max-w-4xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">El equipo</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo">Las personas detrás de MUMA</h2>
-            </motion.div>
+            </div>
 
-            <motion.div
+            <div
               initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}
               className="grid grid-cols-1 sm:grid-cols-2 gap-6"
             >
               {/* Antonio Moret */}
               <div className="bg-fondo-superficie rounded-2xl overflow-hidden border border-white/5 hover:border-marca-principal/25 transition-colors duration-300">
                 <img
-                  src="/images/antonio-moret.webp"
+                  src="/images/antonio-moret.jpg"
                   alt="Antonio Moret, CEO de MUMA BAT COMPANY"
                   className="w-full h-64 object-cover object-top"
                 />
@@ -513,7 +513,7 @@ export default function Nosotros() {
               {/* Laura Smit */}
               <div className="bg-fondo-superficie rounded-2xl overflow-hidden border border-white/5 hover:border-marca-principal/25 transition-colors duration-300">
                 <img
-                  src="/images/laura.webp"
+                  src="/images/laura.png"
                   alt="Laura Smit, Manager de MUMA BAT COMPANY"
                   className="w-full h-64 object-cover object-top"
                 />
@@ -525,7 +525,7 @@ export default function Nosotros() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -537,17 +537,17 @@ export default function Nosotros() {
 
               {/* Stats + cabecera */}
               <div>
-                <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="mb-10">
+                <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="mb-10">
                   <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">La base científica de lo que hacemos</p>
                   <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-3">Por qué los murciélagos importan</h2>
                   <p className="text-texto-secundario max-w-xl text-sm leading-relaxed">
                     Cada cifra que usamos justifica un servicio. No divulgamos por divulgar.
                   </p>
-                </motion.div>
+                </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {datosMurcielagos.map((dato, i) => (
-                    <motion.div
+                    <div
                       key={i}
                       initial="oculto" whileInView="visible" viewport={{ once: true }}
                       variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
@@ -560,13 +560,13 @@ export default function Nosotros() {
                         <h3 className="text-sm font-bold text-texto-titulo mb-1">{dato.titulo}</h3>
                         <p className="text-sm text-texto-secundario leading-relaxed">{dato.texto}</p>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
 
               {/* Imagen lateral — solo visible en lg+ */}
-              <motion.div
+              <div
                 initial="oculto" whileInView="visible" viewport={{ once: true }}
                 variants={{ oculto: { opacity: 0, x: 24 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.2 } } }}
                 className="hidden lg:block sticky top-24 rounded-2xl overflow-hidden"
@@ -582,7 +582,7 @@ export default function Nosotros() {
                   <p className="text-xs font-semibold text-marca-principal uppercase tracking-widest">Bat Night · Eslovenia</p>
                   <p className="text-xs text-white/60 mt-0.5">Proyecto ST3ER — actividades de campo internacionales</p>
                 </div>
-              </motion.div>
+              </div>
 
             </div>
           </div>
@@ -607,17 +607,17 @@ export default function Nosotros() {
 
           {/* Cabecera */}
           <div className="px-6">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12 max-w-4xl mx-auto">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12 max-w-4xl mx-auto">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Red y visibilidad</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Instituciones que respaldan a MUMA</h2>
               <p className="text-texto-secundario max-w-xl mx-auto">
                 Trabajamos con entidades científicas, culturales e institucionales comprometidas con la conservación activa.
               </p>
-            </motion.div>
+            </div>
           </div>
 
           {/* Carrusel infinito — sin padding lateral para que llegue a los bordes */}
-          <motion.div
+          <div
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="relative"
@@ -650,11 +650,11 @@ export default function Nosotros() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Medios */}
           <div className="px-6 mt-14">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="max-w-4xl mx-auto">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="max-w-4xl mx-auto">
               <div className="flex items-center justify-center gap-2 mb-8">
                 <Newspaper size={14} className="text-marca-principal" aria-hidden="true" />
                 <p className="text-xs font-semibold tracking-widest text-texto-secundario uppercase">Han escrito sobre MUMA</p>
@@ -675,7 +675,7 @@ export default function Nosotros() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
 
         </section>
@@ -683,7 +683,7 @@ export default function Nosotros() {
         {/* ── SECCIÓN 8: CTA FINAL — conexión con servicios y contacto ── */}
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-3xl mx-auto">
-            <motion.div
+            <div
               initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}
               className="border border-marca-principal/30 rounded-2xl p-10 sm:p-14 text-center"
             >
@@ -709,7 +709,7 @@ export default function Nosotros() {
                   <ArrowRight size={15} aria-hidden="true" />
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 

@@ -43,7 +43,7 @@ export default function Refugios() {
         "Diseño compacto de 2 cámaras. Fabricado a mano con madera selecta y detalles en impresión 3D. Ideal para fachadas o árboles en entornos residenciales.",
       iconos: ["Madera Técnica", "Resistente UV", "Artesanal"],
       color: "from-emerald-500/20",
-      imagen: "/images/refugio_simple_resultado.webp",
+      imagen: "/images/refugio_simple.png",
     },
     {
       titulo: "Modelo Finca Agrícola",
@@ -52,7 +52,7 @@ export default function Refugios() {
         "Refugio de gran formato diseñado para maximizar la colonización en cultivos. Ventilación reforzada y aislamiento térmico superior para insolación intensa.",
       iconos: ["Gran Formato", "Aislamiento Pro", "Agrícola"],
       color: "from-marca-principal/20",
-      imagen: "/images/refugio_doble.webp",
+      imagen: "/images/refugio_doble.png",
     },
     {
       titulo: "Estación Smart IoT",
@@ -61,7 +61,7 @@ export default function Refugios() {
         "Equipado con sensores infrarrojos de ocupación y telemetría de temperatura/humedad. Envía datos en tiempo real para estudios de biodiversidad.",
       iconos: ["Sensores 4.0", "Telemetría", "Resistente"],
       color: "from-blue-500/20",
-      imagen: "/images/refugio_simple_resultado.webp", // Cambiar por imagen real si existe
+      imagen: "/images/refugio_simple.png", // Cambiar por imagen real si existe
     },
   ];
 
@@ -90,37 +90,10 @@ export default function Refugios() {
       <Navbar />
 
       <main className="min-h-screen bg-fondo-base pt-24">
-
-        {/* ── BANNER CTA SUPERIOR ── */}
-        <div className="bg-fondo-secundario border-b border-white/5 px-6 py-5">
-          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-texto-secundario">
-              <span className="text-texto-titulo font-semibold">Refugios para murciélagos fabricados en Málaga.</span>{' '}
-              Control biológico de plagas, monitorización científica e infraestructura de conservación.
-            </p>
-            <div className="flex gap-3 shrink-0">
-              <a
-                href="mailto:info@murcielagosmalaga.com?subject=Solicitud%20presupuesto%20refugios%20MUMA"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
-              >
-                Solicitar presupuesto
-              </a>
-              <a
-                href="https://wa.me/34664213450"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold border border-white/15 text-texto-principal hover:bg-fondo-superficie transition-all duration-200 no-underline"
-              >
-                WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-
         {/* ── SECCIÓN 1: DEFINICIÓN TÉCNICA ── */}
         <section id="definicion" className="py-24 px-6 border-t border-white/5">
           <div className="max-w-6xl mx-auto">
-            <motion.div
+            <div
               initial="oculto"
               whileInView="visible"
               viewport={{ once: true }}
@@ -140,7 +113,7 @@ export default function Refugios() {
                 garantiza la protección frente a la humedad donde otras cajas
                 comerciales fallan.
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
               <div className="p-8 bg-fondo-superficie rounded-3xl border border-white/5">
@@ -175,7 +148,7 @@ export default function Refugios() {
               </div>
             </div>
 
-            <motion.div
+            <div
               initial="oculto"
               whileInView="visible"
               viewport={{ once: true }}
@@ -218,7 +191,7 @@ export default function Refugios() {
                   </ul>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -236,7 +209,7 @@ export default function Refugios() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative z-10 order-2 lg:order-1">
                 <AnimatePresence mode="wait">
-                  <motion.div
+                  <div
                     key={indiceActivo}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -262,7 +235,7 @@ export default function Refugios() {
                         </span>
                       ))}
                     </div>
-                  </motion.div>
+                  </div>
                 </AnimatePresence>
                 <div className="flex gap-4">
                   <button
@@ -281,13 +254,13 @@ export default function Refugios() {
               </div>
               <div className="relative order-1 lg:order-2">
                 <AnimatePresence mode="wait">
-                  <motion.div
+                  <div
                     key={indiceActivo}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.1 }}
                     transition={{ duration: 0.5 }}
-                    className={`relative aspect-square rounded-3xl bg-linear-to-br ${modelos[indiceActivo].color} to-transparent border border-white/10 overflow-hidden shadow-2xl flex items-center justify-center`}
+                    className={`relative aspect-square rounded-3xl bg-gradient-to-br ${modelos[indiceActivo].color} to-transparent border border-white/10 overflow-hidden shadow-2xl flex items-center justify-center`}
                   >
                     <img
                       src={modelos[indiceActivo].imagen}
@@ -299,7 +272,7 @@ export default function Refugios() {
                       size={24}
                       className="absolute bottom-6 right-6 text-white/40"
                     />
-                  </motion.div>
+                  </div>
                 </AnimatePresence>
               </div>
             </div>
@@ -363,7 +336,7 @@ export default function Refugios() {
         >
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-              <motion.div
+              <div
                 initial="oculto"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -388,8 +361,8 @@ export default function Refugios() {
                     <li>• Mosquito Tigre</li>
                   </ul>
                 </div>
-              </motion.div>
-              <motion.div
+              </div>
+              <div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 className="bg-fondo-superficie p-8 rounded-3xl border border-marca-principal/20 shadow-2xl"
@@ -434,7 +407,7 @@ export default function Refugios() {
                     </span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -442,7 +415,7 @@ export default function Refugios() {
         {/* ── SECCIÓN 5: IMPACTO URBANO ── */}
         <section className="py-24 px-6 bg-fondo-base border-t border-white/5">
           <div className="max-w-6xl mx-auto">
-            <motion.div
+            <div
               initial="oculto"
               whileInView="visible"
               viewport={{ once: true }}
@@ -455,7 +428,7 @@ export default function Refugios() {
               <h2 className="text-3xl md:text-5xl font-bold text-texto-titulo">
                 Impacto y Productividad Urbana
               </h2>
-            </motion.div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="p-8 bg-fondo-superficie rounded-3xl border border-white/5 flex flex-col items-center text-center group hover:border-marca-principal/30 transition-all">
                 <div className="p-4 bg-marca-principal/10 rounded-2xl mb-6 text-marca-principal">
@@ -503,7 +476,7 @@ export default function Refugios() {
                 </p>
               </div>
             </div>
-            <motion.p
+            <p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               className="text-center text-[10px] text-texto-secundario/40 mt-12 uppercase tracking-[0.2em]"
@@ -527,14 +500,14 @@ export default function Refugios() {
                 BCI
               </a>
               .
-            </motion.p>
+            </p>
           </div>
         </section>
 
         {/* ── SECCIÓN 6: FAQ ── */}
         <section className="py-24 px-6 bg-fondo-secundario border-t border-white/5">
           <div className="max-w-4xl mx-auto">
-            <motion.div
+            <div
               initial="oculto"
               whileInView="visible"
               viewport={{ once: true }}
@@ -547,7 +520,7 @@ export default function Refugios() {
               <p className="text-texto-secundario italic">
                 Respuestas técnicas para una implementación segura y efectiva.
               </p>
-            </motion.div>
+            </div>
             <div className="space-y-4">
               {[
                 {
@@ -587,7 +560,7 @@ export default function Refugios() {
           id="contacto"
           className="bg-fondo-base py-24 px-6 border-t border-white/5 text-center"
         >
-          <motion.div
+          <div
             initial="oculto"
             whileInView="visible"
             viewport={{ once: true }}
@@ -616,7 +589,7 @@ export default function Refugios() {
                 WhatsApp Corporativo
               </a>
             </div>
-          </motion.div>
+          </div>
         </section>
       </main>
 

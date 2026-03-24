@@ -113,35 +113,31 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-fondo-base/95 backdrop-blur-md border-b border-white/5">
       <div className="max-w-7xl mx-auto px-12 py-5 flex items-center justify-between border-b border-white/5">
-        <Link
-          to="/"
-          className="flex items-center gap-2 text-texto-titulo font-bold tracking-tight no-underline"
-        >
+
+        {/* Logo de la marca */}
+        <Link to="/" className="flex items-center gap-2 text-texto-titulo font-bold tracking-tight no-underline">
           <span className="text-xl leading-none">MUMA</span>
-          <span className="text-marca-principal text-xl leading-none">
-            BAT COMPANY
-          </span>
+          <span className="text-marca-principal text-xl leading-none">BAT COMPANY</span>
         </Link>
 
+        {/* Acciones desktop */}
         <div className="hidden md:flex items-center gap-3" ref={dropdownRef}>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1" role="group" aria-label="Seleccionar idioma">
             {idiomas.map((idioma) => (
               <button
                 key={idioma.locale}
                 onClick={() => setLocale(idioma.locale)}
-                className={`px-1.5 py-1 rounded-lg transition-all duration-200 cursor-pointer flex items-center ${
+                title={idioma.label}
+                aria-label={idioma.label}
+                aria-pressed={locale === idioma.locale}
+                className={[
+                  'px-1.5 py-1 rounded-lg transition-all duration-200 cursor-pointer flex items-center',
                   locale === idioma.locale
-                    ? "ring-2 ring-marca-principal/70 scale-110"
-                    : "opacity-50 hover:opacity-90 hover:bg-white/5"
-                }`}
+                    ? 'ring-2 ring-marca-principal/70 scale-110'
+                    : 'opacity-50 hover:opacity-90 hover:bg-white/5',
+                ].join(' ')}
               >
-                <img
-                  src={idioma.flag}
-                  alt={idioma.label}
-                  width="24"
-                  height="18"
-                  className="rounded-sm"
-                />
+                <img src={idioma.flag} alt={idioma.label} width="24" height="18" style={{ borderRadius: '3px', display: 'block' }} />
               </button>
             ))}
           </div>
@@ -154,12 +150,12 @@ export default function Navbar() {
             onToggle={toggleDropdown}
             onCerrar={cerrarDropdown}
           />
-          <a
-            href="mailto:info@murcielagosmalaga.com"
+          <Link
+            to="/donar"
             className="flex items-center px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 border border-white/10 text-texto-secundario hover:text-texto-titulo hover:border-white/30 no-underline"
           >
             Donar
-          </a>
+          </Link>
           <DropdownMenu
             nombre="tienda"
             label="Tienda"
@@ -171,6 +167,7 @@ export default function Navbar() {
           />
         </div>
 
+        {/* Botón hamburguesa móvil — fuera de las columnas del grid pero dentro del wrapper */}
         <button
           onClick={() => setMenuAbierto(!menuAbierto)}
           className="md:hidden flex flex-col justify-center gap-1.5 w-8 h-8 p-1"

@@ -20,12 +20,12 @@ const destacados = [
 ]
 
 const fotos = [
-  { src: '/images/cueva de nerja.webp', alt: 'Cueva de Nerja durante la Bat Night' },
-  { src: '/images/cuevas-nerja.webp', alt: 'Interior de la Cueva de Nerja' },
-  { src: '/images/Bat-Nigt-Malaga-1.webp', alt: 'Actividad de detección de ultrasonidos' },
-  { src: null, alt: 'Instalación de refugios monitorizados' },
-  { src: null, alt: 'Colaboración con Fundación Cueva de Nerja' },
-  { src: null, alt: 'Parador de Turismo de Nerja' },
+  { src: '/images/nerja-1.webp', alt: 'Grupo de participantes en la entrada de la Cueva de Nerja durante la Bat Night' },
+  { src: '/images/nerja-2.webp', alt: 'Presentación sobre murciélagos en la Cueva de Nerja' },
+  { src: '/images/nerja-3.webp', alt: 'Charla nocturna con el público en la Cueva de Nerja' },
+  { src: '/images/nerja-4.webp', alt: 'Actividad educativa dentro de la Cueva de Nerja' },
+  { src: '/images/nerja-5.webp', alt: 'Grupo de participantes dentro de la Cueva de Nerja' },
+  { src: '/images/nerja-6.webp', alt: 'Visita guiada dentro de la Cueva de Nerja durante la Bat Night' },
 ]
 
 export default function CuevaNerja() {
@@ -64,22 +64,22 @@ export default function CuevaNerja() {
             aria-hidden="true"
           />
           <div className="relative z-10 max-w-3xl mx-auto">
-            <motion.p
+            <p
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
               className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-5"
             >
               Bat Night · Tres ediciones en 2025
-            </motion.p>
-            <motion.h1
+            </p>
+            <h1
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-texto-titulo mb-6"
             >
               Bat Night{' '}
               <span className="text-marca-principal">Cueva de Nerja</span>
               <br />y Parador de Turismo
-            </motion.h1>
+            </h1>
 
-            <motion.div
+            <div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10"
             >
@@ -95,9 +95,9 @@ export default function CuevaNerja() {
                 <Users size={14} className="text-marca-principal" aria-hidden="true" />
                 +50 participantes
               </span>
-            </motion.div>
+            </div>
 
-            <motion.div
+            <div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-3 justify-center"
             >
@@ -107,14 +107,14 @@ export default function CuevaNerja() {
               >
                 Quiero apuntarme a la próxima Bat Night
               </a>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* ── DESCRIPCIÓN ── */}
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-4xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">El evento</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-6">Un enclave con historia y futuro</h2>
               <div className="space-y-4 text-texto-secundario leading-relaxed">
@@ -131,30 +131,33 @@ export default function CuevaNerja() {
                   Este modelo —que combina experiencia de público, instalación de infraestructura y seguimiento científico— es el ejemplo más completo de lo que MUMA entiende por ecoturismo de impacto real.
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* ── GALERÍA ── */}
         <section className="bg-fondo-base py-20 px-6">
           <div className="max-w-6xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Imágenes</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Galería del evento</h2>
-            </motion.div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {fotos.map((descripcion, i) => (
-                <motion.div
-                  key={i}
-                  initial="oculto" whileInView="visible" viewport={{ once: true }}
-                  variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.07 } } }}
-                  className="bg-fondo-superficie rounded-2xl border border-white/5 aspect-video flex flex-col items-center justify-center gap-3 p-6"
-                >
-                  <Camera size={28} className="text-marca-principal/40" aria-hidden="true" />
-                  <p className="text-xs text-texto-secundario/50 text-center leading-snug">Foto próximamente</p>
-                  <p className="text-xs text-texto-secundario/30 text-center leading-snug italic">{descripcion}</p>
-                </motion.div>
-              ))}
+              {fotos.map((foto, i) => (
+  <div
+    key={i}
+    initial="oculto" whileInView="visible" viewport={{ once: true }}
+    variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.07 } } }}
+    className="rounded-2xl overflow-hidden aspect-video"
+  >
+    <img
+      src={foto.src}
+      alt={foto.alt}
+      className="w-full h-full object-cover"
+      loading="lazy"
+    />
+  </div>
+))}
             </div>
           </div>
         </section>
@@ -162,14 +165,14 @@ export default function CuevaNerja() {
         {/* ── DESTACADOS ── */}
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-4xl mx-auto">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="mb-12">
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="mb-12">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Logros</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Puntos destacados</h2>
               <p className="text-texto-secundario max-w-xl leading-relaxed">Lo que hicimos posible en esta edición.</p>
-            </motion.div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {destacados.map((punto, i) => (
-                <motion.div
+                <div
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, x: -16 }, visible: { opacity: 1, x: 0, transition: { duration: 0.45, delay: i * 0.07 } } }}
@@ -177,7 +180,7 @@ export default function CuevaNerja() {
                 >
                   <Check size={16} className="text-marca-principal mt-0.5 shrink-0" aria-hidden="true" />
                   <p className="text-sm text-texto-secundario leading-relaxed">{punto}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -186,7 +189,7 @@ export default function CuevaNerja() {
         {/* ── CTA ORGANIZAR ── */}
         <section className="bg-fondo-base py-20 px-6">
           <div className="max-w-3xl mx-auto">
-            <motion.div
+            <div
               initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}
               className="bg-fondo-superficie rounded-2xl p-10 border border-marca-principal/20 text-center"
             >
@@ -214,14 +217,14 @@ export default function CuevaNerja() {
                   Consultar por WhatsApp
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* ── APUNTARSE CTA ── */}
         <section className="bg-fondo-secundario py-16 px-6">
           <div className="max-w-2xl mx-auto text-center">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
+            <div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
               <h2 className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-5">¿No quieres perderte la próxima edición?</h2>
               <p className="text-texto-secundario leading-relaxed mb-8">
                 Escríbenos y te avisamos cuando lancemos nuevas Bat Nights. Sin compromiso.
@@ -236,7 +239,7 @@ export default function CuevaNerja() {
               <p className="mt-6 text-xs text-texto-secundario/50">
                 Al hacer clic se abrirá tu cliente de correo con el asunto predefinido.
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
 

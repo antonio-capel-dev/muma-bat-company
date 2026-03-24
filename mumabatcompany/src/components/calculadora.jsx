@@ -65,8 +65,7 @@ export default function Calculadora() {
             <input
               id="superficie"
               type="range"
-              min={1}npx supabase link --project-ref vggehfsudaizbmbhjvvj
-              npx supabase db dump -f supabase\schema.sql
+              min={1}
               max={500}
               value={hectareas}
               onChange={(e) => setHectareas(Number(e.target.value))}

@@ -1,10 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
 import { LangProvider } from "./context/LangContext";
 
 // Componentes Globales
 import Navbar from "./components/navbar";
-import WhatsAppButton from "./components/WhatsAppButton";
 
 // Páginas Principales
 import Inicio from "./pages/inicio";
@@ -15,8 +13,6 @@ import Contacto from "./pages/contacto";
 import RealidadVirtual from "./pages/servicios/realidad-virtual";
 import Refugios from "./pages/servicios/refugios";
 import EducacionAmbiental from "./pages/servicios/educacion-ambiental";
-import FormacionConsultoria from "./pages/servicios/formacion";
-import NotFound from "./pages/not-found";
 
 // Sección Bat Night
 import BatNight from "./pages/servicios/bat-night";
@@ -28,6 +24,7 @@ import BatNightFuentePiedra from "./pages/servicios/bat-night/fuente-de-piedra";
 // Comunidad y Voluntariado
 import Voluntarios from "./pages/voluntarios";
 import CienciaCiudadana from "./pages/ciencia-ciudadana";
+import Donar from "./pages/donar";
 
 export default function App() {
   return (
@@ -35,8 +32,7 @@ export default function App() {
       <BrowserRouter>
         {/* El Navbar se renderiza en todas las páginas */}
         <Navbar />
-        <WhatsAppButton />
-
+        
         <Routes>
           {/* Rutas Generales */}
           <Route path="/" element={<Inicio />} />
@@ -47,7 +43,7 @@ export default function App() {
           <Route path="/servicios/refugios" element={<Refugios />} />
           <Route path="/servicios/realidad-virtual" element={<RealidadVirtual />} />
           <Route path="/servicios/educacion-ambiental" element={<EducacionAmbiental />} />
-          <Route path="/servicios/formacion" element={<FormacionConsultoria />} />
+          <Route path="/servicios/formacion" element={<EducacionAmbiental />} />
 
           {/* Rutas Específicas de Bat Night */}
           <Route path="/servicios/bat-night" element={<BatNight />} />
@@ -59,9 +55,7 @@ export default function App() {
           {/* Comunidad */}
           <Route path="/voluntarios" element={<Voluntarios />} />
           <Route path="/ciencia-ciudadana" element={<CienciaCiudadana />} />
-
-          {/* 404 — cualquier ruta no definida */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="/donar" element={<Donar />} />
         </Routes>
       </BrowserRouter>
     </LangProvider>

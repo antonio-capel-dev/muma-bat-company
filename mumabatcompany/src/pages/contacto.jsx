@@ -93,13 +93,13 @@ export default function Contacto() {
       <main className="min-h-screen bg-fondo-base text-white">
         
         {/* Cabecera */}
-        <motion.section variants={varianteSeccion} initial="oculto" animate="visible" className="pt-44 pb-12 text-center px-6">
+        <section variants={varianteSeccion} initial="oculto" animate="visible" className="pt-44 pb-12 text-center px-6">
           <span className="inline-block text-marca-principal text-sm font-semibold tracking-widest uppercase mb-4">Contacto</span>
           <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tighter">Hablemos</h1>
           <p className="text-gray-400 text-lg max-w-xl mx-auto italic font-light">
             Especialistas en bioacústica y soluciones de biodiversidad.
           </p>
-        </motion.section>
+        </section>
 
         {/* Métodos Rápidos */}
         <section className="max-w-5xl mx-auto px-6 pb-20 grid grid-cols-2 md:grid-cols-4 gap-4">
