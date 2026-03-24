@@ -343,13 +343,6 @@ export default function BatNight() {
                 style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(31,225,167,0.06) 0%, transparent 70%)' }}
                 aria-hidden="true"
               />
-              {/* Imagen de fondo tenue */}
-              <img
-                src="/images/bats-tree.webp"
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover opacity-[0.08] z-0 pointer-events-none"
-              />
               <div className="relative z-10">
                 <span className="block text-marca-principal text-4xl font-serif leading-none mb-4 select-none" aria-hidden="true">"</span>
                 <p className="text-xl sm:text-2xl font-normal text-texto-titulo leading-snug mb-4">

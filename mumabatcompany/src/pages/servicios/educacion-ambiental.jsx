@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-import { 
-  Box, Laptop, Microscope, ChevronRight, 
+import { Link } from "react-router-dom";
+import {
+  Box, Laptop, Microscope, ChevronRight,
   Database, ShieldCheck, Microscope as Science, Zap,
   Dna, Monitor, Gavel, TreePine
 } from "lucide-react";
@@ -71,7 +72,7 @@ export default function EducacionAmbiental() {
 
           <div className="space-y-12">
             {unidades.map((u, idx) => (
-              <section 
+              <motion.section 
                 key={idx}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -101,7 +102,7 @@ export default function EducacionAmbiental() {
                     </div>
                   ))}
                 </div>
-              </section>
+              </motion.section>
             ))}
           </div>
 
@@ -113,9 +114,22 @@ export default function EducacionAmbiental() {
             <p className="max-w-2xl mx-auto text-texto-secundario font-light mb-12">
               Cada proyecto de MUMA SL está avalado por una matriz de conocimientos multidisciplinar que garantiza la viabilidad biológica, tecnológica y legal del resultado final.
             </p>
-            <button className="px-12 py-5 bg-white text-black rounded-full font-black text-xs tracking-widest uppercase hover:bg-marca-principal transition-all">
-              Solicitar Dossier de Capacidades
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/contacto"
+                className="px-12 py-5 bg-marca-principal text-black rounded-full font-black text-xs tracking-widest uppercase hover:bg-marca-principal-hover transition-all no-underline"
+              >
+                Solicitar propuesta
+              </Link>
+              <a
+                href="https://wa.me/34664213450"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-12 py-5 bg-white/5 border border-white/15 text-white rounded-full font-black text-xs tracking-widest uppercase hover:bg-white/10 transition-all no-underline"
+              >
+                Hablar por WhatsApp
+              </a>
+            </div>
           </div>
 
         </div>
