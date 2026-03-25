@@ -15,8 +15,6 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import {
   ArrowRight,
-  Award, Truck, Headset, Users,
-  Globe, BookOpen, Gamepad2, Landmark,
   CheckCircle,
 } from 'lucide-react'
 import Footer from '../../components/footer'
@@ -26,16 +24,16 @@ import Footer from '../../components/footer'
    ═══════════════════════════════════════════════════════════════════════════ */
 
 const PILARES = [
-  { Icono: Headset, titulo: 'Contenido de cueva real',        desc: 'Desarrollado desde el conocimiento directo del hábitat subterráneo. No es recreación — es documentación.' },
-  { Icono: Truck,   titulo: 'Llegamos con la cueva',          desc: 'Montamos, operamos y recogemos. Tu espacio acoge la experiencia sin obra ni infraestructura adicional.' },
-  { Icono: Users,   titulo: 'Divulgador científico incluido', desc: 'Cada sesión la conduce alguien que conoce los murciélagos de verdad. La tecnología tiene fondo.' },
-  { Icono: Award,   titulo: 'Aval de proyecto europeo',       desc: 'Investigación respaldada por SECEMU, Fundación Cueva de Nerja y Fondo Europeo de Desarrollo Regional (FEDER).' },
+  { titulo: 'Contenido de cueva real',        desc: 'Desarrollado desde el conocimiento directo del hábitat subterráneo. No es recreación — es documentación.',        img: '/images/dentro-cueva.webp' },
+  { titulo: 'Llegamos con la cueva',          desc: 'Montamos, operamos y recogemos. Tu espacio acoge la experiencia sin obra ni infraestructura adicional.',          img: '/images/fotos_batnight/plaza1.webp' },
+  { titulo: 'Divulgador científico incluido', desc: 'Cada sesión la conduce alguien que conoce los murciélagos de verdad. La tecnología tiene fondo.',                 img: '/images/antonio-moret.webp', posicion: '50% 20%' },
+  { titulo: 'Aval de proyecto europeo',       desc: 'Investigación respaldada por SECEMU, Fundación Cueva de Nerja y Fondo Europeo de Desarrollo Regional (FEDER).', img: '/images/Proyecto_palazaMayor.webp' },
 ]
 
 // Acento visual por módulo — muy sutil, diferencia sin romper coherencia
 const MODULOS = [
   {
-    Icono: Globe,
+
     titulo: 'MuMa Bats 360',
     descripcion:
       'Vídeos inmersivos en 360° grabados en entornos reales de murciélagos. Accesibles desde navegador o gafas VR, sin alterar los hábitats documentados.',
@@ -43,7 +41,7 @@ const MODULOS = [
     proximamente: true,
   },
   {
-    Icono: BookOpen,
+
     titulo: 'MuMa Virtual Bats',
     descripcion:
       'Fichas interactivas de especies con modelos 3D, hábitat, estado de conservación y archivo acústico. Un recurso científico y visual para museos, centros educativos y divulgación.',
@@ -51,7 +49,7 @@ const MODULOS = [
     proximamente: true,
   },
   {
-    Icono: Gamepad2,
+
     titulo: 'MuMa Game',
     descripcion:
       'Experiencia gamificada basada en conocimiento científico real. Para reforzar aprendizaje y participación en aulas, eventos y actividades de sensibilización.',
@@ -59,12 +57,14 @@ const MODULOS = [
     proximamente: true,
   },
   {
-    Icono: Landmark,
+
     titulo: 'Virtual Museum',
     descripcion:
       'Espacio digital para explorar el archivo visual, sonoro y narrativo de MUMA. Una experiencia expositiva online que no necesita paredes.',
     acento: 'rgba(139,156,244,0.06)',
-    proximamente: true,
+    proximamente: false,
+    imagen: '/images/museo-virtual.png',
+    href: 'https://www.spatial.io/s/Museo-Virtual-de-Murcielagos-Malaga-6543c01bc7242548905698ae?share=1702051378273231834',
   },
 ]
 
@@ -100,7 +100,7 @@ const EVENTOS = [
     fecha: '14 sept 2025',
     asistentes: '200+',
     destacado: 'Instalación de refugio e interés formal en licenciar la experiencia VR.',
-    img: '/images/niña-feliz-realidad-virtual.webp',
+    img: '/images/grutas-da-moeda.webp',
   },
   {
     lugar: 'Notranjski Museum',
@@ -108,8 +108,17 @@ const EVENTOS = [
     fecha: '5–6 sept 2025',
     asistentes: '100+',
     destacado: 'Paseo nocturno con detectores de ultrasonido, actividades educativas y experiencia VR.',
-    img: '/images/Image_VRglases.webp',
+    img: '/images/-notranjski-muzej-.webp',
   },
+]
+
+const CLIENTES = [
+  { tipo: 'Museos y Centros de Visitantes',             desc: 'Espacios culturales y científicos que buscan experiencias innovadoras para sus visitantes.',              img: '/images/museos.webp' },
+  { tipo: 'Administraciones e Instituciones Públicas',  desc: 'Ayuntamientos, diputaciones y organismos que impulsan la divulgación ambiental.',                         img: '/images/ayuntamientos.webp' },
+  { tipo: 'Hoteles, Campings y Campos de Golf',         desc: 'Espacios de ocio que quieren ofrecer una actividad diferenciadora y sostenible.',                          img: '/images/campo-golf.jpg' },
+  { tipo: 'Espacios Naturales y Reservas',              desc: 'Parques naturales y reservas que necesitan acercar su biodiversidad sin impacto.',                         img: '/images/cuevas-nerja.webp' },
+  { tipo: 'Centros Educativos y AMIPAs',                desc: 'Colegios, institutos y asociaciones de padres que buscan educación ambiental activa.',                     img: '/images/educacion-ambiental.webp' },
+  { tipo: 'ONGs y Asociaciones de Conservación',        desc: 'Entidades que trabajan por la protección de la naturaleza y necesitan herramientas de sensibilización.',   img: '/images/monitorizacion-refugios-voluntarios.webp' },
 ]
 
 const ALIANZAS = [
@@ -165,7 +174,7 @@ function Campo({ id, name, label, type = 'text', placeholder, required = false, 
 }
 
 // Card de módulo secundario
-function CardModulo({ Icono, titulo, descripcion, acento, proximamente, index }) {
+function CardModulo({ titulo, descripcion, acento, proximamente, imagen, href, index }) {
   return (
     <motion.article
       initial="oculto"
@@ -175,28 +184,46 @@ function CardModulo({ Icono, titulo, descripcion, acento, proximamente, index })
         oculto:  { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.08 } },
       }}
-      className="rounded-2xl p-6 border border-acento-tecnologico-borde hover:border-acento-tecnologico/40 transition-colors duration-300 flex flex-col"
+      className="relative rounded-2xl p-6 border border-acento-tecnologico-borde hover:border-acento-tecnologico/40 transition-colors duration-300 flex flex-col overflow-hidden"
       style={{ background: `linear-gradient(135deg, #16212d 0%, #16212d 55%, ${acento} 100%)` }}
     >
-      {/* Cabecera */}
-      <div className="flex items-start gap-3 mb-5">
-        <div className="w-11 h-11 rounded-xl bg-acento-tecnologico-suave border border-acento-tecnologico-borde flex items-center justify-center shrink-0 mt-0.5">
-          <Icono size={20} className="text-acento-tecnologico" aria-hidden="true" />
-        </div>
-        <div className="flex-1 min-w-0 pt-1">
+      {/* Imagen de fondo opcional */}
+      {imagen && (
+        <>
+          <img src={imagen} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-90" />
+          <div className="absolute inset-0 bg-linear-to-t from-fondo-superficie/95 via-fondo-superficie/30 to-transparent" aria-hidden="true" />
+        </>
+      )}
+
+      {/* Contenido */}
+      <div className="relative z-10 flex flex-col flex-1">
+        {/* Cabecera */}
+        <div className="flex items-start justify-between gap-3 mb-5">
           <h3 className="text-base font-bold text-texto-titulo leading-tight">{titulo}</h3>
+          {proximamente && (
+            <span className="text-[9px] font-bold tracking-widest text-acento-tecnologico/80 uppercase bg-acento-tecnologico-suave border border-acento-tecnologico-borde px-2.5 py-1 rounded-lg shrink-0">
+              Próximamente
+            </span>
+          )}
         </div>
-        {proximamente && (
-          <span className="text-[9px] font-bold tracking-[0.1em] text-acento-tecnologico/80 uppercase bg-acento-tecnologico-suave border border-acento-tecnologico-borde px-2.5 py-1 rounded-lg shrink-0 mt-1">
-            Próximamente
-          </span>
+
+        {/* Descripción */}
+        <p className="text-sm text-texto-secundario leading-relaxed flex-1">
+          {descripcion}
+        </p>
+
+        {/* Botón enlace opcional */}
+        {href && (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-acento-tecnologico text-acento-tecnologico hover:bg-acento-tecnologico hover:text-white transition-all duration-200 no-underline w-full"
+          >
+            Entrar al museo virtual <ArrowRight size={14} aria-hidden="true" />
+          </a>
         )}
       </div>
-
-      {/* Descripción */}
-      <p className="text-sm text-texto-secundario leading-relaxed">
-        {descripcion}
-      </p>
     </motion.article>
   )
 }
@@ -269,7 +296,7 @@ export default function RealidadVirtual() {
           aria-label="Cabecera Realidad Virtual"
         >
           <img
-            src="/images/Image_VRglases.webp"
+            src="/images/VR-Malaga.webp"
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover"
@@ -285,12 +312,12 @@ export default function RealidadVirtual() {
             }}
             aria-hidden="true"
           />
-          {/* Halo marca */}
+          {/* Halo VR — lila atmosférico */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                'radial-gradient(ellipse 70% 50% at 50% 60%, rgba(31,225,167,0.07) 0%, transparent 70%)',
+                'radial-gradient(ellipse 70% 50% at 50% 60%, rgba(192,132,252,0.08) 0%, transparent 70%)',
             }}
             aria-hidden="true"
           />
@@ -414,15 +441,19 @@ export default function RealidadVirtual() {
                   </cite>
                 </blockquote>
 
-                {/* Badges compactos */}
-                <div className="flex flex-wrap items-center gap-3 mb-8">
-                  <div className="flex items-center gap-2 bg-fondo-superficie border border-white/8 rounded-xl px-4 py-2.5">
-                    <Award size={14} className="text-marca-principal shrink-0" aria-hidden="true" />
-                    <span className="text-xs text-texto-secundario">Aval científico SECEMU</span>
-                  </div>
-                  <div className="flex items-center gap-2 bg-fondo-superficie border border-white/8 rounded-xl px-4 py-2.5">
-                    <Truck size={14} className="text-marca-principal shrink-0" aria-hidden="true" />
-                    <span className="text-xs text-texto-secundario">Servicio llave en mano</span>
+                {/* Avales — logos de respaldo */}
+                <div className="mb-8">
+                  <p className="text-[10px] font-bold tracking-[0.2em] text-texto-secundario/50 uppercase mb-3">Avalado por</p>
+                  <div className="flex flex-wrap items-center gap-4">
+                    <div className="bg-white rounded-lg px-4 py-2 flex items-center justify-center">
+                      <img src="/images/Logo_SECEMU.webp" alt="SECEMU" className="h-7 w-auto object-contain" />
+                    </div>
+                    <div className="bg-white rounded-lg px-4 py-2 flex items-center justify-center">
+                      <img src="/images/EUROBATS_logo.webp" alt="EUROBATS" className="h-7 w-auto object-contain" />
+                    </div>
+                    <div className="bg-white rounded-lg px-4 py-2 flex items-center justify-center">
+                      <img src="/images/europa.webp" alt="Unión Europea FEDER" className="h-7 w-auto object-contain" />
+                    </div>
                   </div>
                 </div>
 
@@ -454,7 +485,7 @@ export default function RealidadVirtual() {
                   className="relative rounded-2xl overflow-hidden aspect-[16/9] bg-fondo-superficie border border-white/5"
                 >
                   <img
-                    src="/images/Image_VRglases.webp"
+                    src="/images/chica-realidad-virtual.webp"
                     alt="Persona experimentando MuMa VR² Cave Experience con gafas de realidad virtual"
                     className="w-full h-full object-cover object-center"
                     loading="eager"
@@ -492,7 +523,7 @@ export default function RealidadVirtual() {
 
             {/* ── 4 pilares del servicio — fila compacta ── */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {PILARES.map(({ Icono, titulo, desc }, i) => (
+              {PILARES.map(({ titulo, desc, img, posicion = 'center' }, i) => (
                 <motion.div
                   key={titulo}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
@@ -500,11 +531,18 @@ export default function RealidadVirtual() {
                     oculto:  { opacity: 0, y: 16 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.45, delay: i * 0.07 } },
                   }}
-                  className="bg-fondo-superficie rounded-xl p-5 border border-white/5"
+                  className="relative rounded-xl overflow-hidden border border-white/5 flex flex-col"
                 >
-                  <Icono size={22} className="text-marca-principal mb-3" aria-hidden="true" />
-                  <p className="text-sm font-bold text-texto-titulo mb-1">{titulo}</p>
-                  <p className="text-xs text-texto-secundario leading-relaxed">{desc}</p>
+                  {/* Imagen superior */}
+                  <div className="relative h-40 shrink-0">
+                    <img src={img} alt="" aria-hidden="true" className="w-full h-full object-cover" style={{ objectPosition: posicion }} />
+                    <div className="absolute inset-0 bg-linear-to-t from-fondo-superficie/70 via-transparent to-transparent" aria-hidden="true" />
+                  </div>
+                  {/* Texto inferior */}
+                  <div className="p-4 bg-fondo-superficie flex-1">
+                    <p className="text-sm font-bold text-texto-titulo mb-1">{titulo}</p>
+                    <p className="text-xs text-texto-secundario leading-relaxed">{desc}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -561,12 +599,80 @@ export default function RealidadVirtual() {
 
           </div>
 
-          {/* Separador visual hacia el ecosistema */}
+          {/* Separador visual hacia el ecosistema — lila como transición al mundo VR digital */}
           <div
             className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
-            style={{ background: 'linear-gradient(to right, transparent 0%, rgba(31,225,167,0.2) 30%, rgba(31,225,167,0.2) 70%, transparent 100%)' }}
+            style={{ background: 'linear-gradient(to right, transparent 0%, rgba(192,132,252,0.3) 30%, rgba(192,132,252,0.3) 70%, transparent 100%)' }}
             aria-hidden="true"
           />
+        </section>
+
+        {/* ══════════════════════════════════════════════════════════════════
+            2b. A QUIÉN VA DIRIGIDO
+            ══════════════════════════════════════════════════════════════════ */}
+        <section className="bg-fondo-secundario py-20 px-6 border-t border-white/5" aria-labelledby="clientes-titulo">
+          <div className="max-w-5xl mx-auto">
+            <motion.div
+              initial="oculto" whileInView="visible" viewport={{ once: true }}
+              variants={fadeUp}
+              className="text-center mb-14"
+            >
+              <p className="text-[10px] font-bold tracking-[0.25em] text-marca-principal uppercase mb-4">
+                Llevamos la experiencia a tu espacio
+              </p>
+              <h2
+                id="clientes-titulo"
+                className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-4 leading-snug"
+              >
+                ¿A quién va dirigido?
+              </h2>
+              <p className="text-texto-secundario leading-relaxed max-w-xl mx-auto">
+                MuMa VR² Cave Experience se adapta a cualquier espacio que quiera acercar la naturaleza a su público de forma responsable.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {CLIENTES.map(({ tipo, desc, img }, i) => (
+                <motion.div
+                  key={tipo}
+                  initial="oculto" whileInView="visible" viewport={{ once: true }}
+                  variants={{
+                    oculto:  { opacity: 0, y: 16 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.45, delay: i * 0.07 } },
+                  }}
+                  className="bg-fondo-superficie rounded-2xl overflow-hidden border border-white/5 hover:border-marca-principal/20 transition-colors duration-300"
+                >
+                  {/* Imagen superior */}
+                  <div className="relative h-36 overflow-hidden">
+                    <img
+                      src={img}
+                      alt={tipo}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-fondo-superficie/80 to-transparent" />
+                  </div>
+                  {/* Contenido */}
+                  <div className="p-5">
+                    <p className="text-sm font-bold text-texto-titulo mb-2">{tipo}</p>
+                    <p className="text-xs text-texto-secundario leading-relaxed">{desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial="oculto" whileInView="visible" viewport={{ once: true }}
+              variants={fadeUp}
+              className="text-center mt-10"
+            >
+              <a
+                href="#demo"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
+              >
+                Consulta disponibilidad para tu espacio <ArrowRight size={15} aria-hidden="true" />
+              </a>
+            </motion.div>
+          </div>
         </section>
 
         {/* ══════════════════════════════════════════════════════════════════
@@ -588,7 +694,7 @@ export default function RealidadVirtual() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                'radial-gradient(ellipse 60% 35% at 50% 20%, rgba(139,156,244,0.06) 0%, transparent 70%)',
+                'radial-gradient(ellipse 60% 35% at 50% 20%, rgba(192,132,252,0.07) 0%, transparent 70%)',
             }}
             aria-hidden="true"
           />
@@ -609,7 +715,7 @@ export default function RealidadVirtual() {
                 className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-5 leading-snug"
               >
                 La experiencia presencial es el centro.{' '}
-                <span className="text-acento-tecnologico">Estos cuatro módulos la amplían.</span>
+                <span className="text-texto-titulo">Estos cuatro módulos la amplían.</span>
               </h2>
               <p className="text-texto-secundario leading-relaxed max-w-xl mx-auto">
                 Contenido interactivo, educativo y gamificado que extiende
@@ -921,11 +1027,17 @@ export default function RealidadVirtual() {
                   value="Solicitud demostración VR — MuMa VR² Cave Experience"
                 />
 
+                <div className="flex items-center gap-3">
+                  <input type="checkbox" name="privacidad" required className="accent-marca-principal w-4 h-4 shrink-0" />
+                  <span className="text-xs text-texto-secundario/60 italic">Acepto el tratamiento de datos para fines de consultoría ambiental.</span>
+                </div>
+
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200"
+                  className="w-full bg-marca-principal text-texto-sobre-accion font-black py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-marca-principal-hover transition-all active:scale-95"
                 >
-                  Pedir demostración en tu espacio
+                  <ArrowRight size={18} aria-hidden="true" />
+                  ENVIAR A DIRECCIÓN TÉCNICA
                 </button>
 
                 <p className="text-xs text-center text-texto-secundario/50">
