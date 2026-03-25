@@ -2,9 +2,11 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { Heart, Leaf, Copy, Check, Landmark, Smartphone } from 'lucide-react'
+import { Leaf, Copy, Check, Landmark, Smartphone } from 'lucide-react'
 
 import Footer from '../components/footer'
+import { useLang } from '../context/LangContext'
+import { donarI18n } from '../data/i18n/donarI18n'
 
 // ─── Variantes de animación reutilizables ───────────────────────────────────
 const varianteSeccion = {
@@ -21,17 +23,8 @@ const varianteTarjeta = {
   }),
 }
 
-// ─── Datos de impacto ────────────────────────────────────────────────────────
-const nivelesImpacto = [
-  { cantidad: '5€',   descripcion: 'Cubre el material de una salida nocturna de monitorización' },
-  { cantidad: '10€',  descripcion: 'Financia la instalación de 1 refugio artesanal para murciélagos' },
-  { cantidad: '25€',  descripcion: 'Patrocina el seguimiento científico de una colonia durante un mes' },
-  { cantidad: '50€',  descripcion: 'Financia una Bat Night educativa para un grupo escolar' },
-  { cantidad: '100€', descripcion: 'Cubre el equipamiento de detección de ultrasonidos para un evento' },
-]
-
 // ─── Componente auxiliar: botón copiar con feedback visual ───────────────────
-function BotonCopiar({ texto }) {
+function BotonCopiar({ texto, t }) {
   const [copiado, setCopiado] = useState(false)
 
   const copiar = () => {
@@ -44,28 +37,28 @@ function BotonCopiar({ texto }) {
   return (
     <button
       onClick={copiar}
-      aria-label={copiado ? 'Copiado' : `Copiar ${texto}`}
+      aria-label={copiado ? t.ariaCopiado : `${t.ariaCopiar} ${texto}`}
       className="flex items-center gap-2 mt-3 px-4 py-2 rounded-xl border border-marca-principal/40 text-marca-principal text-xs font-bold hover:bg-marca-principal/10 active:scale-95 transition-all"
     >
       {copiado ? <Check size={14} /> : <Copy size={14} />}
-      {copiado ? '¡Copiado!' : 'Copiar'}
+      {copiado ? t.copiado : t.copiarLabel}
     </button>
   )
 }
 
 // ─── Componente principal ────────────────────────────────────────────────────
 export default function Donar() {
+  const { locale } = useLang()
+  const t = donarI18n[locale]
+
   return (
     <>
       <Helmet>
-        <html lang="es" />
-        <title>Donar — Apoya la conservación de murciélagos | MUMA BAT COMPANY</title>
-        <meta
-          name="description"
-          content="Tu donación financia refugios, investigación científica y educación ambiental en Málaga. Cada euro protege colonias de murciélagos y biodiversidad en España."
-        />
-        <meta property="og:title" content="Donar — MUMA BAT COMPANY" />
-        <meta property="og:description" content="Apoya la conservación de murciélagos con una donación. Impacto real, medible y permanente." />
+        <html lang={locale} />
+        <title>{t.metaTitle}</title>
+        <meta name="description" content={t.metaDescription} />
+        <meta property="og:title" content={t.metaOgTitle} />
+        <meta property="og:description" content={t.metaOgDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mumabatcompany.com/donar" />
         <link rel="canonical" href="https://mumabatcompany.com/donar" />
@@ -92,7 +85,7 @@ export default function Donar() {
               transition={{ duration: 0.5 }}
               className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-6"
             >
-              Conservación · Investigación · Educación
+              {t.eyebrow}
             </motion.p>
 
             {/* Título principal */}
@@ -102,7 +95,7 @@ export default function Donar() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-6"
             >
-              Apoya la conservación de los murciélagos
+              {t.heroTitle}
             </motion.h1>
 
             {/* Subtítulo */}
@@ -112,7 +105,7 @@ export default function Donar() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg md:text-xl text-gray-400 font-light leading-relaxed max-w-2xl mx-auto"
             >
-              Tu contribución financia proyectos de investigación científica, instalación de refugios y programas de educación ambiental en España.
+              {t.heroSubtitle}
             </motion.p>
           </div>
         </section>
@@ -128,16 +121,16 @@ export default function Donar() {
           {/* Encabezado */}
           <div className="text-center mb-12">
             <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">
-              ¿A qué destinamos tu donación?
+              {t.impactoLabel}
             </span>
             <h2 className="text-3xl md:text-4xl font-black tracking-tighter mt-3">
-              Destino de las donaciones
+              {t.impactoTitle}
             </h2>
           </div>
 
           {/* Tarjetas de impacto */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {nivelesImpacto.map(({ cantidad, descripcion }, i) => (
+            {t.nivelesImpacto.map(({ cantidad, descripcion }, i) => (
               <motion.div
                 key={cantidad}
                 custom={i}
@@ -171,10 +164,10 @@ export default function Donar() {
           {/* Encabezado */}
           <div className="text-center mb-12">
             <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">
-              Métodos de pago
+              {t.metodosLabel}
             </span>
             <h2 className="text-3xl md:text-4xl font-black tracking-tighter mt-3">
-              Métodos de donación
+              {t.metodosTitle}
             </h2>
           </div>
 
@@ -189,15 +182,15 @@ export default function Donar() {
                   <Smartphone size={18} className="text-marca-principal" />
                 </div>
                 <div>
-                  <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Pago inmediato</p>
-                  <h3 className="text-lg font-black">Bizum</h3>
+                  <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{t.bizumSubtitulo}</p>
+                  <h3 className="text-lg font-black">{t.bizumTitulo}</h3>
                 </div>
               </div>
 
               {/* Número */}
-              <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Número</p>
+              <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">{t.bizumNumeroLabel}</p>
               <p className="text-2xl font-black text-white font-mono tracking-wide">612 345 678</p>
-              <BotonCopiar texto="612345678" />
+              <BotonCopiar texto="612345678" t={t} />
             </div>
 
             {/* Tarjeta Transferencia */}
@@ -208,21 +201,21 @@ export default function Donar() {
                   <Landmark size={18} className="text-marca-principal" />
                 </div>
                 <div>
-                  <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Transferencia bancaria</p>
-                  <h3 className="text-lg font-black">IBAN</h3>
+                  <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">{t.ibanSubtitulo}</p>
+                  <h3 className="text-lg font-black">{t.ibanTitulo}</h3>
                 </div>
               </div>
 
               {/* IBAN */}
-              <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Número de cuenta</p>
+              <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">{t.ibanNumeroLabel}</p>
               <p className="text-base font-black text-white font-mono tracking-wide break-all">
                 ES12 3456 7890 1234 5678 9012
               </p>
-              <BotonCopiar texto="ES12345678901234567890 12" />
+              <BotonCopiar texto="ES12345678901234567890 12" t={t} />
 
               {/* Titular */}
               <div className="mt-5">
-                <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Titular</p>
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">{t.ibanTitularLabel}</p>
                 <p className="text-sm font-bold text-white">MUMA BAT COMPANY SL</p>
               </div>
             </div>
@@ -231,7 +224,7 @@ export default function Donar() {
 
           {/* Nota informativa */}
           <p className="text-center text-xs text-gray-600 mt-6 italic">
-            Todas las donaciones son voluntarias. Para obtener un certificado de donación, escríbenos a{' '}
+            {t.notaTexto}{' '}
             <a href="mailto:info@murcielagosmalaga.com" className="text-marca-principal hover:underline">
               info@murcielagosmalaga.com
             </a>
@@ -261,12 +254,12 @@ export default function Donar() {
 
             {/* Texto */}
             <p className="text-xl md:text-2xl font-bold text-white leading-relaxed">
-              Los murciélagos son indicadores clave del estado de los ecosistemas. Cada colonia protegida contribuye al equilibrio ecológico y al control natural de plagas. Su conservación es una inversión en biodiversidad con impacto directo sobre la agricultura, la salud pública y el medio ambiente.
+              {t.mensajeFinal}
             </p>
 
             {/* Firma */}
             <p className="mt-8 text-xs text-gray-500 uppercase tracking-widest font-semibold">
-              — Equipo MUMA BAT COMPANY
+              {t.firma}
             </p>
           </div>
         </motion.section>

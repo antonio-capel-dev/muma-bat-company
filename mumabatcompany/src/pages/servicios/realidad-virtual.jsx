@@ -18,49 +18,25 @@ import {
   CheckCircle,
 } from 'lucide-react'
 import Footer from '../../components/footer'
+import { useLang } from '../../context/LangContext'
+import { realidadVirtualI18n } from '../../data/i18n/realidadVirtualI18n'
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   DATOS
+   DATOS NO TRADUCIBLES (imágenes, URLs, acentos visuales)
    ═══════════════════════════════════════════════════════════════════════════ */
 
-const PILARES = [
-  { titulo: 'Contenido de cueva real',        desc: 'Desarrollado desde el conocimiento directo del hábitat subterráneo. No es recreación — es documentación.',        img: '/images/dentro-cueva.webp' },
-  { titulo: 'Llegamos con la cueva',          desc: 'Montamos, operamos y recogemos. Tu espacio acoge la experiencia sin obra ni infraestructura adicional.',          img: '/images/fotos_batnight/plaza1.webp' },
-  { titulo: 'Divulgador científico incluido', desc: 'Cada sesión la conduce alguien que conoce los murciélagos de verdad. La tecnología tiene fondo.',                 img: '/images/antonio-moret.webp', posicion: '50% 20%' },
-  { titulo: 'Aval de proyecto europeo',       desc: 'Investigación respaldada por SECEMU, Fundación Cueva de Nerja y Fondo Europeo de Desarrollo Regional (FEDER).', img: '/images/Proyecto_palazaMayor.webp' },
+const PILARES_IMGS = [
+  { img: '/images/dentro-cueva.webp' },
+  { img: '/images/fotos_batnight/plaza1.webp' },
+  { img: '/images/antonio-moret.webp', posicion: '50% 20%' },
+  { img: '/images/Proyecto_palazaMayor.webp' },
 ]
 
-// Acento visual por módulo — muy sutil, diferencia sin romper coherencia
-const MODULOS = [
+const MODULOS_META = [
+  { acento: 'rgba(139,156,244,0.08)', proximamente: true },
+  { acento: 'rgba(139,156,244,0.06)', proximamente: true },
+  { acento: 'rgba(139,156,244,0.08)', proximamente: true },
   {
-
-    titulo: 'MuMa Bats 360',
-    descripcion:
-      'Vídeos inmersivos en 360° grabados en entornos reales de murciélagos. Accesibles desde navegador o gafas VR, sin alterar los hábitats documentados.',
-    acento: 'rgba(139,156,244,0.08)',
-    proximamente: true,
-  },
-  {
-
-    titulo: 'MuMa Virtual Bats',
-    descripcion:
-      'Fichas interactivas de especies con modelos 3D, hábitat, estado de conservación y archivo acústico. Un recurso científico y visual para museos, centros educativos y divulgación.',
-    acento: 'rgba(139,156,244,0.06)',
-    proximamente: true,
-  },
-  {
-
-    titulo: 'MuMa Game',
-    descripcion:
-      'Experiencia gamificada basada en conocimiento científico real. Para reforzar aprendizaje y participación en aulas, eventos y actividades de sensibilización.',
-    acento: 'rgba(139,156,244,0.08)',
-    proximamente: true,
-  },
-  {
-
-    titulo: 'Virtual Museum',
-    descripcion:
-      'Espacio digital para explorar el archivo visual, sonoro y narrativo de MUMA. Una experiencia expositiva online que no necesita paredes.',
     acento: 'rgba(139,156,244,0.06)',
     proximamente: false,
     imagen: '/images/museo-virtual.png',
@@ -68,57 +44,20 @@ const MODULOS = [
   },
 ]
 
-const SPECS = [
-  { label: 'Hardware',             valor: 'Meta Quest 3 / 3S' },
-  { label: 'Duración',             valor: '5, 15 o 30 minutos' },
-  { label: 'Idiomas',              valor: 'Español / Inglés' },
-  { label: 'Cuevas reales',        valor: 'Nagüeles + Belda (Málaga)' },
-  { label: 'Puntos interactivos',  valor: '11 estaciones' },
-  { label: 'Tablet virtual',       valor: 'Mapa GPS, especies, fichas' },
+const EVENTOS_IMGS = [
+  { img: '/images/plaza1.webp' },
+  { img: '/images/Bat-Nigt-Malaga-1.webp' },
+  { img: '/images/grutas-da-moeda.webp' },
+  { img: '/images/-notranjski-muzej-.webp' },
 ]
 
-const EVENTOS = [
-  {
-    lugar: 'Plaza Mayor Málaga',
-    pais: 'España',
-    fecha: 'Julio 2025',
-    asistentes: '200–300',
-    destacado: 'Zona VR, exposición sobre murciélagos, talleres infantiles y charlas divulgativas.',
-    img: '/images/plaza1.webp',
-  },
-  {
-    lugar: 'Cueva de Nerja',
-    pais: 'España',
-    fecha: 'Septiembre 2025',
-    asistentes: '50+',
-    destacado: 'Instalación de refugios e inicio de colaboración científica con futuras investigaciones programadas.',
-    img: '/images/Bat-Nigt-Malaga-1.webp',
-  },
-  {
-    lugar: 'Grutas da Moeda',
-    pais: 'Portugal',
-    fecha: '14 sept 2025',
-    asistentes: '200+',
-    destacado: 'Instalación de refugio e interés formal en licenciar la experiencia VR.',
-    img: '/images/grutas-da-moeda.webp',
-  },
-  {
-    lugar: 'Notranjski Museum',
-    pais: 'Eslovenia',
-    fecha: '5–6 sept 2025',
-    asistentes: '100+',
-    destacado: 'Paseo nocturno con detectores de ultrasonido, actividades educativas y experiencia VR.',
-    img: '/images/-notranjski-muzej-.webp',
-  },
-]
-
-const CLIENTES = [
-  { tipo: 'Museos y Centros de Visitantes',             desc: 'Espacios culturales y científicos que buscan experiencias innovadoras para sus visitantes.',              img: '/images/museos.webp' },
-  { tipo: 'Administraciones e Instituciones Públicas',  desc: 'Ayuntamientos, diputaciones y organismos que impulsan la divulgación ambiental.',                         img: '/images/ayuntamientos.webp' },
-  { tipo: 'Hoteles, Campings y Campos de Golf',         desc: 'Espacios de ocio que quieren ofrecer una actividad diferenciadora y sostenible.',                          img: '/images/campo-golf.jpg' },
-  { tipo: 'Espacios Naturales y Reservas',              desc: 'Parques naturales y reservas que necesitan acercar su biodiversidad sin impacto.',                         img: '/images/cuevas-nerja.webp' },
-  { tipo: 'Centros Educativos y AMIPAs',                desc: 'Colegios, institutos y asociaciones de padres que buscan educación ambiental activa.',                     img: '/images/educacion-ambiental.webp' },
-  { tipo: 'ONGs y Asociaciones de Conservación',        desc: 'Entidades que trabajan por la protección de la naturaleza y necesitan herramientas de sensibilización.',   img: '/images/monitorizacion-refugios-voluntarios.webp' },
+const CLIENTES_IMGS = [
+  { img: '/images/museos.webp' },
+  { img: '/images/ayuntamientos.webp' },
+  { img: '/images/campo-golf.jpg' },
+  { img: '/images/cuevas-nerja.webp' },
+  { img: '/images/educacion-ambiental.webp' },
+  { img: '/images/monitorizacion-refugios-voluntarios.webp' },
 ]
 
 const ALIANZAS = [
@@ -130,6 +69,13 @@ const ALIANZAS = [
   { nombre: 'Polo de Contenidos Digitales', logo: '/images/polo-contenido-digital.webp' },
   { nombre: 'Plaza Mayor',                  logo: '/images/plaza-mayor.webp' },
   { nombre: 'Red de Emprendedores',         logo: '/images/red-emprendedores.webp' },
+]
+
+const FINANCIACION_LOGOS = [
+  { src: '/images/europa.webp',                  alt: 'Unión Europea — Fondo Europeo de Desarrollo Regional' },
+  { src: '/images/polo-contenido-digital.webp',  alt: 'Polo de Contenidos Digitales de Málaga' },
+  { src: '/images/Camara-malaga-150x150.webp',   alt: 'Cámara de Comercio de Málaga' },
+  { src: '/images/centro-europeo-empresas.webp', alt: 'Centro Europeo de Empresas e Innovación' },
 ]
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -174,7 +120,7 @@ function Campo({ id, name, label, type = 'text', placeholder, required = false, 
 }
 
 // Card de módulo secundario
-function CardModulo({ titulo, descripcion, acento, proximamente, imagen, href, index }) {
+function CardModulo({ titulo, descripcion, acento, proximamente, imagen, href, index, labelProximamente, labelEntrar }) {
   return (
     <motion.article
       initial="oculto"
@@ -202,7 +148,7 @@ function CardModulo({ titulo, descripcion, acento, proximamente, imagen, href, i
           <h3 className="text-base font-bold text-texto-titulo leading-tight">{titulo}</h3>
           {proximamente && (
             <span className="text-[9px] font-bold tracking-widest text-acento-tecnologico/80 uppercase bg-acento-tecnologico-suave border border-acento-tecnologico-borde px-2.5 py-1 rounded-lg shrink-0">
-              Próximamente
+              {labelProximamente}
             </span>
           )}
         </div>
@@ -220,7 +166,7 @@ function CardModulo({ titulo, descripcion, acento, proximamente, imagen, href, i
             rel="noopener noreferrer"
             className="mt-5 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-acento-tecnologico text-acento-tecnologico hover:bg-acento-tecnologico hover:text-white transition-all duration-200 no-underline w-full"
           >
-            Entrar al museo virtual <ArrowRight size={14} aria-hidden="true" />
+            {labelEntrar} <ArrowRight size={14} aria-hidden="true" />
           </a>
         )}
       </div>
@@ -234,17 +180,19 @@ function CardModulo({ titulo, descripcion, acento, proximamente, imagen, href, i
 
 export default function RealidadVirtual() {
   const [enviado, setEnviado] = useState(false)
+  const { locale } = useLang()
+  const t = realidadVirtualI18n[locale] || realidadVirtualI18n.es
 
   function handleSubmit(e) {
     e.preventDefault()
     const form = e.target
     const data = new FormData(form)
-    const nombre       = data.get('nombre') || ''
-    const email        = data.get('email') || ''
-    const organizacion = data.get('organizacion') || ''
-    const tipoEspacio  = data.get('tipo_espacio') || ''
+    const nombre        = data.get('nombre') || ''
+    const email         = data.get('email') || ''
+    const organizacion  = data.get('organizacion') || ''
+    const tipoEspacio   = data.get('tipo_espacio') || ''
     const participantes = data.get('participantes') || ''
-    const fecha        = data.get('fecha') || ''
+    const fecha         = data.get('fecha') || ''
 
     const cuerpo = [
       `Nombre: ${nombre}`,
@@ -267,18 +215,10 @@ export default function RealidadVirtual() {
     <>
       <Helmet>
         <html lang="es" />
-        <title>
-          Realidad Virtual — Experiencias inmersivas sobre murciélagos | MUMA BAT COMPANY
-        </title>
-        <meta
-          name="description"
-          content="Tecnología inmersiva al servicio de los murciélagos. MuMa VR² Cave Experience y cuatro herramientas digitales para museos, ayuntamientos, hoteles y centros educativos."
-        />
-        <meta property="og:title" content="Realidad Virtual | MUMA BAT COMPANY" />
-        <meta
-          property="og:description"
-          content="Cinco herramientas digitales para acercar a las personas a una especie que casi nadie ha visto de cerca."
-        />
+        <title>{t.pageTitle}</title>
+        <meta name="description" content={t.pageDesc} />
+        <meta property="og:title" content={t.ogTitle} />
+        <meta property="og:description" content={t.ogDesc} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://murcielagosmalaga.com/servicios/realidad-virtual" />
         <meta property="og:image" content="https://murcielagosmalaga.com/images/Image_VRglases.webp" />
@@ -329,7 +269,7 @@ export default function RealidadVirtual() {
               transition={{ duration: 0.45 }}
               className="text-[10px] font-bold tracking-[0.25em] text-marca-principal uppercase mb-5"
             >
-              Realidad Virtual · MUMA BAT COMPANY
+              {t.cabeceraPill}
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
@@ -338,7 +278,7 @@ export default function RealidadVirtual() {
               className="font-bold leading-[1.08] tracking-tight text-texto-titulo mb-6"
               style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.75rem)' }}
             >
-              Tecnología inmersiva al servicio de los murciélagos.
+              {t.cabeceraH1}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -346,8 +286,7 @@ export default function RealidadVirtual() {
               transition={{ duration: 0.6, delay: 0.16 }}
               className="text-lg text-texto-secundario leading-relaxed max-w-xl mx-auto mb-10"
             >
-              Cinco herramientas digitales para acercar a las personas
-              a una especie que casi nadie ha visto de cerca.
+              {t.cabeceraP}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -359,7 +298,7 @@ export default function RealidadVirtual() {
                 href="#demo"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
               >
-                Pedir demostración <ArrowRight size={15} aria-hidden="true" />
+                {t.cabeceraBtn1} <ArrowRight size={15} aria-hidden="true" />
               </a>
               <a
                 href="https://wa.me/34664213450"
@@ -368,7 +307,7 @@ export default function RealidadVirtual() {
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/20 text-texto-principal hover:bg-white/5 hover:border-white/30 transition-all duration-200 no-underline"
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" className="text-estado-exito" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                WhatsApp
+                {t.cabeceraBtn2}
               </a>
             </motion.div>
           </div>
@@ -397,14 +336,14 @@ export default function RealidadVirtual() {
               className="mb-14"
             >
               <p className="text-[10px] font-bold tracking-[0.22em] text-marca-principal uppercase mb-3">
-                Investigación aplicada · Experiencia llave en mano
+                {t.protagonistaPill}
               </p>
               <h2
                 id="cave-experience-titulo"
                 className="font-bold leading-[1.1] tracking-tight text-texto-titulo"
                 style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.75rem)' }}
               >
-                MuMa VR² Cave Experience
+                {t.protagonistaH2}
               </h2>
             </motion.div>
 
@@ -420,30 +359,36 @@ export default function RealidadVirtual() {
                   className="font-bold leading-[1.12] tracking-tight text-texto-titulo mb-6"
                   style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.15rem)' }}
                 >
-                  Lleva una{' '}
-                  <span className="text-marca-principal">cueva de murciélagos</span>
-                  {' '}a tu espacio.
+                  {t.protagonistaSubh.split('cueva de murciélagos').length > 1 ? (
+                    <>
+                      Lleva una{' '}
+                      <span className="text-marca-principal">cueva de murciélagos</span>
+                      {' '}a tu espacio.
+                    </>
+                  ) : (
+                    t.protagonistaSubh
+                  )}
                 </p>
                 <p className="text-texto-secundario leading-relaxed mb-4">
-                  Visitarlas en persona sería inviable: el acceso humano daña los hábitats donde nacen. MUMA lleva la cueva a tu espacio para que tu público viva lo que de otro modo destruiría.
+                  {t.protagonistaP1}
                 </p>
                 <p className="text-texto-secundario leading-relaxed mb-8">
-                  Con gafas de realidad virtual, el visitante entra en una cueva habitada por murciélagos y comprende su papel en el ecosistema. Sin pisar la cueva. Sin alterar nada. Con el rigor de quien lleva años documentando ese mundo.
+                  {t.protagonistaP2}
                 </p>
 
                 {/* Citas de posicionamiento */}
                 <blockquote className="border-l-2 border-marca-principal pl-5 mb-8">
                   <p className="text-texto-principal italic leading-relaxed text-sm">
-                    "Llevamos la cueva a las personas, no las personas a la cueva."
+                    {t.protagonistaQuote}
                   </p>
                   <cite className="text-xs text-texto-secundario/60 not-italic mt-1 block">
-                    MUMA BAT COMPANY
+                    {t.protagonistaCite}
                   </cite>
                 </blockquote>
 
                 {/* Avales — logos de respaldo */}
                 <div className="mb-8">
-                  <p className="text-[10px] font-bold tracking-[0.2em] text-texto-secundario/50 uppercase mb-3">Avalado por</p>
+                  <p className="text-[10px] font-bold tracking-[0.2em] text-texto-secundario/50 uppercase mb-3">{t.protagonistaAvalesLabel}</p>
                   <div className="flex flex-wrap items-center gap-4">
                     <div className="bg-white rounded-lg px-4 py-2 flex items-center justify-center">
                       <img src="/images/Logo_SECEMU.webp" alt="SECEMU" className="h-7 w-auto object-contain" />
@@ -463,13 +408,13 @@ export default function RealidadVirtual() {
                     href="#demo"
                     className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
                   >
-                    Pedir demostración en tu espacio
+                    {t.protagonistaBtn1}
                   </a>
                   <a
                     href="mailto:info@murcielagosmalaga.com"
                     className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/20 text-texto-principal hover:bg-white/8 hover:border-white/35 transition-all duration-200 no-underline"
                   >
-                    Escribir al equipo <ArrowRight size={15} aria-hidden="true" />
+                    {t.protagonistaBtn2} <ArrowRight size={15} aria-hidden="true" />
                   </a>
                 </div>
               </motion.div>
@@ -486,7 +431,7 @@ export default function RealidadVirtual() {
                 >
                   <img
                     src="/images/chica-realidad-virtual.webp"
-                    alt="Persona experimentando MuMa VR² Cave Experience con gafas de realidad virtual"
+                    alt={t.protagonistaImg1Alt}
                     className="w-full h-full object-cover object-center"
                     loading="eager"
                   />
@@ -507,7 +452,7 @@ export default function RealidadVirtual() {
                 >
                   <img
                     src="/images/niña-feliz-realidad-virtual.webp"
-                    alt="Murciélagos Málaga — experiencia de realidad virtual en entorno natural"
+                    alt={t.protagonistaImg2Alt}
                     className="w-full h-full object-cover object-center"
                     loading="lazy"
                     style={{ filter: 'brightness(1.15) contrast(1.05) saturate(1.1)' }}
@@ -523,7 +468,7 @@ export default function RealidadVirtual() {
 
             {/* ── 4 pilares del servicio — fila compacta ── */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {PILARES.map(({ titulo, desc, img, posicion = 'center' }, i) => (
+              {t.pilares.map(({ titulo, desc }, i) => (
                 <motion.div
                   key={titulo}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
@@ -535,7 +480,13 @@ export default function RealidadVirtual() {
                 >
                   {/* Imagen superior */}
                   <div className="relative h-40 shrink-0">
-                    <img src={img} alt="" aria-hidden="true" className="w-full h-full object-cover" style={{ objectPosition: posicion }} />
+                    <img
+                      src={PILARES_IMGS[i].img}
+                      alt=""
+                      aria-hidden="true"
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: PILARES_IMGS[i].posicion || 'center' }}
+                    />
                     <div className="absolute inset-0 bg-linear-to-t from-fondo-superficie/70 via-transparent to-transparent" aria-hidden="true" />
                   </div>
                   {/* Texto inferior */}
@@ -554,10 +505,10 @@ export default function RealidadVirtual() {
               className="mt-12"
             >
               <p className="text-[10px] font-bold tracking-[0.22em] text-marca-principal uppercase mb-6">
-                Ficha técnica
+                {t.fichaTecnicaLabel}
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {SPECS.map(({ label, valor }) => (
+                {t.specs.map(({ label, valor }) => (
                   <div key={label} className="bg-fondo-superficie border border-white/5 rounded-xl px-4 py-3">
                     <p className="text-[10px] font-bold tracking-[0.15em] text-texto-secundario/50 uppercase mb-1">{label}</p>
                     <p className="text-sm font-semibold text-texto-titulo">{valor}</p>
@@ -573,15 +524,10 @@ export default function RealidadVirtual() {
               className="mt-16 rounded-2xl bg-white/5 border border-white/10 px-8 py-10"
             >
               <p className="text-xs font-bold tracking-[0.2em] text-marca-principal uppercase mb-8 text-center">
-                Proyecto financiado por
+                {t.financiacionLabel}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-6">
-                {[
-                  { src: '/images/europa.webp', alt: 'Unión Europea — Fondo Europeo de Desarrollo Regional' },
-                  { src: '/images/polo-contenido-digital.webp', alt: 'Polo de Contenidos Digitales de Málaga' },
-                  { src: '/images/Camara-malaga-150x150.webp', alt: 'Cámara de Comercio de Málaga' },
-                  { src: '/images/centro-europeo-empresas.webp', alt: 'Centro Europeo de Empresas e Innovación' },
-                ].map((logo, i) => (
+                {FINANCIACION_LOGOS.map((logo, i) => (
                   <div key={i} className="bg-white rounded-xl px-5 py-3 flex items-center justify-center">
                     <img
                       src={logo.src}
@@ -593,7 +539,7 @@ export default function RealidadVirtual() {
                 ))}
               </div>
               <p className="text-center text-xs text-texto-secundario/50 mt-8 max-w-xl mx-auto leading-relaxed">
-                La Batcave Experience es el resultado comercial del proyecto europeo ST3ER (Grant Agreement Nº101121592), financiado por el programa COSME-SMP de la Unión Europea e impulsado por la red La Brújula XR.
+                {t.financiacionP}
               </p>
             </motion.div>
 
@@ -618,21 +564,21 @@ export default function RealidadVirtual() {
               className="text-center mb-14"
             >
               <p className="text-[10px] font-bold tracking-[0.25em] text-marca-principal uppercase mb-4">
-                Llevamos la experiencia a tu espacio
+                {t.clientesPill}
               </p>
               <h2
                 id="clientes-titulo"
                 className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-4 leading-snug"
               >
-                ¿A quién va dirigido?
+                {t.clientesH2}
               </h2>
               <p className="text-texto-secundario leading-relaxed max-w-xl mx-auto">
-                MuMa VR² Cave Experience se adapta a cualquier espacio que quiera acercar la naturaleza a su público de forma responsable.
+                {t.clientesP}
               </p>
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {CLIENTES.map(({ tipo, desc, img }, i) => (
+              {t.clientes.map(({ tipo, desc }, i) => (
                 <motion.div
                   key={tipo}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
@@ -645,7 +591,7 @@ export default function RealidadVirtual() {
                   {/* Imagen superior */}
                   <div className="relative h-36 overflow-hidden">
                     <img
-                      src={img}
+                      src={CLIENTES_IMGS[i].img}
                       alt={tipo}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     />
@@ -669,7 +615,7 @@ export default function RealidadVirtual() {
                 href="#demo"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
               >
-                Consulta disponibilidad para tu espacio <ArrowRight size={15} aria-hidden="true" />
+                {t.clientesBtn} <ArrowRight size={15} aria-hidden="true" />
               </a>
             </motion.div>
           </div>
@@ -708,25 +654,35 @@ export default function RealidadVirtual() {
               className="text-center mb-14"
             >
               <p className="text-[10px] font-bold tracking-[0.25em] text-marca-principal uppercase mb-4">
-                El ecosistema digital completo
+                {t.ecosistemaPill}
               </p>
               <h2
                 id="ecosistema-titulo"
                 className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-5 leading-snug"
               >
-                La experiencia presencial es el centro.{' '}
-                <span className="text-texto-titulo">Estos cuatro módulos la amplían.</span>
+                {t.ecosistemaH2a}{' '}
+                <span className="text-texto-titulo">{t.ecosistemaH2b}</span>
               </h2>
               <p className="text-texto-secundario leading-relaxed max-w-xl mx-auto">
-                Contenido interactivo, educativo y gamificado que extiende
-                el impacto de MuMa más allá del evento.
+                {t.ecosistemaP}
               </p>
             </motion.div>
 
             {/* Grid 2×2 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {MODULOS.map((modulo, i) => (
-                <CardModulo key={modulo.titulo} {...modulo} index={i} />
+              {t.modulos.map((modulo, i) => (
+                <CardModulo
+                  key={modulo.titulo}
+                  titulo={modulo.titulo}
+                  descripcion={modulo.descripcion}
+                  acento={MODULOS_META[i].acento}
+                  proximamente={MODULOS_META[i].proximamente}
+                  imagen={MODULOS_META[i].imagen}
+                  href={MODULOS_META[i].href}
+                  index={i}
+                  labelProximamente={t.moduloProximamente}
+                  labelEntrar={t.moduloEntrar}
+                />
               ))}
             </div>
 
@@ -747,22 +703,21 @@ export default function RealidadVirtual() {
               className="mb-12"
             >
               <p className="text-[10px] font-bold tracking-[0.25em] text-marca-principal uppercase mb-3">
-                Presencia demostrada
+                {t.eventosPill}
               </p>
               <h2
                 id="eventos-titulo"
                 className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-4 leading-snug"
               >
-                La experiencia ya ha llegado a cuatro países.
+                {t.eventosH2}
               </h2>
               <p className="text-texto-secundario leading-relaxed max-w-xl">
-                Más de 600 personas han vivido MuMa Bat Cave Experience VR en eventos reales.
-                Estos son los resultados.
+                {t.eventosP}
               </p>
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {EVENTOS.map(({ lugar, pais, fecha, asistentes, destacado, img }, i) => (
+              {t.eventos.map(({ lugar, pais, fecha, asistentes, destacado }, i) => (
                 <motion.div
                   key={lugar}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
@@ -774,7 +729,7 @@ export default function RealidadVirtual() {
                 >
                   {/* Imagen de fondo */}
                   <img
-                    src={img}
+                    src={EVENTOS_IMGS[i].img}
                     alt=""
                     aria-hidden="true"
                     className="absolute inset-0 w-full h-full object-cover"
@@ -795,7 +750,7 @@ export default function RealidadVirtual() {
                       </div>
                       <div className="text-right shrink-0">
                         <p className="text-2xl font-bold text-marca-principal">{asistentes}</p>
-                        <p className="text-[10px] text-white/50 uppercase tracking-widest">asistentes</p>
+                        <p className="text-[10px] text-white/50 uppercase tracking-widest">{t.eventosAsistentes}</p>
                       </div>
                     </div>
                     <p className="text-sm text-white/75 leading-relaxed border-t border-white/10 pt-3">{destacado}</p>
@@ -829,7 +784,7 @@ export default function RealidadVirtual() {
             variants={fadeIn}
             className="text-[10px] font-bold tracking-[0.2em] text-texto-secundario/60 uppercase text-center mb-12 px-6"
           >
-            Avalan y colaboran con MuMa
+            {t.alianzasLabel}
           </motion.p>
 
           {/* Contenedor exterior: máscara lateral + interacción ratón */}
@@ -919,26 +874,21 @@ export default function RealidadVirtual() {
               className="text-center mb-12"
             >
               <p className="text-[10px] font-bold tracking-[0.22em] text-marca-principal uppercase mb-4">
-                Con MuMa, la realidad virtual no sustituye la naturaleza
+                {t.ctaPill}
               </p>
               <h2
                 id="cta-titulo"
                 className="font-bold leading-tight tracking-tight text-texto-titulo mb-4"
                 style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)' }}
               >
-                La protege.
+                {t.ctaH2}
               </h2>
               <p className="text-texto-secundario leading-relaxed max-w-md mx-auto mb-8">
-                Cada experiencia impulsa investigación, divulgación
-                y acciones de conservación. Pide una demostración en tu espacio.
+                {t.ctaP}
               </p>
               {/* Garantías breves */}
               <div className="flex flex-col sm:flex-row justify-center gap-4 text-xs text-texto-secundario/70">
-                {[
-                  'Sin compromiso de contratación',
-                  'MUMA lleva todo el equipo',
-                  'Respuesta en 48 h',
-                ].map((item) => (
+                {t.ctaGarantias.map((item) => (
                   <span key={item} className="flex items-center justify-center gap-1.5">
                     <CheckCircle size={12} className="text-marca-principal shrink-0" aria-hidden="true" />
                     {item}
@@ -956,10 +906,9 @@ export default function RealidadVirtual() {
                 className="bg-fondo-superficie rounded-2xl p-10 border border-marca-principal/20 text-center"
               >
                 <CheckCircle size={40} className="text-marca-principal mx-auto mb-4" aria-hidden="true" />
-                <h3 className="text-xl font-bold text-texto-titulo mb-2">Solicitud recibida</h3>
+                <h3 className="text-xl font-bold text-texto-titulo mb-2">{t.formSuccessH3}</h3>
                 <p className="text-texto-secundario text-sm leading-relaxed">
-                  Nos pondremos en contacto contigo en menos de 48 horas
-                  para coordinar la demostración.
+                  {t.formSuccessP}
                 </p>
               </motion.div>
             ) : (
@@ -975,17 +924,17 @@ export default function RealidadVirtual() {
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <Campo
-                    id="nombre" name="nombre" label="Nombre"
-                    placeholder="Tu nombre" required autoComplete="name"
+                    id="nombre" name="nombre" label={t.formNombre}
+                    placeholder={t.formNombrePlaceholder} required autoComplete="name"
                   />
                   <Campo
-                    id="email" name="email" type="email" label="Correo electrónico"
-                    placeholder="tu@email.com" required autoComplete="email"
+                    id="email" name="email" type="email" label={t.formEmail}
+                    placeholder={t.formEmailPlaceholder} required autoComplete="email"
                   />
                 </div>
                 <Campo
-                  id="organizacion" name="organizacion" label="Organización"
-                  placeholder="Museo, ayuntamiento, hotel…" required
+                  id="organizacion" name="organizacion" label={t.formOrg}
+                  placeholder={t.formOrgPlaceholder} required
                 />
 
                 {/* Select — tipo de espacio */}
@@ -994,31 +943,28 @@ export default function RealidadVirtual() {
                     htmlFor="tipo-espacio"
                     className="block text-[10px] font-bold text-texto-secundario uppercase tracking-[0.12em] mb-1.5"
                   >
-                    Tipo de espacio
+                    {t.formTipoEspacio}
                   </label>
                   <select
                     id="tipo-espacio" name="tipo_espacio" required
                     defaultValue=""
                     className="w-full bg-fondo-base border border-white/10 rounded-xl px-4 py-3 text-sm text-texto-principal focus:outline-none focus:border-marca-principal/50 transition-colors duration-200 appearance-none"
                   >
-                    <option value="" disabled>Selecciona una opción</option>
-                    <option value="museo">Museo o centro de interpretación</option>
-                    <option value="ayuntamiento">Ayuntamiento o diputación</option>
-                    <option value="hotel">Hotel o espacio turístico</option>
-                    <option value="educativo">Centro educativo</option>
-                    <option value="evento">Evento o feria</option>
-                    <option value="otro">Otro</option>
+                    <option value="" disabled>{t.formTipoPlaceholder}</option>
+                    {t.formTipoOpciones.map(({ value, label }) => (
+                      <option key={value} value={value}>{label}</option>
+                    ))}
                   </select>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <Campo
-                    id="participantes" name="participantes" label="Participantes estimados"
-                    placeholder="Ej: 100–200 personas"
+                    id="participantes" name="participantes" label={t.formParticipantes}
+                    placeholder={t.formParticipantesPlaceholder}
                   />
                   <Campo
-                    id="fecha" name="fecha" label="Fecha tentativa"
-                    placeholder="Ej: junio 2026"
+                    id="fecha" name="fecha" label={t.formFecha}
+                    placeholder={t.formFechaPlaceholder}
                   />
                 </div>
 
@@ -1029,7 +975,7 @@ export default function RealidadVirtual() {
 
                 <div className="flex items-center gap-3">
                   <input type="checkbox" name="privacidad" required className="accent-marca-principal w-4 h-4 shrink-0" />
-                  <span className="text-xs text-texto-secundario/60 italic">Acepto el tratamiento de datos para fines de consultoría ambiental.</span>
+                  <span className="text-xs text-texto-secundario/60 italic">{t.formPrivacidad}</span>
                 </div>
 
                 <button
@@ -1037,25 +983,25 @@ export default function RealidadVirtual() {
                   className="w-full bg-marca-principal text-texto-sobre-accion font-black py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-marca-principal-hover transition-all active:scale-95"
                 >
                   <ArrowRight size={18} aria-hidden="true" />
-                  ENVIAR A DIRECCIÓN TÉCNICA
+                  {t.formSubmit}
                 </button>
 
                 <p className="text-xs text-center text-texto-secundario/50">
-                  O escríbenos a{' '}
+                  {t.formContactoOr}{' '}
                   <a
                     href="mailto:info@murcielagosmalaga.com"
                     className="text-marca-principal hover:opacity-80 transition-opacity no-underline"
                   >
                     info@murcielagosmalaga.com
                   </a>
-                  {' '}o por{' '}
+                  {' '}{t.formContactoPor}{' '}
                   <a
                     href="https://wa.me/34664213450"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-marca-principal hover:opacity-80 transition-opacity no-underline"
                   >
-                    WhatsApp
+                    {t.formContactoWhatsApp}
                   </a>
                 </p>
               </motion.form>
@@ -1067,12 +1013,12 @@ export default function RealidadVirtual() {
               variants={fadeIn}
               className="text-center text-sm text-texto-secundario/60 mt-8"
             >
-              ¿Buscas otro servicio?{' '}
+              {t.ctaSalidaP}{' '}
               <Link
                 to="/#servicios"
                 className="text-marca-principal hover:opacity-80 transition-opacity duration-200 no-underline"
               >
-                Ver todos los servicios
+                {t.ctaSalidaLink}
               </Link>
             </motion.p>
           </div>

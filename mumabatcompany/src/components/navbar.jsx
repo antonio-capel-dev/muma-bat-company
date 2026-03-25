@@ -1,32 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useLang } from "../context/LangContext";
+import { navbarI18n } from "../data/i18n/navbarI18n";
 
 const idiomas = [
   { locale: "es", flag: "/flags/es.svg", label: "Español" },
   { locale: "en", flag: "/flags/gb.svg", label: "English" },
   { locale: "de", flag: "/flags/de.svg", label: "Deutsch" },
-];
-
-const navLinks = [
-  { label: "Home", to: "/" },
-  { label: "MUMA", to: "/nosotros" },
-  { label: "Realidad Virtual", to: "/servicios/realidad-virtual" },
-  { label: "Bat Night", to: "/servicios/bat-night" },
-  { label: "Refugios", to: "/servicios/refugios" },
-  { label: "Formación", to: "/servicios/formacion" }, // Enlazado a formacion.jsx
-  { label: "Contacto", to: "/contacto" },
-];
-
-const unirseOpciones = [
-  { label: "Voluntariado", to: "/voluntarios" },
-  { label: "Ciencia ciudadana", to: "/ciencia-ciudadana" },
-];
-
-const tiendaOpciones = [
-  { label: "Refugios para murciélagos", to: "/servicios/refugios" },
-  { label: "Productos educativos", to: "/servicios/formacion" }, // Enlazado a formacion.jsx
-  { label: "Experiencias", to: "/servicios/bat-night" },
 ];
 
 const ChevronIcon = ({ open }) => (
@@ -89,6 +69,10 @@ export default function Navbar() {
   const [dropdown, setDropdown] = useState(null);
   const { locale, setLocale } = useLang();
   const location = useLocation();
+  const tn = navbarI18n[locale];
+  const navLinks = tn.links;
+  const unirseOpciones = tn.unirse.opciones;
+  const tiendaOpciones = tn.tienda.opciones;
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -158,7 +142,7 @@ export default function Navbar() {
           <div className="w-px h-6 bg-white/10" />
           <DropdownMenu
             nombre="unirse"
-            label="Unirse"
+            label={tn.unirse.label}
             opciones={unirseOpciones}
             esActivo={dropdown === "unirse"}
             onToggle={toggleDropdown}
@@ -168,11 +152,11 @@ export default function Navbar() {
             to="/donar"
             className="flex items-center px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 border border-marca-principal/30 text-texto-titulo bg-marca-principal/5 hover:bg-marca-principal/20 hover:border-marca-principal/60 no-underline shadow-sm"
           >
-            Donar
+            {tn.donar}
           </Link>
           <DropdownMenu
             nombre="tienda"
-            label="Tienda"
+            label={tn.tienda.label}
             opciones={tiendaOpciones}
             esActivo={dropdown === "tienda"}
             onToggle={toggleDropdown}
@@ -228,7 +212,7 @@ export default function Navbar() {
           ))}
 
           <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
-            <p className="text-xs text-texto-secundario/50 uppercase tracking-wider">Unirse</p>
+            <p className="text-xs text-texto-secundario/50 uppercase tracking-wider">{tn.unirse.heading}</p>
             {unirseOpciones.map((op) => (
               <Link key={op.to} to={op.to} className="text-sm font-medium text-texto-secundario hover:text-marca-principal no-underline">
                 {op.label}
@@ -237,7 +221,7 @@ export default function Navbar() {
           </div>
 
           <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
-            <p className="text-xs text-texto-secundario/50 uppercase tracking-wider">Tienda</p>
+            <p className="text-xs text-texto-secundario/50 uppercase tracking-wider">{tn.tienda.heading}</p>
             {tiendaOpciones.map((op) => (
               <Link key={op.to} to={op.to} className="text-sm font-medium text-texto-secundario hover:text-marca-principal no-underline">
                 {op.label}
@@ -249,7 +233,7 @@ export default function Navbar() {
             to="/donar"
             className="mt-1 text-center px-4 py-2 rounded-lg text-sm font-semibold border border-marca-principal/30 text-texto-titulo bg-marca-principal/5 hover:bg-marca-principal/20 no-underline"
           >
-            Donar
+            {tn.donar}
           </Link>
 
           <div className="border-t border-white/10 pt-4 flex items-center gap-2">
