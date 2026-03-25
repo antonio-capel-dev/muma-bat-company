@@ -295,7 +295,7 @@ export default function Nosotros() {
               {/* Imagen */}
               <div className="relative rounded-2xl overflow-hidden order-last lg:order-first" style={{ height: '420px' }}>
                 <img
-                  src="/images/niña-feliz-realidad-virtual.webp"
+                  src="/images/Image_VRglases.webp"
                   alt="Experiencia Batcave — realidad virtual inmersiva de MUMA"
                   className="w-full h-full object-cover object-top"
                 />
@@ -355,7 +355,7 @@ export default function Nosotros() {
                   descripcion: 'Buscas una experiencia inmersiva que atraiga público sin dañar el hábitat. La Batcave Experience está terminada y lista para instalar.',
                   ejemplo: 'Museos naturales, acuarios, zoológicos',
                   servicio: 'Realidad Virtual',
-                  img: '/images/niña-feliz-realidad-virtual.webp',
+                  img: '/images/museos.webp',
                   imgAlt: 'Niña disfrutando la experiencia de realidad virtual de MUMA',
                   imgPos: 'object-top',
                 },
