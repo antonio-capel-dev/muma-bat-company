@@ -2,7 +2,7 @@
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Moon, MapPin, CalendarDays, Users, Check, Camera, ArrowLeft } from 'lucide-react'
+import { Moon, MapPin, CalendarDays, Users, Check, ArrowLeft } from 'lucide-react'
 
 const varianteSeccion = {
   oculto: { opacity: 0, y: 24 },
@@ -20,12 +20,12 @@ const destacados = [
 ]
 
 const fotos = [
-  'Stand MUMA en Plaza Mayor Málaga',
-  'Área de realidad virtual durante el evento',
-  'Exposición fotográfica sobre murciélagos',
-  'Talleres infantiles de educación ambiental',
-  'Participantes usando cascos VR',
-  'Público en la zona de detección de ultrasonidos',
+  { src: '/images/plaza1.webp', alt: 'Stand MUMA en Plaza Mayor Málaga' },
+  { src: '/images/plaza2.webp', alt: 'Área de realidad virtual durante el evento' },
+  { src: '/images/plaza-3.webp', alt: 'Exposición fotográfica sobre murciélagos' },
+  { src: '/images/plaza-4.webp', alt: 'Talleres infantiles de educación ambiental' },
+  { src: '/images/plaza-5.webp', alt: 'Participantes usando cascos VR' },
+  { src: '/images/plaza-6.webp', alt: 'Público en la zona de detección de ultrasonidos' },
 ]
 
 export default function PlazaMayorMalaga() {
@@ -38,8 +38,8 @@ export default function PlazaMayorMalaga() {
         <meta property="og:title" content="Bat Night Plaza Mayor Málaga | MUMA BAT COMPANY" />
         <meta property="og:description" content="200–300 participantes en 2 jornadas. VR, exposición fotográfica y talleres infantiles en el corazón de Málaga." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mumabatcompany.com/servicios/bat-night/plaza-mayor-malaga" />
-        <link rel="canonical" href="https://mumabatcompany.com/servicios/bat-night/plaza-mayor-malaga" />
+        <meta property="og:url" content="https://mumabatcompany.com/eventos/bat-night/plaza-mayor-malaga" />
+        <link rel="canonical" href="https://mumabatcompany.com/eventos/bat-night/plaza-mayor-malaga" />
       </Helmet>
 
       <main>
@@ -143,16 +143,18 @@ export default function PlazaMayorMalaga() {
               <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Galería del evento</h2>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {fotos.map((descripcion, i) => (
+              {fotos.map((foto, i) => (
                 <motion.div
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
                   variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.07 } } }}
-                  className="bg-fondo-superficie rounded-2xl border border-white/5 aspect-video flex flex-col items-center justify-center gap-3 p-6"
+                  className="rounded-2xl overflow-hidden aspect-video"
                 >
-                  <Camera size={28} className="text-marca-principal/40" aria-hidden="true" />
-                  <p className="text-xs text-texto-secundario/50 text-center leading-snug">Foto próximamente</p>
-                  <p className="text-xs text-texto-secundario/30 text-center leading-snug italic">{descripcion}</p>
+                  <img
+                    src={foto.src}
+                    alt={foto.alt}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
                 </motion.div>
               ))}
             </div>

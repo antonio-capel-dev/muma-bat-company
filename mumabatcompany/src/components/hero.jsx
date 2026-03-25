@@ -18,7 +18,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24 pb-16 bg-fondo-base overflow-hidden"
+      className="relative flex flex-col justify-center items-center text-center px-6 pt-56 pb-16 bg-fondo-base overflow-hidden"
       aria-label="Presentacion principal"
     >
       <div
