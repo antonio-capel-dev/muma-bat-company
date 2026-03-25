@@ -2,11 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Footer from '../components/footer'
 import {
-  MessageCircle,
   ArrowRight,
-  FlaskConical,
-  Zap,
-  Globe,
+
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -86,7 +83,6 @@ const Hero = () => {
             to="/contacto"
             className="flex items-center gap-3 px-10 py-5 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all no-underline backdrop-blur-sm"
           >
-            <MessageCircle className="w-5 h-5 text-[#10b981]" /> Hablar con MUMA
           </Link>
         </motion.div>
       </div>
@@ -102,7 +98,6 @@ const Hero = () => {
 const Diferenciacion = () => {
   const items = [
     {
-      icon: <FlaskConical strokeWidth={1.5} />,
       title: "Ciencia de campo",
       desc: "Más de una década estudiando colonias, grabando ultrasonidos y construyendo el único archivo bioacústico privado de quirópteros ibéricos. El conocimiento no es decoración — es la base de cada servicio.",
       bg: "/images/colonia_murcielago01.webp",
@@ -110,7 +105,6 @@ const Diferenciacion = () => {
       cta: "Conocer el equipo",
     },
     {
-      icon: <Zap strokeWidth={1.5} />,
       title: "Tecnología que tiene fondo",
       desc: "La Batcave Experience no es una recreación — es una cueva real digitalizada en 3D. Lista para instalar en museos, centros comerciales o espacios naturales sin obra ni infraestructura adicional.",
       bg: "/images/chica-realidad-virtual.webp",
@@ -118,7 +112,6 @@ const Diferenciacion = () => {
       cta: "Ver la Batcave Experience",
     },
     {
-      icon: <Globe strokeWidth={1.5} />,
       title: "Comunidad e impacto real",
       desc: "Más de 700 personas en eventos MUMA durante 2025. Bat Nights, talleres científicos y actividades con ayuntamientos, reservas naturales y centros educativos. La conservación ocurre cuando la gente entiende.",
       bg: "/images/1batnights.webp",

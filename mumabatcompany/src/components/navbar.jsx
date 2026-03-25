@@ -226,6 +226,47 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+
+          <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
+            <p className="text-xs text-texto-secundario/50 uppercase tracking-wider">Unirse</p>
+            {unirseOpciones.map((op) => (
+              <Link key={op.to} to={op.to} className="text-sm font-medium text-texto-secundario hover:text-marca-principal no-underline">
+                {op.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
+            <p className="text-xs text-texto-secundario/50 uppercase tracking-wider">Tienda</p>
+            {tiendaOpciones.map((op) => (
+              <Link key={op.to} to={op.to} className="text-sm font-medium text-texto-secundario hover:text-marca-principal no-underline">
+                {op.label}
+              </Link>
+            ))}
+          </div>
+
+          <Link
+            to="/donar"
+            className="mt-1 text-center px-4 py-2 rounded-lg text-sm font-semibold border border-marca-principal/30 text-texto-titulo bg-marca-principal/5 hover:bg-marca-principal/20 no-underline"
+          >
+            Donar
+          </Link>
+
+          <div className="border-t border-white/10 pt-4 flex items-center gap-2">
+            {idiomas.map((idioma) => (
+              <button
+                key={idioma.locale}
+                onClick={() => setLocale(idioma.locale)}
+                className={`px-1.5 py-1 rounded-lg transition-all duration-200 cursor-pointer flex items-center ${
+                  locale === idioma.locale
+                    ? "ring-2 ring-marca-principal/70 scale-110"
+                    : "opacity-50 hover:opacity-90 hover:bg-white/5"
+                }`}
+              >
+                <img src={idioma.flag} alt={idioma.label} width="24" height="18" className="rounded-sm" />
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </header>
