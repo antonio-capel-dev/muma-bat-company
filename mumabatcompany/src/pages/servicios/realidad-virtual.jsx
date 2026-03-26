@@ -451,7 +451,7 @@ export default function RealidadVirtual() {
                     <div className="bg-white rounded-lg px-4 py-2 flex items-center justify-center">
                       <img src="/images/EUROBATS_logo.webp" alt="EUROBATS" className="h-7 w-auto object-contain" />
                     </div>
-                    <div className="bg-white rounded-lg px-4 py-2 flex items-center justify-center">
+                    <div className=" rounded-lg px-4 py-2 flex items-center justify-center">
                       <img src="/images/europa.webp" alt="Unión Europea FEDER" className="h-7 w-auto object-contain" />
                     </div>
                   </div>
@@ -582,7 +582,7 @@ export default function RealidadVirtual() {
                   { src: '/images/Camara-malaga-150x150.webp', alt: 'Cámara de Comercio de Málaga' },
                   { src: '/images/centro-europeo-empresas.webp', alt: 'Centro Europeo de Empresas e Innovación' },
                 ].map((logo, i) => (
-                  <div key={i} className="bg-white rounded-xl px-5 py-3 flex items-center justify-center">
+                  <div key={i} className=" rounded-xl px-5 py-3 flex items-center justify-center">
                     <img
                       src={logo.src}
                       alt={logo.alt}

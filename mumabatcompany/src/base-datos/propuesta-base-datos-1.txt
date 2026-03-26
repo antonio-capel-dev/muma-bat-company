@@ -1112,3 +1112,20 @@ on conflict (codigo) do nothing;
 -- =========================================================
 -- FIN DEL SCRIPT
 -- =========================================================
+
+Hola, necesito que añadas una tabla al esquema para capturar los leads que llegan desde la web. Ahora mismo el formulario de contacto envía un email y perdemos el registro. La tabla sería esta:
+
+
+create table public.consultas_web (
+    id uuid primary key default gen_random_uuid(),
+    nombre varchar(120),
+    email varchar(255),
+    organizacion varchar(150),
+    tipo_espacio varchar(100),
+    participantes varchar(50),
+    fecha_tentativa date,
+    origen varchar(50) default 'web_vr',
+    estado varchar(50) default 'nuevo',
+    notas text,
+    created_at timestamptz default now()
+);+

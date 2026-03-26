@@ -83,6 +83,7 @@ const Hero = () => {
             to="/contacto"
             className="flex items-center gap-3 px-10 py-5 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all no-underline backdrop-blur-sm"
           >
+            Contacto
           </Link>
         </motion.div>
       </div>
@@ -165,9 +166,6 @@ const Diferenciacion = () => {
               </div>
 
               <div className="relative z-10 flex flex-col h-full">
-                <div className="text-[#10b981] mb-8 w-12 h-12 p-3 bg-[#10b981]/5 rounded-xl border border-[#10b981]/10 group-hover:bg-[#10b981] group-hover:text-black transition-all duration-500">
-                  {item.icon}
-                </div>
                 <h3 className="text-2xl font-bold text-white mb-5">
                   {item.title}
                 </h3>
@@ -485,7 +483,7 @@ const Vision = () => (
           { img: "/images/EUROBATS_logo.webp", alt: "EUROBATS" },
           { img: "/images/europa.webp",        alt: "Unión Europea — FEDER" },
         ].map((item, i) => (
-          <div key={i} className="p-6 rounded-2xl bg-white border border-white/10 shadow-md flex items-center justify-center" style={{ minHeight: 110 }}>
+          <div key={i} className="p-6 rounded-2xl bg-acento-tecnologico-hover border border-white/10 shadow-md flex items-center justify-center" style={{ minHeight: 110 }}>
             <img src={item.img} alt={item.alt} className="max-h-14 max-w-full object-contain" />
           </div>
         ))}

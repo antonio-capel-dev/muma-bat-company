@@ -436,7 +436,7 @@ export default function Nosotros() {
           <div className="max-w-6xl mx-auto">
             <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
               <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Avales y credenciales</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Base real, no solo storytelling</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Base real</h2>
               <p className="text-texto-secundario max-w-xl mx-auto">
                 El proyecto europeo, las asociaciones científicas y los programas institucionales no son decoración. Son la base desde la que se toman decisiones.
               </p>

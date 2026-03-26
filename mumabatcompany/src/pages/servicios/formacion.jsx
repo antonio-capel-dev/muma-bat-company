@@ -170,7 +170,7 @@ export default function FormacionConsultoria() {
               className="text-lg text-texto-secundario leading-relaxed max-w-2xl"
             >
               No somos un centro de interpretación. Somos el equipo que lleva
-              años en el territorio — grabando colonias, instalando refugios y
+              años en el territorio grabando colonias, instalando refugios y
               colaborando con instituciones científicas europeas. Ese
               conocimiento es lo que ofrecemos a administraciones, agricultores,
               museos y gestores de espacios naturales.
@@ -315,8 +315,8 @@ export default function FormacionConsultoria() {
                 ¿Tienes un proyecto concreto?
               </h3>
               <p className="text-texto-secundario mb-8 max-w-lg mx-auto">
-                Cuéntanos el contexto — territorio, especie, problema o
-                normativa — y te decimos si podemos ayudarte y cómo.
+                Cuéntanos el contexto territorio, especie, problema o
+                normativa y te decimos si podemos ayudarte y cómo.
               </p>
               <Link
                 to="/contacto"
