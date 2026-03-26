@@ -3,21 +3,13 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Moon, MapPin, CalendarDays, Users, Check, Camera, ArrowLeft } from 'lucide-react'
+import { useLang } from '../../../context/LangContext'
+import { fuenteDePiedraI18n } from '../../../data/i18n/fuenteDePiedraI18n'
 
 const varianteSeccion = {
   oculto: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } }
 }
-
-const destacados = [
-  'Reserva natural protegida de importancia internacional (humedal)',
-  'Programa completo de educación ambiental sobre quirópteros',
-  'Experiencia VR integrada en entorno natural',
-  'Público familiar y escolar como audiencia principal',
-  'Ecosistema de humedal: hábitat clave para murciélagos insectívoros',
-  'Conexión entre biodiversidad acuática y quiropterofauna local',
-  'Actividades adaptadas para todas las edades',
-]
 
 const fotos = [
   { src: '/images/fotos_batnight/laguna-1.webp', alt: 'Actividad nocturna Bat Night en entorno natural' },
@@ -29,6 +21,9 @@ const fotos = [
 ]
 
 export default function FuenteDePiedra() {
+  const { locale } = useLang()
+  const t = fuenteDePiedraI18n[locale] || fuenteDePiedraI18n.es
+
   return (
     <>
       <Helmet>
@@ -51,7 +46,7 @@ export default function FuenteDePiedra() {
               to="/servicios/bat-night"
               className="inline-flex items-center gap-2 text-xs text-texto-secundario hover:text-marca-principal transition-colors duration-200 no-underline"
             >
-              <ArrowLeft size={13} aria-hidden="true" /> Volver a Bat Nights
+              <ArrowLeft size={13} aria-hidden="true" /> {t.backLink}
             </Link>
           </div>
         </div>
@@ -59,7 +54,7 @@ export default function FuenteDePiedra() {
         {/* ── HERO ── */}
         <section className="relative min-h-[65vh] flex flex-col justify-center items-center text-center px-6 pt-12 pb-16 bg-fondo-base overflow-hidden">
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full pointer-events-none"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-100 rounded-full pointer-events-none"
             style={{ background: 'radial-gradient(ellipse, rgba(31,225,167,0.07) 0%, transparent 70%)' }}
             aria-hidden="true"
           />
@@ -68,15 +63,15 @@ export default function FuenteDePiedra() {
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
               className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-5"
             >
-              Bat Night · Reserva Natural Protegida
+              {t.heroSupertitulo}
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-texto-titulo mb-6"
             >
-              Bat Night{' '}
-              <span className="text-marca-principal">Laguna de</span>
-              <br />Fuente de Piedra
+              {t.heroTitulo1}{' '}
+              <span className="text-marca-principal">{t.heroTituloDestacado}</span>
+              <br />{t.heroTitulo2}
             </motion.h1>
 
             <motion.div
@@ -85,15 +80,15 @@ export default function FuenteDePiedra() {
             >
               <span className="flex items-center gap-1.5 text-sm text-texto-secundario">
                 <CalendarDays size={14} className="text-marca-principal" aria-hidden="true" />
-                Reserva Natural Protegida
+                {t.heroEtiquetaFecha}
               </span>
               <span className="flex items-center gap-1.5 text-sm text-texto-secundario">
                 <MapPin size={14} className="text-marca-principal" aria-hidden="true" />
-                Fuente de Piedra, Málaga
+                {t.heroLugar}
               </span>
               <span className="flex items-center gap-1.5 text-sm text-texto-secundario">
                 <Users size={14} className="text-marca-principal" aria-hidden="true" />
-                Público familiar y escolar
+                {t.heroParticipantes}
               </span>
             </motion.div>
 
@@ -105,7 +100,7 @@ export default function FuenteDePiedra() {
                 href="mailto:info@murcielagosmalaga.com?subject=Quiero%20apuntarme%20a%20la%20próxima%20Bat%20Night"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
               >
-                Quiero apuntarme a la próxima Bat Night
+                {t.heroCta}
               </a>
             </motion.div>
           </div>
@@ -115,20 +110,20 @@ export default function FuenteDePiedra() {
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
-              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">El evento</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-6">Ciencia y naturaleza en estado puro</h2>
+              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">{t.eventoSupertitulo}</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-6">{t.eventoTitulo}</h2>
               <div className="space-y-4 text-texto-secundario leading-relaxed">
                 <p>
-                  La Laguna de Fuente de Piedra, conocida internacionalmente como el mayor enclave reproductor de flamencos de Europa continental, es también un ecosistema privilegiado para los murciélagos insectívoros. Esta reserva natural protegida, enclavada en la comarca de Antequera, fue el escenario de una de las Bat Nights más especiales de MUMA.
+                  {t.eventoPárrafo1}
                 </p>
                 <p>
-                  El entorno de humedal ofrece condiciones únicas para la observación de quirópteros: al anochecer, decenas de individuos de varias especies salen a cazar insectos sobre la superficie del agua, generando un espectáculo natural de gran valor científico y educativo. Con equipos de <strong className="text-texto-principal">detección de ultrasonidos en tiempo real</strong>, los participantes pudieron escuchar las llamadas de ecolocalización de los murciélagos y comprender su papel insustituible en el control de plagas de insectos acuáticos.
+                  {t.eventoPárrafo2Inicio} <strong className="text-texto-principal">{t.eventoPárrafo2Deteccion}</strong>{t.eventoPárrafo2Resto}
                 </p>
                 <p>
-                  El programa se diseñó especialmente para <strong className="text-texto-principal">público familiar y escolar</strong>, con actividades adaptadas a todas las edades: desde talleres dinámicos para niños hasta charlas más técnicas para adultos y docentes. La integración de la <strong className="text-texto-principal">experiencia de realidad virtual</strong> en plena naturaleza —con vistas a la laguna— ofreció un contraste único entre lo virtual y lo real que ningún participante pudo olvidar.
+                  {t.eventoPárrafo3Inicio} <strong className="text-texto-principal">{t.eventoPárrafo3Publico}</strong>{t.eventoPárrafo3Medio} <strong className="text-texto-principal">{t.eventoPárrafo3VR}</strong> {t.eventoPárrafo3Resto}
                 </p>
                 <p>
-                  Fuente de Piedra demostró que los espacios naturales protegidos son aliados estratégicos perfectos para el modelo de ecoturismo educativo de MUMA: biodiversidad auténtica, público sensibilizado y un mensaje de conservación que cobra sentido ante los ojos del visitante.
+                  {t.eventoPárrafo4}
                 </p>
               </div>
             </motion.div>
@@ -139,8 +134,8 @@ export default function FuenteDePiedra() {
         <section className="bg-fondo-base py-20 px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
-              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Imágenes</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Galería del evento</h2>
+              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">{t.galeriaSupertitulo}</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">{t.galeriaTitulo}</h2>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {fotos.map((foto, i) => (
@@ -155,7 +150,7 @@ export default function FuenteDePiedra() {
                   ) : (
                     <div className="w-full h-full bg-fondo-superficie border border-white/5 flex flex-col items-center justify-center gap-3 p-6">
                       <Camera size={28} className="text-marca-principal/40" aria-hidden="true" />
-                      <p className="text-xs text-texto-secundario/50 text-center leading-snug">Foto próximamente</p>
+                      <p className="text-xs text-texto-secundario/50 text-center leading-snug">{t.fotoProximamente}</p>
                       <p className="text-xs text-texto-secundario/30 text-center leading-snug italic">{foto.alt}</p>
                     </div>
                   )}
@@ -169,12 +164,12 @@ export default function FuenteDePiedra() {
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="mb-12">
-              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Logros</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Puntos destacados</h2>
-              <p className="text-texto-secundario max-w-xl leading-relaxed">Lo que hicimos posible en esta edición.</p>
+              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">{t.logrosSupertitulo}</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">{t.logrosTitulo}</h2>
+              <p className="text-texto-secundario max-w-xl leading-relaxed">{t.logrosDescripcion}</p>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {destacados.map((punto, i) => (
+              {t.destacados.map((punto, i) => (
                 <motion.div
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
@@ -197,16 +192,16 @@ export default function FuenteDePiedra() {
               className="bg-fondo-superficie rounded-2xl p-10 border border-marca-principal/20 text-center"
             >
               <Moon size={40} className="text-marca-principal mx-auto mb-5" aria-hidden="true" />
-              <h2 className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-4">¿Gestionas una reserva natural o espacio protegido?</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-4">{t.ctaTitulo}</h2>
               <p className="text-texto-secundario leading-relaxed mb-8 max-w-lg mx-auto">
-                Podemos diseñar una Bat Night adaptada a tu ecosistema y a tu público. Trabajamos con parques naturales, reservas, ayuntamientos y centros de interpretación de toda España.
+                {t.ctaDescripcion}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
                   href="mailto:info@murcielagosmalaga.com?subject=Quiero%20organizar%20una%20Bat%20Night%20en%20una%20reserva%20natural"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
                 >
-                  Solicitar propuesta por email
+                  {t.ctaEmail}
                 </a>
                 <a
                   href="https://wa.me/34664213450"
@@ -217,7 +212,7 @@ export default function FuenteDePiedra() {
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" className="text-estado-exito" aria-hidden="true">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                   </svg>
-                  Consultar por WhatsApp
+                  {t.ctaWhatsApp}
                 </a>
               </div>
             </motion.div>
@@ -228,19 +223,19 @@ export default function FuenteDePiedra() {
         <section className="bg-fondo-secundario py-16 px-6">
           <div className="max-w-2xl mx-auto text-center">
             <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}>
-              <h2 className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-5">¿No quieres perderte la próxima edición?</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-texto-titulo mb-5">{t.apuntarseTitulo}</h2>
               <p className="text-texto-secundario leading-relaxed mb-8">
-                Escríbenos y te avisamos cuando lancemos nuevas Bat Nights. Sin compromiso.
+                {t.apuntarseDescripcion}
               </p>
               <a
                 href="mailto:info@murcielagosmalaga.com?subject=Quiero%20apuntarme%20a%20la%20próxima%20Bat%20Night"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline shadow-lg shadow-marca-principal/20"
               >
                 <Moon size={18} aria-hidden="true" />
-                Quiero apuntarme a la próxima Bat Night
+                {t.apuntarseCta}
               </a>
               <p className="mt-6 text-xs text-texto-secundario/50">
-                Al hacer clic se abrirá tu cliente de correo con el asunto predefinido.
+                {t.apuntarseNota}
               </p>
             </motion.div>
           </div>

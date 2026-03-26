@@ -9,82 +9,31 @@ import {
   Heart, ArrowRight, Send,
 } from 'lucide-react'
 
+import { useLang } from '../context/LangContext'
+import { voluntariosI18n } from '../data/i18n/voluntariosI18n'
+
 const varianteSeccion = {
   oculto: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
 }
 
-const porQueUnirte = [
-  {
-    Icono: Moon,
-    titulo: 'Participa en Bat Nights',
-    descripcion: 'Colabora en nuestras noches de avistamiento de murciélagos. Aprende detección acústica, conoce especies y vive la naturaleza nocturna de Málaga junto a un equipo científico.',
-    img: '/images/Bat-Nigt-Malaga-1.webp',
-  },
-  {
-    Icono: Home,
-    titulo: 'Instala refugios',
-    descripcion: 'Ayuda a instalar y mantener refugios monitorizados para colonias de murciélagos. Una acción directa y tangible que mejora el hábitat de especies protegidas.',
-    img: '/images/refugio_doble.webp',
-  },
-  {
-    Icono: Microscope,
-    titulo: 'Investigación científica',
-    descripcion: 'Participa en la recogida de datos de campo, monitorización de colonias y proyectos de ciencia ciudadana junto a biólogos especializados en quirópteros.',
-    img: '/images/colonia_murcielago01.webp',
-  },
-  {
-    Icono: Megaphone,
-    titulo: 'Divulgación ambiental',
-    descripcion: 'Apoya talleres educativos, eventos y experiencias VR. Comparte conocimiento sobre la importancia de los murciélagos en los ecosistemas mediterráneos.',
-    img: '/images/educacion-ambiental.webp',
-  },
-]
-
-const actividades = [
-  {
-    Icono: MapPin,
-    titulo: 'Monitorización de refugios',
-    descripcion: 'Visitas periódicas a refugios instalados para registrar ocupación, especies y estado de las colonias. Datos reales que alimentan nuestra investigación.',
-    img: '/images/monitorizacion-refugios-voluntarios.webp',
-  },
-  {
-    Icono: Headset,
-    titulo: 'Apoyo en eventos VR',
-    descripcion: 'Asistencia técnica y de atención al público en nuestras experiencias de realidad virtual. Guías de la experiencia MuMa BAT CAVE para visitantes y grupos escolares.',
-    img: '/images/apoyo-eventos-vr-voluntarios.webp',
-  },
-  {
-    Icono: Radio,
-    titulo: 'Detección de ultrasonidos',
-    descripcion: 'Uso de detectores acústicos durante salidas nocturnas para identificar especies de murciélagos por su ecolocalización. Formación incluida.',
-    img: '/images/deteccion-ultrasonidos-voluntariado.webp',
-  },
-  {
-    Icono: BookOpen,
-    titulo: 'Talleres educativos',
-    descripcion: 'Colaboración en la impartición de talleres en colegios, institutos y centros cívicos. Transmite el valor ecológico de los murciélagos a nuevas generaciones.',
-    img: '/images/educacion-ambiental.webp',
-  },
-]
-
-const requisitos = [
-  'Ninguna formación específica requerida',
-  'Solo motivación y compromiso con la naturaleza',
-  'Disponibilidad ocasional, adaptable a tu agenda',
-  'Mayores de 16 años (menores con autorización)',
-]
+// Iconos fijos asociados a los arrays por posición
+const iconosPorQue = [Moon, Home, Microscope, Megaphone]
+const iconosActividades = [MapPin, Headset, Radio, BookOpen]
 
 export default function Voluntarios() {
+  const { locale } = useLang()
+  const t = voluntariosI18n[locale]
+
   const [form, setForm] = useState({ nombre: '', email: '', mensaje: '' })
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const asunto = encodeURIComponent(`Solicitud de voluntariado — ${form.nombre}`)
+    const asunto = encodeURIComponent(`${t.emailAsunto} — ${form.nombre}`)
     const cuerpo = encodeURIComponent(
-      `Hola, me gustaría unirme como voluntario/a en MUMA.\n\nNombre: ${form.nombre}\nEmail: ${form.email}\n\n${form.mensaje}`
+      `${t.emailCuerpo}${form.nombre}${t.emailCuerpoEmail}${form.email}\n\n${form.mensaje}`
     )
     window.location.href = `mailto:info@murcielagosmalaga.com?subject=${asunto}&body=${cuerpo}`
   }
@@ -92,11 +41,11 @@ export default function Voluntarios() {
   return (
     <>
       <Helmet>
-        <html lang="es" />
-        <title>Voluntarios — Únete a MUMA | Conservación de murciélagos en Málaga</title>
-        <meta name="description" content="Únete como voluntario en MUMA BAT COMPANY. Participa en Bat Nights, instala refugios, investiga murciélagos y colabora en divulgación ambiental en Málaga." />
-        <meta property="og:title" content="Voluntarios — Únete a MUMA BAT COMPANY" />
-        <meta property="og:description" content="Sé parte del proyecto de conservación de murciélagos más innovador de Andalucía. Sin requisitos, solo motivación." />
+        <html lang={locale} />
+        <title>{t.metaTitle}</title>
+        <meta name="description" content={t.metaDescription} />
+        <meta property="og:title" content={t.metaOgTitle} />
+        <meta property="og:description" content={t.metaOgDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mumabatcompany.com/voluntarios" />
         <link rel="canonical" href="https://mumabatcompany.com/voluntarios" />
@@ -123,20 +72,20 @@ export default function Voluntarios() {
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
               className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-5"
             >
-              Únete al equipo
+              {t.eyebrow}
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-texto-titulo mb-6"
             >
-              Únete como{' '}
-              <span className="text-marca-principal">voluntario</span>
+              {t.heroTitlePre}{' '}
+              <span className="text-marca-principal">{t.heroTitleHighlight}</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-texto-secundario max-w-2xl mx-auto leading-relaxed mb-10"
             >
-              Protege la biodiversidad de Málaga desde el terreno. Con MUMA puedes participar activamente en la conservación de murciélagos, la investigación científica y la divulgación ambiental en la Costa del Sol.
+              {t.heroSubtitle}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
@@ -147,13 +96,13 @@ export default function Voluntarios() {
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
               >
                 <Heart size={15} aria-hidden="true" />
-                Quiero ser voluntario
+                {t.ctaPrimario}
               </a>
               <a
                 href="#actividades"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/15 text-texto-principal hover:bg-fondo-superficie hover:border-white/25 transition-all duration-200 no-underline"
               >
-                Ver actividades <ArrowRight size={15} aria-hidden="true" />
+                {t.ctaSecundario} <ArrowRight size={15} aria-hidden="true" />
               </a>
             </motion.div>
           </div>
@@ -163,30 +112,33 @@ export default function Voluntarios() {
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
-              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Razones para sumarte</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">¿Por qué ser voluntario en MUMA?</h2>
-              <p className="text-texto-secundario max-w-xl mx-auto">Más que ayudar, aprenderás, vivirás la ciencia en primera persona y formarás parte de un proyecto con impacto real en la biodiversidad malagueña.</p>
+              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">{t.porQueLabel}</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">{t.porQueTitle}</h2>
+              <p className="text-texto-secundario max-w-xl mx-auto">{t.porQueSubtitle}</p>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {porQueUnirte.map((item, i) => (
-                <motion.article
-                  key={i}
-                  initial="oculto" whileInView="visible" viewport={{ once: true }}
-                  variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
-                  className="bg-fondo-superficie rounded-2xl border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 overflow-hidden flex flex-col"
-                >
-                  {item.img && (
-                    <div className="aspect-video overflow-hidden">
-                      <img src={item.img} alt={item.titulo} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              {t.porQueUnirte.map((item, i) => {
+                const Icono = iconosPorQue[i]
+                return (
+                  <motion.article
+                    key={i}
+                    initial="oculto" whileInView="visible" viewport={{ once: true }}
+                    variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
+                    className="bg-fondo-superficie rounded-2xl border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 overflow-hidden flex flex-col"
+                  >
+                    {item.img && (
+                      <div className="aspect-video overflow-hidden">
+                        <img src={item.img} alt={item.titulo} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                      </div>
+                    )}
+                    <div className="p-6 flex flex-col grow">
+                      <Icono size={28} className="text-marca-principal mb-4" aria-hidden="true" />
+                      <h3 className="text-base font-bold text-texto-titulo mb-3 leading-snug">{item.titulo}</h3>
+                      <p className="text-sm text-texto-secundario leading-relaxed grow">{item.descripcion}</p>
                     </div>
-                  )}
-                  <div className="p-6 flex flex-col grow">
-                    <item.Icono size={28} className="text-marca-principal mb-4" aria-hidden="true" />
-                    <h3 className="text-base font-bold text-texto-titulo mb-3 leading-snug">{item.titulo}</h3>
-                    <p className="text-sm text-texto-secundario leading-relaxed grow">{item.descripcion}</p>
-                  </div>
-                </motion.article>
-              ))}
+                  </motion.article>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -195,34 +147,37 @@ export default function Voluntarios() {
         <section id="actividades" className="bg-fondo-base py-20 px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-14">
-              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">En el día a día</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">¿Qué hacen los voluntarios?</h2>
-              <p className="text-texto-secundario max-w-xl mx-auto">Actividades concretas, variadas y con impacto directo en la conservación de los murciélagos en Málaga.</p>
+              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">{t.actividadesLabel}</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">{t.actividadesTitle}</h2>
+              <p className="text-texto-secundario max-w-xl mx-auto">{t.actividadesSubtitle}</p>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {actividades.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial="oculto" whileInView="visible" viewport={{ once: true }}
-                  variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
-                  className="bg-fondo-superficie rounded-2xl border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 overflow-hidden flex flex-col"
-                >
-                  {item.img && (
-                    <div className="aspect-video overflow-hidden">
-                      <img src={item.img} alt={item.titulo} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              {t.actividades.map((item, i) => {
+                const Icono = iconosActividades[i]
+                return (
+                  <motion.div
+                    key={i}
+                    initial="oculto" whileInView="visible" viewport={{ once: true }}
+                    variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
+                    className="bg-fondo-superficie rounded-2xl border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 overflow-hidden flex flex-col"
+                  >
+                    {item.img && (
+                      <div className="aspect-video overflow-hidden">
+                        <img src={item.img} alt={item.titulo} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                      </div>
+                    )}
+                    <div className="p-7 flex gap-5 items-start">
+                      <div className="shrink-0 w-11 h-11 rounded-xl bg-marca-principal/10 flex items-center justify-center">
+                        <Icono size={22} className="text-marca-principal" aria-hidden="true" />
+                      </div>
+                      <div>
+                        <h3 className="text-base font-bold text-texto-titulo mb-2 leading-snug">{item.titulo}</h3>
+                        <p className="text-sm text-texto-secundario leading-relaxed">{item.descripcion}</p>
+                      </div>
                     </div>
-                  )}
-                  <div className="p-7 flex gap-5 items-start">
-                    <div className="shrink-0 w-11 h-11 rounded-xl bg-marca-principal/10 flex items-center justify-center">
-                      <item.Icono size={22} className="text-marca-principal" aria-hidden="true" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-bold text-texto-titulo mb-2 leading-snug">{item.titulo}</h3>
-                      <p className="text-sm text-texto-secundario leading-relaxed">{item.descripcion}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -231,12 +186,12 @@ export default function Voluntarios() {
         <section className="bg-fondo-secundario py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-12">
-              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Abierto a todos</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Requisitos</h2>
-              <p className="text-texto-secundario max-w-xl mx-auto">No necesitas experiencia previa ni formación específica. Solo ganas de aprender y cuidar el entorno natural.</p>
+              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">{t.requisitosLabel}</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">{t.requisitosTitle}</h2>
+              <p className="text-texto-secundario max-w-xl mx-auto">{t.requisitosSubtitle}</p>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-              {requisitos.map((req, i) => (
+              {t.requisitos.map((req, i) => (
                 <motion.div
                   key={i}
                   initial="oculto" whileInView="visible" viewport={{ once: true }}
@@ -257,20 +212,20 @@ export default function Voluntarios() {
         <section id="formulario" className="bg-fondo-base py-20 px-6">
           <div className="max-w-xl mx-auto">
             <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="text-center mb-10">
-              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Primer paso</p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Escríbenos</h2>
-              <p className="text-texto-secundario leading-relaxed">Cuéntanos quién eres y qué te motiva a unirte. Te responderemos en menos de 48 horas.</p>
+              <p className="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">{t.formLabel}</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">{t.formTitle}</h2>
+              <p className="text-texto-secundario leading-relaxed">{t.formSubtitle}</p>
             </motion.div>
 
             <motion.form
               initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}
               onSubmit={handleSubmit}
               className="bg-fondo-superficie rounded-2xl p-8 border border-white/5 space-y-5"
-              aria-label="Formulario de solicitud de voluntariado"
+              aria-label={t.formAria}
             >
               <div>
                 <label htmlFor="nombre" className="block text-xs font-semibold text-texto-secundario uppercase tracking-wider mb-2">
-                  Nombre
+                  {t.labelNombre}
                 </label>
                 <input
                   id="nombre"
@@ -279,14 +234,14 @@ export default function Voluntarios() {
                   required
                   value={form.nombre}
                   onChange={handleChange}
-                  placeholder="Tu nombre completo"
+                  placeholder={t.placeholderNombre}
                   className="w-full bg-fondo-base border border-white/10 rounded-xl px-4 py-3 text-sm text-texto-principal placeholder:text-texto-secundario/40 focus:outline-none focus:border-marca-principal/50 transition-colors duration-200"
                 />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-xs font-semibold text-texto-secundario uppercase tracking-wider mb-2">
-                  Email
+                  {t.labelEmail}
                 </label>
                 <input
                   id="email"
@@ -295,14 +250,14 @@ export default function Voluntarios() {
                   required
                   value={form.email}
                   onChange={handleChange}
-                  placeholder="tu@email.com"
+                  placeholder={t.placeholderEmail}
                   className="w-full bg-fondo-base border border-white/10 rounded-xl px-4 py-3 text-sm text-texto-principal placeholder:text-texto-secundario/40 focus:outline-none focus:border-marca-principal/50 transition-colors duration-200"
                 />
               </div>
 
               <div>
                 <label htmlFor="mensaje" className="block text-xs font-semibold text-texto-secundario uppercase tracking-wider mb-2">
-                  Mensaje
+                  {t.labelMensaje}
                 </label>
                 <textarea
                   id="mensaje"
@@ -311,7 +266,7 @@ export default function Voluntarios() {
                   value={form.mensaje}
                   onChange={handleChange}
                   rows={5}
-                  placeholder="Cuéntanos qué te motiva a ser voluntario y en qué actividades te gustaría participar…"
+                  placeholder={t.placeholderMensaje}
                   className="w-full bg-fondo-base border border-white/10 rounded-xl px-4 py-3 text-sm text-texto-principal placeholder:text-texto-secundario/40 focus:outline-none focus:border-marca-principal/50 transition-colors duration-200 resize-none"
                 />
               </div>
@@ -321,11 +276,11 @@ export default function Voluntarios() {
                 className="w-full inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 cursor-pointer"
               >
                 <Send size={15} aria-hidden="true" />
-                Enviar solicitud
+                {t.btnEnviar}
               </button>
 
               <p className="text-xs text-texto-secundario/50 text-center leading-relaxed">
-                Se abrirá tu cliente de correo para enviar el mensaje a{' '}
+                {t.notaEmail}{' '}
                 <span className="text-marca-principal/70">info@murcielagosmalaga.com</span>
               </p>
             </motion.form>
@@ -340,11 +295,11 @@ export default function Voluntarios() {
                 <Heart size={32} className="text-marca-principal" aria-hidden="true" />
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-texto-titulo mb-5 leading-tight">
-                Quiero ser{' '}
-                <span className="text-marca-principal">voluntario</span>
+                {t.ctaFinalTitlePre}{' '}
+                <span className="text-marca-principal">{t.ctaFinalHighlight}</span>
               </h2>
               <p className="text-lg text-texto-secundario leading-relaxed mb-10 max-w-xl mx-auto">
-                Cada persona que se une a MUMA contribuye a proteger una especie fundamental para el ecosistema mediterráneo. Tu compromiso marca la diferencia.
+                {t.ctaFinalSubtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
@@ -352,19 +307,19 @@ export default function Voluntarios() {
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
                 >
                   <Heart size={16} aria-hidden="true" />
-                  Apuntarme ahora
+                  {t.ctaFinalPrimario}
                 </a>
                 <a
                   href="mailto:info@murcielagosmalaga.com"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-semibold border border-white/15 text-texto-principal hover:bg-fondo-superficie hover:border-white/25 transition-all duration-200 no-underline"
                 >
-                  Escribir por email
+                  {t.ctaFinalEmail}
                 </a>
               </div>
               <p className="mt-8 text-sm text-texto-secundario/60">
-                ¿Prefieres donar?{' '}
+                {t.ctaFinalDonar}{' '}
                 <Link to="/donar" className="text-marca-principal hover:opacity-80 transition-opacity duration-200 no-underline">
-                  Apoya MUMA económicamente
+                  {t.ctaFinalDonarLink}
                 </Link>
               </p>
             </motion.div>

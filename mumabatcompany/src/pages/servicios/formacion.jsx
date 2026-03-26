@@ -4,6 +4,8 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
+import { useLang } from "../../context/LangContext";
+import { formacionI18n } from "../../data/i18n/formacionI18n";
 
 const fadeUp = {
   oculto: { opacity: 0, y: 24 },
@@ -14,89 +16,6 @@ const fadeUp = {
   },
 };
 
-const grupos = [
-  {
-    categoria: "Consultoría científica",
-    desc: "Informes y asesoramiento con base en investigación de campo real y metodología europea.",
-    servicios: [
-      {
-        titulo: "Consultoría bioacústica",
-        desc: "Auditoría de fauna mediante análisis ultrasónico. Identificamos qué especies están presentes, cómo se distribuyen y qué estado tienen las colonias.",
-        para: "Administraciones, reservas naturales, promotores",
-        img: "/images/dentro-cueva.webp",
-      },
-      {
-        titulo: "Monitorización de colonias",
-        desc: "Seguimiento continuo con sensores y grabación bioacústica. Informes periódicos con datos de actividad, especies detectadas y tendencias de población.",
-        para: "Parques naturales, cuevas turísticas, fincas",
-        img: "/images/monitorizacion.webp",
-      },
-      {
-        titulo: "Consultoría jurídico-ambiental",
-        desc: "Los murciélagos están protegidos por legislación europea (EUROBATS) y nacional. Asesoramos sobre cumplimiento normativo y gestión legal en proyectos que afecten a sus hábitats.",
-        para: "Promotoras, administraciones, gestores de cuevas",
-        img: "/images/colonia_murcielago01.webp",
-      },
-    ],
-  },
-  {
-    categoria: "Soluciones para el territorio",
-    desc: "Aplicamos el conocimiento del murciélago como herramienta para resolver problemas reales en campo, ciudad y empresa.",
-    servicios: [
-      {
-        titulo: "Agricultura y control biológico",
-        desc: "Una colonia elimina hasta 3.000 insectos por noche. Asesoramos a fincas para integrar colonias naturales como alternativa real a los pesticidas.",
-        para: "Viñedos, olivares, fincas hortícolas",
-        img: "/images/agricultura-control-biologico_resultado.webp",
-      },
-      {
-        titulo: "Gestión forestal y restauración ecológica",
-        desc: "Diseño de microhábitats, refugios y corredores biológicos en masas forestales para recuperar la función del murciélago en el ecosistema.",
-        para: "Gestores forestales, ayuntamientos, promotoras",
-        img: "/images/agricultores.webp",
-      },
-      {
-        titulo: "Soluciones basadas en la naturaleza (SbN)",
-        desc: "Metodologías de conservación reconocidas internacionalmente para resolver problemas concretos: plagas, pérdida de biodiversidad, degradación de suelos.",
-        para: "Administraciones públicas, empresas con compromisos ambientales",
-        img: "/images/instituciones.webp",
-      },
-      {
-        titulo: "Ciudades y entornos urbanos",
-        desc: "Los murciélagos son indicadores de la salud del ecosistema urbano. Diseñamos estrategias de integración de fauna en espacios verdes, parques y edificios.",
-        para: "Ayuntamientos, arquitectos, gestores de espacios",
-        img: "/images/ayuntamientos.webp",
-      },
-    ],
-  },
-  {
-    categoria: "Formación y divulgación",
-    desc: "Transferimos el conocimiento científico a personas, equipos e instituciones con metodologías adaptadas a cada audiencia.",
-    servicios: [
-      {
-        titulo: "Educación ambiental",
-        desc: "Talleres, charlas y programas formativos sobre quirópteros para colegios, universidades y técnicos ambientales. Contenidos desarrollados desde investigación de campo real.",
-        para: "Centros educativos, equipos técnicos, museos",
-        img: "/images/educacion-ambiental.webp",
-      },
-      {
-        titulo: "Serious Games y gamificación",
-        desc: "Experiencias gamificadas con base científica para reforzar el aprendizaje sobre murciélagos y conservación en aulas, museos y eventos.",
-        para: "Centros educativos, museos, actividades infantiles",
-        img: "/images/serous-game.webp",
-        acento: true,
-      },
-      {
-        titulo: "Innovación y metodología propia",
-        desc: "Desarrollo de metodologías que combinan trabajo de campo, tecnología inmersiva y archivo bioacústico. La innovación como forma de mirar, no solo como herramienta.",
-        para: "Centros de investigación, universidades, empresas tecnológicas",
-        img: "/images/innovacion-metodologia-propia.webp",
-        acento: true,
-      },
-    ],
-  },
-];
-
 // Fondos alternos por sección — igual que nosotros.jsx
 const fondosPorGrupo = [
   "bg-fondo-base",
@@ -105,25 +24,16 @@ const fondosPorGrupo = [
 ];
 
 export default function FormacionConsultoria() {
+  const { locale } = useLang();
+  const t = formacionI18n[locale] || formacionI18n.es;
+
   return (
     <>
       <Helmet>
-        <title>
-          Consultoría ambiental y formación en conservación de murciélagos |
-          MUMA BAT COMPANY
-        </title>
-        <meta
-          name="description"
-          content="Consultoría medioambiental, bioacústica, control biológico de plagas y formación ambiental en Málaga. Respaldados por SECEMU y el proyecto europeo ST3ER."
-        />
-        <meta
-          property="og:title"
-          content="Consultoría y Formación Ambiental | MUMA BAT COMPANY"
-        />
-        <meta
-          property="og:description"
-          content="Asesoramiento científico en conservación de murciélagos para administraciones, agricultores y museos. Proyecto europeo ST3ER."
-        />
+        <title>{t.helmetTitle}</title>
+        <meta name="description" content={t.helmetDesc} />
+        <meta property="og:title" content={t.helmetOgTitle} />
+        <meta property="og:description" content={t.helmetOgDesc} />
         <link
           rel="canonical"
           href="https://mumabatcompany.com/servicios/formacion"
@@ -151,7 +61,7 @@ export default function FormacionConsultoria() {
               transition={{ duration: 0.5 }}
               className="text-xs font-semibold tracking-[0.25em] text-marca-principal uppercase mb-5"
             >
-              Consultoría &amp; Formación
+              {t.eyebrow}
             </motion.p>
 
             <motion.h1
@@ -160,7 +70,7 @@ export default function FormacionConsultoria() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-texto-titulo mb-6"
             >
-              Consultoría ambiental y formación en conservación de murciélagos.
+              {t.heroTitle}
             </motion.h1>
 
             <motion.p
@@ -169,17 +79,13 @@ export default function FormacionConsultoria() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg text-texto-secundario leading-relaxed max-w-2xl"
             >
-              No somos un centro de interpretación. Somos el equipo que lleva
-              años en el territorio grabando colonias, instalando refugios y
-              colaborando con instituciones científicas europeas. Ese
-              conocimiento es lo que ofrecemos a administraciones, agricultores,
-              museos y gestores de espacios naturales.
+              {t.heroDesc}
             </motion.p>
           </div>
         </section>
 
         {/* ── GRUPOS DE SERVICIOS — fondos alternos ── */}
-        {grupos.map((grupo, gi) => (
+        {t.grupos.map((grupo, gi) => (
           <section key={gi} className={`${fondosPorGrupo[gi]} py-20 px-6`}>
             <div className="max-w-6xl mx-auto">
               <motion.div
@@ -204,7 +110,7 @@ export default function FormacionConsultoria() {
                 {/* Tarjetas */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                   {grupo.servicios.map(
-                    ({ Icono, titulo, desc, para, img, acento }, i) => (
+                    ({ titulo, desc, para, img }, i) => (
                       <div
                         key={i}
                         className="bg-fondo-superficie rounded-2xl border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 flex flex-col overflow-hidden"
@@ -232,7 +138,7 @@ export default function FormacionConsultoria() {
                             to="/contacto"
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold border border-marca-principal/40 text-marca-principal hover:bg-marca-principal hover:text-texto-sobre-accion hover:border-marca-principal transition-all duration-200 no-underline group self-start"
                           >
-                            Solicitar información
+                            {t.cardCta}
                             <ArrowRight
                               size={13}
                               className="group-hover:translate-x-0.5 transition-transform duration-200"
@@ -261,18 +167,13 @@ export default function FormacionConsultoria() {
             >
               <div className="flex-1">
                 <p className="text-xs font-bold tracking-[0.2em] text-marca-principal uppercase mb-3">
-                  Respaldo científico
+                  {t.avalesEyebrow}
                 </p>
                 <h3 className="text-2xl font-bold text-texto-titulo mb-4 leading-tight">
-                  Cada informe está firmado desde el campo, no desde un
-                  despacho.
+                  {t.avalesTitle}
                 </h3>
                 <p className="text-texto-secundario text-sm leading-relaxed">
-                  Somos miembros activos de SECEMU, alineados con el marco
-                  EUROBATS y ex-investigadores del proyecto europeo ST3ER en
-                  España, Portugal y Eslovenia. Eso es lo que convierte nuestros
-                  informes en documentos con peso real ante administraciones e
-                  instituciones.
+                  {t.avalesDesc}
                 </p>
               </div>
               <div className="flex flex-wrap md:flex-col gap-4 shrink-0 items-center">
@@ -312,17 +213,16 @@ export default function FormacionConsultoria() {
               className="text-center"
             >
               <h3 className="text-3xl font-bold text-texto-titulo mb-4">
-                ¿Tienes un proyecto concreto?
+                {t.ctaTitle}
               </h3>
               <p className="text-texto-secundario mb-8 max-w-lg mx-auto">
-                Cuéntanos el contexto territorio, especie, problema o
-                normativa y te decimos si podemos ayudarte y cómo.
+                {t.ctaDesc}
               </p>
               <Link
                 to="/contacto"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-marca-principal text-texto-sobre-accion font-bold rounded-xl hover:bg-marca-principal-hover transition-colors duration-200 no-underline"
               >
-                Hablar con el equipo <ArrowRight size={16} aria-hidden="true" />
+                {t.ctaBtn} <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </motion.div>
           </div>

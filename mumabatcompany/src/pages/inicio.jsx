@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 import Footer from '../components/footer'
 import {
   ArrowRight,
-
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLang } from '../context/LangContext'
+import { inicioI18n } from '../data/i18n/inicioI18n'
 
 // --- COMPONENTES INTERNOS (BLOQUES) ---
 
-const Hero = () => {
+const Hero = ({ t }) => {
   const backgroundImage = "/images/dentro-cueva.webp";
 
   return (
@@ -21,8 +22,8 @@ const Hero = () => {
           alt="Trabajo de campo MUMA"
           className="w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/70 via-[#050505]/50 to-[#050505] z-10" />
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:40px_40px] z-20" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#050505]/70 via-[#050505]/50 to-[#050505] z-10" />
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#10b981_1px,transparent_1px)] bg-size-[40px_40px] z-20" />
       </div>
 
       {/* --- CONTENIDO --- */}
@@ -33,7 +34,7 @@ const Hero = () => {
           animate={{ opacity: 1 }}
           className="inline-block px-4 py-1.5 mb-8 rounded-full border border-[#10b981]/30 bg-[#10b981]/10 text-[#10b981] text-[10px] font-bold uppercase tracking-[0.3em]"
         >
-          Ciencia &middot; Tecnología &middot; Conservación
+          {t.heroTag}
         </motion.span>
 
         {/* H1 */}
@@ -43,8 +44,8 @@ const Hero = () => {
           transition={{ delay: 0.2 }}
           className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-8"
         >
-          Una empresa. Cinco servicios.{" "}
-          <span className="text-[#10b981]">Murciélagos como solución real.</span>
+          {t.heroH1a}{" "}
+          <span className="text-[#10b981]">{t.heroH1b}</span>
         </motion.h1>
 
         {/* P */}
@@ -54,13 +55,13 @@ const Hero = () => {
           transition={{ delay: 0.4 }}
           className="max-w-3xl mx-auto text-lg md:text-xl text-gray-400 mb-12 leading-relaxed font-light"
         >
-          Trabajamos con{" "}
+          {t.heroPa}
           <span className="text-white font-medium">
-            ayuntamientos, museos, centros educativos y administraciones
-          </span>{" "}
-          que quieren integrar los murciélagos como herramienta de{" "}
+            {t.heroPb}
+          </span>
+          {t.heroPc}
           <span className="text-white font-medium">
-            conservación, control de plagas, divulgación o experiencia inmersiva.
+            {t.heroPd}
           </span>
         </motion.p>
 
@@ -75,7 +76,7 @@ const Hero = () => {
             to="/servicios/realidad-virtual"
             className="group flex items-center gap-3 px-10 py-5 bg-marca-principal text-texto-sobre-accion font-bold rounded-2xl hover:bg-marca-principal-hover hover:scale-105 transition-all shadow-[0_0_30px_rgba(31,225,167,0.3)] no-underline"
           >
-            Ver la Batcave Experience{" "}
+            {t.heroCta1}{" "}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
 
@@ -83,49 +84,48 @@ const Hero = () => {
             to="/contacto"
             className="flex items-center gap-3 px-10 py-5 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all no-underline backdrop-blur-sm"
           >
-            Contacto
           </Link>
         </motion.div>
       </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20 z-30">
-        <div className="w-[1px] h-12 bg-gradient-to-b from-[#10b981] to-transparent" />
+        <div className="w-px h-12 bg-linear-to-b from-[#10b981] to-transparent" />
       </div>
     </section>
   );
 };
 
-const Diferenciacion = () => {
+const Diferenciacion = ({ t }) => {
   const items = [
     {
-      title: "Ciencia de campo",
-      desc: "Más de una década estudiando colonias, grabando ultrasonidos y construyendo el único archivo bioacústico privado de quirópteros ibéricos. El conocimiento no es decoración — es la base de cada servicio.",
+      title: t.diferenciacionItems[0].title,
+      desc: t.diferenciacionItems[0].desc,
       bg: "/images/colonia_murcielago01.webp",
       link: "/nosotros",
-      cta: "Conocer el equipo",
+      cta: t.diferenciacionItems[0].cta,
     },
     {
-      title: "Tecnología que tiene fondo",
-      desc: "La Batcave Experience no es una recreación — es una cueva real digitalizada en 3D. Lista para instalar en museos, centros comerciales o espacios naturales sin obra ni infraestructura adicional.",
+      title: t.diferenciacionItems[1].title,
+      desc: t.diferenciacionItems[1].desc,
       bg: "/images/chica-realidad-virtual.webp",
       link: "/servicios/realidad-virtual",
-      cta: "Ver la Batcave Experience",
+      cta: t.diferenciacionItems[1].cta,
     },
     {
-      title: "Comunidad e impacto real",
-      desc: "Más de 700 personas en eventos MUMA durante 2025. Bat Nights, talleres científicos y actividades con ayuntamientos, reservas naturales y centros educativos. La conservación ocurre cuando la gente entiende.",
+      title: t.diferenciacionItems[2].title,
+      desc: t.diferenciacionItems[2].desc,
       bg: "/images/1batnights.webp",
       link: "/servicios/bat-night",
-      cta: "Ver próximas Bat Nights",
+      cta: t.diferenciacionItems[2].cta,
     },
   ];
 
   return (
     <section className="py-32 bg-[#050505] px-6 relative overflow-hidden border-b border-white/5">
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:40px_40px]" />
-        <div className="absolute top-0 right-[-10%] w-[600px] h-[600px] bg-[#10b981]/5 blur-[120px] rounded-full" />
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] bg-size-[40px_40px]" />
+        <div className="absolute top-0 right-[-10%] w-150 h-150 bg-[#10b981]/5 blur-[120px] rounded-full" />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
@@ -136,12 +136,12 @@ const Diferenciacion = () => {
           className="max-w-3xl mb-20"
         >
           <h2 className="text-[#10b981] text-xs font-bold tracking-[0.4em] uppercase mb-6">
-            Por qué MUMA es diferente
+            {t.diferenciacionPill}
           </h2>
           <p className="text-4xl md:text-5xl font-bold text-white leading-[1.1] tracking-tight">
-            No hacemos marketing ambiental. <br />
+            {t.diferenciacionH2a} <br />
             <span className="text-zinc-500">
-              Hacemos trabajo de campo.
+              {t.diferenciacionH2b}
             </span>
           </p>
         </motion.div>
@@ -154,7 +154,7 @@ const Diferenciacion = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group relative p-10 rounded-[2rem] overflow-hidden border border-white/10 hover:border-[#10b981]/40 transition-all duration-500"
+              className="group relative p-10 rounded-4xl overflow-hidden border border-white/10 hover:border-[#10b981]/40 transition-all duration-500"
             >
               <div className="absolute inset-0 z-0">
                 <img
@@ -162,10 +162,13 @@ const Diferenciacion = () => {
                   alt={item.title}
                   className="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/10 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#050505]/90 via-[#050505]/10 to-transparent" />
               </div>
 
               <div className="relative z-10 flex flex-col h-full">
+                <div className="text-[#10b981] mb-8 w-12 h-12 p-3 bg-[#10b981]/5 rounded-xl border border-[#10b981]/10 group-hover:bg-[#10b981] group-hover:text-black transition-all duration-500">
+                  {item.icon}
+                </div>
                 <h3 className="text-2xl font-bold text-white mb-5">
                   {item.title}
                 </h3>
@@ -187,39 +190,39 @@ const Diferenciacion = () => {
   );
 };
 
-const Segmentacion = () => {
+const Segmentacion = ({ t }) => {
   const perfiles = [
     {
-      tipo: "Museos y centros culturales",
-      desc: "Instala la Batcave Experience en tu espacio. Sin obra, sin infraestructura. Montamos, operamos y recogemos.",
-      etiqueta: "Realidad Virtual",
+      tipo: t.segmentacionPerfiles[0].tipo,
+      desc: t.segmentacionPerfiles[0].desc,
+      etiqueta: t.segmentacionPerfiles[0].etiqueta,
       link: "/servicios/realidad-virtual",
       img: "/images/museos.webp",
-      cta: "Ver la experiencia",
+      cta: t.segmentacionPerfiles[0].cta,
     },
     {
-      tipo: "Ayuntamientos y espacios naturales",
-      desc: "Bat Nights para tu municipio o reserva. Eventos nocturnos con ultrasonidos y VR para conectar al público con la naturaleza.",
-      etiqueta: "Bat Nights",
+      tipo: t.segmentacionPerfiles[1].tipo,
+      desc: t.segmentacionPerfiles[1].desc,
+      etiqueta: t.segmentacionPerfiles[1].etiqueta,
       link: "/servicios/bat-night",
       img: "/images/ayuntamientos.webp",
-      cta: "Ver Bat Nights",
+      cta: t.segmentacionPerfiles[1].cta,
     },
     {
-      tipo: "Agricultores y fincas",
-      desc: "Una colonia de murciélagos elimina hasta 3.000 insectos por noche. Instalamos refugios certificados como alternativa real a los pesticidas.",
-      etiqueta: "Refugios",
+      tipo: t.segmentacionPerfiles[2].tipo,
+      desc: t.segmentacionPerfiles[2].desc,
+      etiqueta: t.segmentacionPerfiles[2].etiqueta,
       link: "/servicios/refugios",
       img: "/images/agricultores.webp",
-      cta: "Ver refugios",
+      cta: t.segmentacionPerfiles[2].cta,
     },
     {
-      tipo: "Instituciones y administraciones",
-      desc: "Informes bioacústicos, consultoría jurídico-ambiental y formación técnica con respaldo SECEMU y marco EUROBATS.",
-      etiqueta: "Consultoría",
+      tipo: t.segmentacionPerfiles[3].tipo,
+      desc: t.segmentacionPerfiles[3].desc,
+      etiqueta: t.segmentacionPerfiles[3].etiqueta,
       link: "/servicios/formacion",
       img: "/images/instituciones.webp",
-      cta: "Ver consultoría",
+      cta: t.segmentacionPerfiles[3].cta,
     },
   ];
 
@@ -234,11 +237,11 @@ const Segmentacion = () => {
           className="mb-14"
         >
           <p className="text-[#10b981] text-xs font-bold tracking-[0.3em] uppercase mb-4">
-            ¿Con quién trabajamos?
+            {t.segmentacionPill}
           </p>
           <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight max-w-xl">
-            Encuentra lo que <br />
-            <span className="text-[#10b981]">es para ti.</span>
+            {t.segmentacionH2a}<br />
+            <span className="text-[#10b981]">{t.segmentacionH2b}</span>
           </h2>
         </motion.div>
 
@@ -284,29 +287,29 @@ const Segmentacion = () => {
   );
 };
 
-const Servicios = () => {
+const Servicios = ({ t }) => {
   const servicios = [
     {
-      title: "Realidad Virtual",
-      desc: "La Batcave Experience: una cueva de murciélagos en tu espacio. Lista para instalar, sin obra.",
+      title: t.servicios[0].title,
+      desc: t.servicios[0].desc,
       link: "/servicios/realidad-virtual",
       img: "/images/chica-realidad-virtual.webp",
     },
     {
-      title: "Bat Nights",
-      desc: "Eventos nocturnos con ultrasonidos y VR. Más de 200 personas por edición en 2025.",
+      title: t.servicios[1].title,
+      desc: t.servicios[1].desc,
       link: "/servicios/bat-night",
       img: "/images/1batnights.webp",
     },
     {
-      title: "Refugios",
-      desc: "Refugios artesanales para colonias de murciélagos. Control biológico de plagas sin pesticidas.",
+      title: t.servicios[2].title,
+      desc: t.servicios[2].desc,
       link: "/servicios/refugios",
       img: "/images/refugio_doble.webp",
     },
     {
-      title: "Consultoría",
-      desc: "Asesoramiento científico con respaldo SECEMU y proyecto europeo ST3ER.",
+      title: t.servicios[3].title,
+      desc: t.servicios[3].desc,
       link: "/servicios/formacion",
       img: "/images/Eventos-cientificos-Plaza-Mayor5-300x300.webp",
     },
@@ -316,7 +319,7 @@ const Servicios = () => {
     <section className="py-24 bg-[#080808] px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-16 text-center">
-          Nuestras líneas de <span className="text-[#10b981]">acción</span>
+          {t.serviciosH2a}<span className="text-[#10b981]">{t.serviciosH2b}</span>
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {servicios.map((s, i) => (
@@ -329,7 +332,7 @@ const Servicios = () => {
               {/* Imagen de fondo */}
               <div className="absolute inset-0 z-0">
                 <img src={s.img} alt={s.title} className="w-full h-full object-cover opacity-85 group-hover:opacity-95 transition-opacity duration-500" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
               </div>
 
               <div className="relative z-10 p-6">
@@ -348,7 +351,7 @@ const Servicios = () => {
   );
 };
 
-const ProximosEventos = () => {
+const ProximosEventos = ({ t }) => {
   const eventos = [
     { dia: "24", mes: "ABR", lugar: "Guaro",    provincia: "Málaga", img: "/images/Proyecto-Batnight-Guaro.webp" },
     { dia: "22", mes: "MAY", lugar: "Almargen", provincia: "Málaga", img: "/images/Bat-Nigt-Malaga2.webp" },
@@ -362,14 +365,14 @@ const ProximosEventos = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <p className="text-[#10b981] text-xs font-bold tracking-[0.3em] uppercase mb-3">
-              Próximas Bat Nights — 2025
+              {t.eventosPill}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
-              Eventos con fecha confirmada.
+              {t.eventosH2}
             </h2>
           </div>
           <Link to="/servicios/bat-night" className="text-sm font-bold text-[#10b981] hover:underline no-underline shrink-0">
-            Ver todos los eventos →
+            {t.eventosVerTodos}
           </Link>
         </div>
 
@@ -401,14 +404,14 @@ const ProximosEventos = () => {
 
               {/* Contenido inferior */}
               <div className="absolute bottom-0 left-0 right-0 z-10 p-7">
-                <p className="text-[#10b981] text-xs font-bold tracking-widest uppercase mb-2">Plazas limitadas</p>
+                <p className="text-[#10b981] text-xs font-bold tracking-widest uppercase mb-2">{t.eventosPlazas}</p>
                 <h3 className="text-white font-black text-3xl mb-1">{e.lugar}</h3>
                 <p className="text-gray-400 text-sm mb-6">{e.provincia}</p>
                 <Link
                   to="/contacto"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-marca-principal text-texto-sobre-accion text-sm font-bold rounded-xl hover:bg-marca-principal-hover hover:scale-105 active:scale-95 transition-all duration-200 no-underline group-hover:shadow-[0_0_20px_rgba(31,225,167,0.4)]"
                 >
-                  Reservar plaza →
+                  {t.eventosReservar}
                 </Link>
               </div>
             </motion.div>
@@ -421,12 +424,12 @@ const ProximosEventos = () => {
 };
 
 
-const Credibilidad = () => (
+const Credibilidad = ({ t }) => (
   <section className="bg-white py-14 border-y border-gray-100 overflow-hidden">
 
     {/* Label */}
     <p className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase text-center mb-10">
-      Respaldados por instituciones científicas y europeas
+      {t.credibilidadLabel}
     </p>
 
     {/* Logo único centrado */}
@@ -440,11 +443,7 @@ const Credibilidad = () => (
 
     {/* 3 frases de credibilidad */}
     <div className="max-w-5xl mx-auto px-6 mt-12 flex flex-col md:flex-row gap-8 text-center border-t border-gray-100 pt-10">
-      {[
-        { titulo: "Archivo único", texto: "Único archivo bioacústico privado de quirópteros ibéricos. No existe equivalente generado por una empresa privada en España." },
-        { titulo: "Proyecto europeo completado", texto: "ST3ER finalizado en 3 países — España, Portugal y Eslovenia. Producto comercial activo, no prototipo." },
-        { titulo: "Más de 700 personas en 2025", texto: "Experiencias VR reales en museos, reservas naturales y espacios culturales. Feedback directo de campo." },
-      ].map((item, i) => (
+      {t.credibilidadItems.map((item, i) => (
         <div key={i} className="flex-1 px-4">
           <p className="text-[#10b981] text-xs font-bold tracking-widest uppercase mb-3">{item.titulo}</p>
           <p className="text-gray-500 text-sm leading-relaxed">{item.texto}</p>
@@ -455,25 +454,25 @@ const Credibilidad = () => (
   </section>
 );
 
-const Vision = () => (
+const Vision = ({ t }) => (
   <section className="py-24 bg-[#050505] px-6 overflow-hidden">
     <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
       <div className="flex-1">
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
-          Un archivo que{" "}
-          <span className="text-[#10b981]">no existe en ningún otro sitio.</span>
+          {t.visionH2a}
+          <span className="text-[#10b981]">{t.visionH2b}</span>
         </h2>
         <p className="text-gray-400 text-lg mb-6 leading-relaxed">
-          Durante años de trabajo de campo, MUMA ha construido el único archivo bioacústico privado de quirópteros ibéricos: grabaciones reales, mapas de distribución y datos de colonias en tres países europeos.
+          {t.visionP1}
         </p>
         <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-          Ese conocimiento es la base de cada servicio que ofrecemos. No somos un centro de interpretación — somos el equipo que lo documentó.
+          {t.visionP2}
         </p>
         <Link
           to="/nosotros"
           className="inline-flex items-center gap-2 text-[#10b981] font-bold hover:underline no-underline"
         >
-          Conocer el equipo <ArrowRight className="w-4 h-4" />
+          {t.visionCta} <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
       <div className="flex-1 grid grid-cols-2 gap-4">
@@ -483,7 +482,7 @@ const Vision = () => (
           { img: "/images/EUROBATS_logo.webp", alt: "EUROBATS" },
           { img: "/images/europa.webp",        alt: "Unión Europea — FEDER" },
         ].map((item, i) => (
-          <div key={i} className="p-6 rounded-2xl bg-acento-tecnologico-hover border border-white/10 shadow-md flex items-center justify-center" style={{ minHeight: 110 }}>
+          <div key={i} className="p-6 rounded-2xl bg-white border border-white/10 shadow-md flex items-center justify-center" style={{ minHeight: 110 }}>
             <img src={item.img} alt={item.alt} className="max-h-14 max-w-full object-contain" />
           </div>
         ))}
@@ -492,34 +491,34 @@ const Vision = () => (
   </section>
 );
 
-const CTAFinal = () => (
+const CTAFinal = ({ t }) => (
   <section className="py-24 px-6">
-    <div className="max-w-4xl mx-auto p-12 rounded-[2rem] bg-gradient-to-br from-[#10b981] to-[#059669] text-center shadow-[0_20px_50px_rgba(16,185,129,0.2)]">
+    <div className="max-w-4xl mx-auto p-12 rounded-4xl bg-linear-to-br from-[#10b981] to-[#059669] text-center shadow-[0_20px_50px_rgba(16,185,129,0.2)]">
       <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-        La Batcave Experience está lista. ¿Hablamos?
+        {t.ctaH2}
       </h2>
       <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto">
-        Sin obra, sin infraestructura. Montamos, operamos y recogemos. Tu espacio acoge la experiencia.
+        {t.ctaP}
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Link
           to="/contacto"
           className="px-10 py-4 bg-black text-white font-bold rounded-xl hover:scale-105 hover:shadow-[0_8px_25px_rgba(0,0,0,0.4)] active:scale-95 transition-all duration-200 no-underline"
         >
-          Pedir información
+          {t.ctaBtn1}
         </Link>
         <Link
           to="/servicios/realidad-virtual"
           className="px-10 py-4 bg-transparent border-2 border-white/40 text-white font-bold rounded-xl hover:bg-white hover:text-black hover:scale-105 active:scale-95 transition-all duration-200 no-underline"
         >
-          Ver la experiencia completa
+          {t.ctaBtn2}
         </Link>
       </div>
     </div>
   </section>
 );
 
-const Captacion = () => {
+const Captacion = ({ t }) => {
   const [email, setEmail] = useState("");
   const [estado, setEstado] = useState("idle");
 
@@ -550,26 +549,26 @@ const Captacion = () => {
       <div className="relative z-10 max-w-2xl mx-auto text-center">
 
         <p className="text-[#10b981] text-xs font-bold tracking-[0.3em] uppercase mb-4">
-          Batcave Experience — Lista de espera
+          {t.captacionPill}
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-          Sé el primero en saber <br />
-          cuándo está disponible.
+          {t.captacionH2a} <br />
+          {t.captacionH2b}
         </h2>
         <p className="text-gray-400 mb-10 max-w-md mx-auto">
-          Más de 700 personas ya la han probado en eventos. Cuando abramos acceso directo, avisamos primero a esta lista.
+          {t.captacionP}
         </p>
 
         {estado === "ok" ? (
           <div className="inline-flex items-center gap-3 px-8 py-4 bg-[#10b981]/10 border border-[#10b981]/30 rounded-2xl text-[#10b981] font-bold">
-            ✓ Apuntado. Te avisamos cuando esté listo.
+            {t.captacionSuccess}
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
               required
-              placeholder="tu@email.com"
+              placeholder={t.captacionPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="flex-1 px-5 py-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/50 focus:outline-none focus:border-[#10b981] focus:bg-white/25 transition-all"
@@ -579,16 +578,16 @@ const Captacion = () => {
               disabled={estado === "enviando"}
               className="px-6 py-4 bg-marca-principal text-texto-sobre-accion font-bold rounded-xl hover:bg-marca-principal-hover hover:scale-105 hover:shadow-[0_0_25px_rgba(31,225,167,0.5)] active:scale-95 transition-all duration-200 disabled:opacity-50 shrink-0"
             >
-              {estado === "enviando" ? "Enviando..." : "Apuntarme"}
+              {estado === "enviando" ? t.captacionBtnSending : t.captacionBtnIdle}
             </button>
           </form>
         )}
 
         {estado === "error" && (
-          <p className="text-red-400 text-sm mt-3">Algo ha fallado. Inténtalo de nuevo.</p>
+          <p className="text-red-400 text-sm mt-3">{t.captacionError}</p>
         )}
 
-        <p className="text-gray-600 text-xs mt-6">Sin spam. Solo novedades de la Batcave Experience.</p>
+        <p className="text-gray-600 text-xs mt-6">{t.captacionDisclaimer}</p>
       </div>
     </section>
   );
@@ -597,17 +596,20 @@ const Captacion = () => {
 // --- COMPONENTE PRINCIPAL ---
 
 export default function Home() {
+  const { locale } = useLang()
+  const t = inicioI18n[locale] || inicioI18n.es
+
   return (
     <main className="bg-[#050505] min-h-screen selection:bg-[#10b981] selection:text-black">
-      <Hero />
-      <Credibilidad />
-      <Diferenciacion />
-      <Segmentacion />
-      <Servicios />
-      <ProximosEventos />
-      <Vision />
-      <Captacion />
-      <CTAFinal />
+      <Hero t={t} />
+      <Credibilidad t={t} />
+      <Diferenciacion t={t} />
+      <Segmentacion t={t} />
+      <Servicios t={t} />
+      <ProximosEventos t={t} />
+      <Vision t={t} />
+      <Captacion t={t} />
+      <CTAFinal t={t} />
       <Footer/>
     </main>
   );
