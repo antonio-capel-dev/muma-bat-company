@@ -124,7 +124,7 @@ export default function Voluntarios() {
                     key={i}
                     initial="oculto" whileInView="visible" viewport={{ once: true }}
                     variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
-                    className="bg-fondo-superficie rounded-2xl border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 overflow-hidden flex flex-col"
+                    className="bg-fondo-superficie rounded-2xl card-lila hover:opacity-90 transition-all duration-300 overflow-hidden flex flex-col"
                   >
                     {item.img && (
                       <div className="aspect-video overflow-hidden">
@@ -159,7 +159,7 @@ export default function Voluntarios() {
                     key={i}
                     initial="oculto" whileInView="visible" viewport={{ once: true }}
                     variants={{ oculto: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } } }}
-                    className="bg-fondo-superficie rounded-2xl border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 overflow-hidden flex flex-col"
+                    className="bg-fondo-superficie rounded-2xl card-lila hover:opacity-90 transition-all duration-300 overflow-hidden flex flex-col"
                   >
                     {item.img && (
                       <div className="aspect-video overflow-hidden">

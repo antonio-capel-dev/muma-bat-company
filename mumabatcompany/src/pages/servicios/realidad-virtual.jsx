@@ -45,7 +45,7 @@ const MODULOS_META = [
 ]
 
 const EVENTOS_IMGS = [
-  { img: '/images/plaza1.webp' },
+  { img: '/images/rv/rv-plaza-mayor_3_11zon.webp' },
   { img: '/images/Bat-Nigt-Malaga-1.webp' },
   { img: '/images/grutas-da-moeda.webp' },
   { img: '/images/-notranjski-muzej-.webp' },
@@ -231,34 +231,22 @@ export default function RealidadVirtual() {
             1. CABECERA GENERAL — Realidad Virtual
             ══════════════════════════════════════════════════════════════════ */}
         <section
-          className="relative flex items-center justify-center text-center overflow-hidden"
-          style={{ minHeight: '62vh' }}
+          className="relative flex items-center justify-center text-center overflow-hidden bg-[#050505]"
+          style={{ minHeight: '88vh' }}
           aria-label="Cabecera Realidad Virtual"
         >
-          <img
-            src="/images/VR-Malaga.webp"
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="eager"
-            fetchpriority="high"
-          />
-          {/* Overlay oscuro */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'linear-gradient(to bottom, rgba(11,17,23,0.82) 0%, rgba(11,17,23,0.65) 50%, rgba(11,17,23,0.94) 100%)',
-            }}
-            aria-hidden="true"
-          />
-          {/* Halo VR — lila atmosférico */}
+          {/* Dot grid sutil */}
+          <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(#a855f7_1px,transparent_1px)] bg-size-[36px_36px] pointer-events-none" aria-hidden="true" />
+          {/* Halo lila central */}
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                'radial-gradient(ellipse 70% 50% at 50% 60%, rgba(192,132,252,0.08) 0%, transparent 70%)',
-            }}
+            style={{ background: 'radial-gradient(ellipse 65% 55% at 50% 50%, rgba(168,85,247,0.18) 0%, transparent 70%)' }}
+            aria-hidden="true"
+          />
+          {/* Halo verde inferior izq */}
+          <div
+            className="absolute bottom-0 left-0 w-96 h-96 pointer-events-none"
+            style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%)' }}
             aria-hidden="true"
           />
 
@@ -427,18 +415,14 @@ export default function RealidadVirtual() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7 }}
-                  className="relative rounded-2xl overflow-hidden aspect-[16/9] bg-fondo-superficie border border-white/5"
+                  className="relative rounded-2xl overflow-hidden aspect-4/3 bg-fondo-superficie border border-white/5"
                 >
                   <img
                     src="/images/chica-realidad-virtual.webp"
                     alt={t.protagonistaImg1Alt}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: '50% 25%', filter: 'brightness(1.05) contrast(1.08) saturate(1.1)' }}
                     loading="eager"
-                  />
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{ background: 'linear-gradient(to top, rgba(11,17,23,0.4) 0%, transparent 50%)' }}
-                    aria-hidden="true"
                   />
                 </motion.div>
 
@@ -448,14 +432,14 @@ export default function RealidadVirtual() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.14 }}
-                  className="relative rounded-xl overflow-hidden aspect-[16/8] bg-fondo-superficie border border-white/5"
+                  className="relative rounded-xl overflow-hidden aspect-4/3 bg-fondo-superficie border border-white/5"
                 >
                   <img
                     src="/images/niña-feliz-realidad-virtual.webp"
                     alt={t.protagonistaImg2Alt}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover"
                     loading="lazy"
-                    style={{ filter: 'brightness(1.15) contrast(1.05) saturate(1.1)' }}
+                    style={{ objectPosition: '50% 20%', filter: 'brightness(1.15) contrast(1.05) saturate(1.15)' }}
                   />
                   <div
                     className="absolute inset-0 pointer-events-none"

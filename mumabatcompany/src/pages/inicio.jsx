@@ -154,7 +154,8 @@ const Diferenciacion = ({ t }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group relative p-10 rounded-4xl overflow-hidden border border-white/10 hover:border-[#10b981]/40 transition-all duration-500"
+              className="group relative p-10 rounded-4xl overflow-hidden transition-all duration-500"
+              style={{border:'2px solid transparent',backgroundImage:'linear-gradient(#0b1117,#0b1117),linear-gradient(135deg,rgba(139,92,246,0.45),rgba(139,92,246,0.1))',backgroundOrigin:'border-box',backgroundClip:'padding-box,border-box'}}
             >
               <div className="absolute inset-0 z-0">
                 <img
@@ -256,7 +257,7 @@ const Segmentacion = ({ t }) => {
             >
               <Link
                 to={p.link}
-                className="group relative flex flex-col h-full p-8 rounded-2xl border border-white/8 shadow-lg hover:border-marca-principal/30 transition-all duration-300 no-underline overflow-hidden"
+                className="group relative flex flex-col h-full p-8 rounded-2xl shadow-lg transition-all duration-300 no-underline overflow-hidden" style={{border:'2px solid transparent',backgroundImage:'linear-gradient(var(--color-fondo-superficie),var(--color-fondo-superficie)),linear-gradient(135deg,rgba(139,92,246,0.45),rgba(139,92,246,0.1))',backgroundOrigin:'border-box',backgroundClip:'padding-box,border-box'}}
               >
                 {/* Imagen de fondo */}
                 <div className="absolute inset-0 z-0">
@@ -326,8 +327,8 @@ const Servicios = ({ t }) => {
             <Link
               key={i}
               to={s.link}
-              className="group relative rounded-3xl border border-white/8 shadow-lg hover:border-marca-principal/40 transition-all duration-500 no-underline overflow-hidden flex flex-col justify-end"
-              style={{ height: 280 }}
+              className="group relative rounded-3xl shadow-lg transition-all duration-500 no-underline overflow-hidden flex flex-col justify-end"
+              style={{height:280,border:'2px solid transparent',backgroundImage:'linear-gradient(#0b1117,#0b1117),linear-gradient(135deg,rgba(139,92,246,0.45),rgba(139,92,246,0.1))',backgroundOrigin:'border-box',backgroundClip:'padding-box,border-box'}}
             >
               {/* Imagen de fondo */}
               <div className="absolute inset-0 z-0">
@@ -384,8 +385,8 @@ const ProximosEventos = ({ t }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group relative rounded-3xl overflow-hidden border border-white/10 hover:border-[#10b981]/40 transition-all duration-500"
-              style={{ height: 420 }}
+              className="group relative rounded-3xl overflow-hidden transition-all duration-500"
+              style={{height:420,border:'2px solid transparent',backgroundImage:'linear-gradient(#0b1117,#0b1117),linear-gradient(135deg,rgba(139,92,246,0.45),rgba(139,92,246,0.1))',backgroundOrigin:'border-box',backgroundClip:'padding-box,border-box'}}
             >
               {/* Imagen de fondo */}
               <img

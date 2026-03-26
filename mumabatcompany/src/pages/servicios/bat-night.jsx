@@ -244,7 +244,7 @@ export default function BatNight() {
             {/* Cita destacada */}
             <blockquote
               initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion}
-              className="relative rounded-2xl border border-marca-principal/20 bg-fondo-superficie px-8 py-10 text-center overflow-hidden"
+              className="relative rounded-2xl card-lila bg-fondo-superficie px-8 py-10 text-center overflow-hidden"
             >
               {/* Acento visual */}
               <div

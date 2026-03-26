@@ -113,7 +113,7 @@ export default function FormacionConsultoria() {
                     ({ titulo, desc, para, img }, i) => (
                       <div
                         key={i}
-                        className="bg-fondo-superficie rounded-2xl border border-white/5 hover:border-marca-principal/25 transition-colors duration-300 flex flex-col overflow-hidden"
+                        className="bg-fondo-superficie rounded-2xl card-lila hover:opacity-90 transition-all duration-300 flex flex-col overflow-hidden"
                       >
                         {img && (
                           <div className="aspect-video overflow-hidden">
@@ -163,7 +163,7 @@ export default function FormacionConsultoria() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="bg-fondo-superficie rounded-2xl border border-white/5 p-10 flex flex-col md:flex-row gap-10 items-center"
+              className="bg-fondo-superficie rounded-2xl card-lila p-10 flex flex-col md:flex-row gap-10 items-center"
             >
               <div className="flex-1">
                 <p className="text-xs font-bold tracking-[0.2em] text-marca-principal uppercase mb-3">

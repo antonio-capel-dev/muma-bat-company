@@ -154,7 +154,7 @@ export default function Nosotros() {
             style={{ height: '420px' }}
           >
             <img
-              src="/images/colonia_murcielago01.webp"
+              src="/images/innovacion-metodologia-propia.webp"
               alt={t.heroImgAlt}
               className="w-full h-full object-cover object-center"
             />
