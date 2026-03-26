@@ -1,7 +1,8 @@
 // Página MUMA — quiénes somos, origen, pilares, credenciales y cierre
+import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { Camera, Newspaper, ArrowRight } from 'lucide-react'
+import { Camera, Newspaper, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import Footer from '../components/footer'
 import { useLang } from '../context/LangContext'
 import { nosotrosI18n } from '../data/i18n/nosotrosI18n'
@@ -47,17 +48,43 @@ const alianzasImagenes = [
 ]
 
 const medios = [
-  { nombre: 'La Opinión de Málaga', img: '/images/La-opinion-de-Malaga.webp' },
-  { nombre: 'Málaga Hoy',           img: '/images/malaga-hoy.webp' },
-  { nombre: 'El Español',           img: '/images/El-Espanol-de-Malaga.webp' },
-  { nombre: 'Andalucía Lab',        img: '/images/Andalucia-Lab.webp' },
-  { nombre: 'Hola Andalucía',       img: '/images/hola-andalucia.webp' },
-  { nombre: 'Canal Málaga',         img: '/images/canal_malaga.webp' },
+  { img: '/images/noticia-1.webp',  medio: 'Málaga Hoy',           año: 2022, titulo: 'Murciélagos, un "plaguicida" natural en los viñedos malagueños',                 url: 'https://www.malagahoy.es/malaga/Murcielagos-plaguicida-natural_0_1700230453.html' },
+  { img: '/images/noticia-2.webp',  medio: 'Málaga Hoy',           año: 2022, titulo: 'Los murciélagos, la solución contra las plagas de mosquitos en el Guadalhorce', url: 'https://www.malagahoy.es/malaga/murcielago-solucion-natural-mosquito-Gualdalhorce_0_1720029457.html' },
+  { img: '/images/noticia-3.webp',  medio: 'Málaga Hoy',           año: 2022, titulo: 'Murciélagos contra los mosquitos en el Parador de Golf de Málaga',               url: 'https://www.malagahoy.es/malaga/Murcielagos-contra-mosquitos-Parador-Golf-Malaga_0_1733228800.html' },
+  { img: '/images/noticia-4.webp',  medio: 'Málaga Hoy',           año: 2022, titulo: 'El colegio de Málaga que emplea los murciélagos para controlar las plagas',      url: 'https://www.malagahoy.es/malaga/colegio-Malaga-murcielagos-controlar-plagas-mosquitos_0_1741927739.html' },
+  { img: '/images/noticia-5.webp',  medio: 'Málaga Hoy',           año: 2023, titulo: 'Vivir en una cueva de murciélagos gracias al metaverso',                          url: 'https://www.malagahoy.es/malaga/vivir-cueva-murcielagos-metaverso-malaguenos_0_1831018149.html' },
+  { img: '/images/noticia-6.webp',  medio: 'Málaga Hoy',           año: 2025, titulo: 'El Polo Digital, cabeza tractora de la innovación en Málaga',                    url: 'https://www.malagahoy.es/malaga/polo-digital-cabeza-tractora-innovacion-malaga_0_2004160346.html' },
+  { img: '/images/noticia-7.webp',  medio: 'Málaga Hoy',           año: 2025, titulo: 'Selwo y Murciélagos Málaga colaboran en un proyecto de conservación',            url: 'https://www.malagahoy.es/malaga/selwo-murcielagos-malaga-proyecto-consevacion_0_2004334845.html' },
+  { img: '/images/noticia-8.webp',  medio: 'Diario SUR',           año: 2025, titulo: 'Murciélagos y control del mosquito tigre en la Costa del Sol',                   url: 'https://www.diariosur.es/costadelsol/murcielagos-mosquito-tigre-20250812111305-nt.html' },
+  { img: '/images/noticia-9.webp',  medio: 'SUR in English',       año: 2025, titulo: 'Bats against tiger mosquitoes on the Costa del Sol',                              url: 'https://www.surinenglish.com/malaga/bats-against-tiger-mosquitoes-20250818075053-nt.html' },
+  { img: '/images/noticia-10.webp', medio: 'Málaga Hoy',           año: 2025, titulo: 'La Cueva de Nerja acerca a sus visitantes los beneficios de los murciélagos',    url: 'https://www.malagahoy.es/malaga/cueva-nerja-visitantes-beneficios-murcielagos_0_2004893931.html' },
+  { img: '/images/noticia-11.webp', medio: 'La Opinión de Málaga', año: 2025, titulo: 'Ecoturismo en Andalucía y Asturias',                                              url: 'https://www.laopiniondemalaga.es/malaga/2025/11/02/ecoturismo-andalucia-asturias-basanconsolidarse-123265443.html' },
+  { img: '/images/noticia-12.webp', medio: 'El Confidencial',      año: 2025, titulo: 'Murciélagos vs. virus del Nilo: la cruzada de una empresa malagueña',            url: 'https://www.elconfidencial.com/espana/andalucia/2025-11-17/murcielagos-malaga-mosquitos-plagas-conservacion-1hms_4246141/' },
+  { img: '/images/noticia-13.webp', medio: 'Málaga Hoy',           año: 2025, titulo: 'Los murciélagos, grandes aliados contra plagas y los mosquitos del Virus del Nilo', url: 'https://www.malagahoy.es/malaga/murcielagos-aliados-mosquitos-virus-nilo-malaga_0_2005367409.html' },
+  { img: '/images/noticia-14.webp', medio: 'Europa Press',         año: 2026, titulo: 'Startups agro explican en 4YFN cómo afrontar los retos del campo español',       url: 'https://www.europapress.es/epagro/agricultura/noticia-mwc-startups-agro-explican-4yfn-afrontar-retos-campo-espanol-innovando-20260303101148.html' },
 ]
 
 export default function Nosotros() {
   const { locale } = useLang()
   const t = nosotrosI18n[locale] || nosotrosI18n.es
+
+  const [mediosIdx, setMediosIdx] = useState(0)
+  const [mediosVisible, setMediosVisible] = useState(4)
+
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth >= 1024) setMediosVisible(4)
+      else if (window.innerWidth >= 640) setMediosVisible(2)
+      else setMediosVisible(1)
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
+
+  useEffect(() => {
+    setMediosIdx(i => Math.min(i, medios.length - mediosVisible))
+  }, [mediosVisible])
 
   return (
     <>
@@ -539,26 +566,78 @@ export default function Nosotros() {
 
           {/* Medios */}
           <div className="px-6 mt-14">
-            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="max-w-4xl mx-auto">
-              <div className="flex items-center justify-center gap-2 mb-8">
+            <motion.div initial="oculto" whileInView="visible" viewport={{ once: true }} variants={varianteSeccion} className="max-w-5xl mx-auto">
+              <div className="flex items-center justify-center gap-2 mb-4">
                 <Newspaper size={14} className="text-marca-principal" aria-hidden="true" />
                 <p className="text-xs font-semibold tracking-widest text-texto-secundario uppercase">{t.mediosLabel}</p>
               </div>
-              <div className="flex flex-wrap justify-center items-center gap-6">
-                {medios.map((medio, i) => (
+              <p className="text-center text-xs text-texto-secundario mb-8">+14 apariciones en medios (2022–2026)</p>
+
+              {/* Carrusel manual con flechas */}
+              <div className="relative flex items-center gap-3">
+
+                {/* Flecha izquierda */}
+                <button
+                  onClick={() => setMediosIdx(i => Math.max(0, i - mediosVisible))}
+                  disabled={mediosIdx === 0}
+                  className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-fondo-superficie border border-white/10 hover:border-marca-principal/50 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                  aria-label="Anterior"
+                >
+                  <ChevronLeft size={18} className="text-texto-principal" />
+                </button>
+
+                {/* Ventana del carrusel */}
+                <div className="flex-1 overflow-hidden">
                   <div
-                    key={i}
-                    className="flex items-center justify-center opacity-50 hover:opacity-100 transition-opacity duration-300"
-                    style={{ height: '48px' }}
-                    title={medio.nombre}
+                    className="flex"
+                    style={{
+                      transform: `translateX(${-mediosIdx * 100 / mediosVisible}%)`,
+                      transition: 'transform 0.4s ease'
+                    }}
                   >
-                    <img
-                      src={medio.img}
-                      alt={medio.nombre}
-                      className="max-h-full max-w-35 object-contain"
-                    />
+                    {medios.map((articulo, i) => (
+                      <a
+                        key={i}
+                        href={articulo.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 px-2 group"
+                        style={{ minWidth: `${100 / mediosVisible}%`, maxWidth: `${100 / mediosVisible}%` }}
+                      >
+                        <div className="flex flex-col rounded-2xl bg-fondo-superficie border border-white/5 hover:border-marca-principal/30 transition-colors duration-300 overflow-hidden h-full">
+                          {/* Imagen superior */}
+                          <div className="relative overflow-hidden shrink-0" style={{ height: '140px' }}>
+                            <img
+                              src={articulo.img}
+                              alt={articulo.titulo}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                            {/* Badge año */}
+                            <span className="absolute top-2 left-2 text-xs font-semibold px-2 py-0.5 rounded-full bg-marca-principal text-texto-sobre-accion">
+                              {articulo.año}
+                            </span>
+                          </div>
+                          {/* Contenido */}
+                          <div className="p-4 flex flex-col gap-2 flex-1">
+                            <p className="text-xs text-texto-secundario">{articulo.medio}</p>
+                            <p className="text-xs font-semibold text-white leading-snug">{articulo.titulo}</p>
+                          </div>
+                        </div>
+                      </a>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                {/* Flecha derecha */}
+                <button
+                  onClick={() => setMediosIdx(i => Math.min(medios.length - mediosVisible, i + mediosVisible))}
+                  disabled={mediosIdx >= medios.length - mediosVisible}
+                  className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-fondo-superficie border border-white/10 hover:border-marca-principal/50 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                  aria-label="Siguiente"
+                >
+                  <ChevronRight size={18} className="text-texto-principal" />
+                </button>
+
               </div>
             </motion.div>
           </div>
