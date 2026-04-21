@@ -41,8 +41,8 @@ interface Lead {
 // ── Helpers ────────────────────────────────────────────────────────────
 function parseRevisiones(obs: string): { numero: string; fecha: string; estado: string }[] {
   const regex = /(\d+)º\s*[Rr]evisión\s*\(([^)]+)\)\s*[:：]\s*([^/\n]+)/g
-  const revisiones = []
-  let m
+  const revisiones: { numero: string; fecha: string; estado: string }[] = []
+  let m: RegExpExecArray | null
   while ((m = regex.exec(obs)) !== null) {
     revisiones.push({ numero: m[1], fecha: m[2].trim(), estado: m[3].trim() })
   }

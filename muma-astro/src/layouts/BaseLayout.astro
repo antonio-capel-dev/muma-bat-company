@@ -53,16 +53,41 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- JSON-LD Organization schema para rich results B2B -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'MUMA BAT COMPANY',
+    url: 'https://mumabatcompany.com',
+    logo: 'https://mumabatcompany.com/images/MUMA LOGO VECTOR-05_resultado.webp',
+    description: 'Empresa especializada en conservación de quirópteros y soluciones B2B para Ayuntamientos, Museos y Centros Educativos.',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Málaga',
+      addressRegion: 'Andalucía',
+      addressCountry: 'ES',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: 'info@murcielagosmalaga.com',
+      telephone: '+34-664-213-450',
+      contactType: 'customer service',
+      availableLanguage: ['Spanish', 'English'],
+    },
+    sameAs: [
+      'https://www.instagram.com/murcielagosmalaga',
+      'https://www.facebook.com/MurcielagosMalaga/',
+      'https://www.linkedin.com/company/murci%C3%A9lagos-m%C3%A1laga/',
+      'https://www.murcielagosmalaga.com',
+    ],
+  })} />
+
+  <slot name="head" />
 </head>
 <body class="bg-fondo-base text-white">
-  <Navbar client:load />
+  <Navbar client:idle />
   <slot />
   <Footer />
   <WhatsAppButton />
-
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </body>
 </html>

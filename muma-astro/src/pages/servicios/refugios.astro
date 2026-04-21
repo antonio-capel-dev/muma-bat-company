@@ -15,6 +15,9 @@ import FormularioMuma from '../../components/formularioContacto'
   description="Refugios para murciélagos en Málaga. Control biológico de plagas sin pesticidas: mosca del olivo, procesionaria, mosquito tigre. Fabricación artesanal e instalación por nuestro equipo."
   canonical="https://mumabatcompany.com/servicios/refugios"
 >
+  {/* Leaflet CSS+JS solo en esta página (antes en BaseLayout = bloqueaba todo el sitio) */}
+  <link slot="head" rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script is:inline slot="head" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
   <main class="min-h-screen bg-fondo-base pt-20">
 
     {/* ── HERO ── */}

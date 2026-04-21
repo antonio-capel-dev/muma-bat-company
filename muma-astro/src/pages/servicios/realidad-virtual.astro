@@ -447,8 +447,6 @@ const ALIANZAS = [
               tablaBD="solicitudes_vr"
               asuntoCorreo="[Web VR] Solicitud demostración Batcave Experience"
               textoBoton="SOLICITAR DEMOSTRACIÓN GRATUITA"
-
-              {/* Selector 1: tipo de espacio — quién eres */}
               selectName="tipo_espacio"
               selectLabel="¿Qué tipo de espacio representas?"
               opcionesSelect={[
@@ -460,8 +458,6 @@ const ALIANZAS = [
                 { valor: 'naturaleza',    texto: 'Espacio natural o cueva turística' },
                 { valor: 'otro',          texto: 'Otro' },
               ]}
-
-              {/* Selector 2: servicio de interés — qué producto quieren */}
               mostrarSelect2={true}
               selectName2="servicio_interes"
               selectLabel2="¿Qué servicio te interesa?"
@@ -471,11 +467,7 @@ const ALIANZAS = [
                 { valor: 'bat_night',     texto: 'Bat Night / Salida nocturna' },
                 { valor: 'formacion',     texto: 'Formación y consultoría' },
               ]}
-
-              {/* Teléfono: obligatorio para demos B2B */}
               mostrarTelefono={true}
-
-              {/* Participantes: select guiado, no campo libre */}
               mostrarParticipantes={true}
               opcionesParticipantes={[
                 { valor: 'menos_20',   texto: 'Menos de 20 personas' },
@@ -483,11 +475,7 @@ const ALIANZAS = [
                 { valor: '50_100',     texto: '50 – 100 personas' },
                 { valor: 'mas_100',    texto: 'Más de 100 personas' },
               ]}
-
-              {/* Sin fecha: el usuario todavía no sabe cuándo, no bloquear */}
               mostrarFecha={false}
-
-              {/* RGPD alineado con VR y tecnología, no "consultoría ambiental" */}
               textoRGPD="Acepto el tratamiento de mis datos para recibir información sobre los servicios de MUMA Bat Company y esta solicitud."
             />
 

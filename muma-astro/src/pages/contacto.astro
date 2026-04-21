@@ -44,8 +44,8 @@ const metodos = [
     <section class="max-w-4xl mx-auto px-6 pb-32">
       <div class="bg-[#0c0c0c] border border-white/5 rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden">
         <h2 class="text-2xl font-bold mb-10">Envío de Solicitud Técnica</h2>
-        <FormularioMuma 
-          client:load
+        <FormularioMuma
+          client:visible
           tablaBD="contactos"
           asuntoCorreo="[Web Contacto] Nueva consulta técnica"
           textoBoton="ENVIAR A DIRECCIÓN TÉCNICA"
@@ -57,10 +57,13 @@ const metodos = [
           selectName="motivo"
           selectLabel="Motivo de la consulta"
           opcionesSelect={[
+            { valor: 'Realidad Virtual', texto: 'Batcave VR — Museos y centros' },
+            { valor: 'Bat Night', texto: 'Organizar Bat Night — Ayuntamientos / reservas' },
             { valor: 'Refugios', texto: 'Refugios para murciélagos' },
-            { valor: 'Realidad Virtual', texto: 'Realidad Virtual / Museo VR' },
-            { valor: 'Bat Night', texto: 'Organizar Bat Night' },
+            { valor: 'Plan Biodiversidad Municipal', texto: 'Plan de biodiversidad municipal' },
+            { valor: 'Estudio Bioacústico', texto: 'Estudio bioacústico / impacto ambiental' },
             { valor: 'Formación', texto: 'Consultoría y Formación' },
+            { valor: 'Otros', texto: 'Otra consulta institucional' },
           ]}
           mostrarFecha={false}
           mostrarParticipantes={false}
