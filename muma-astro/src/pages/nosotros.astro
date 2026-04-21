@@ -1,11 +1,210 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
-import NosotrosPage from '../components/NosotrosPage'
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MediosCarrusel from '../components/MediosCarrusel';
+
+const pilares = [
+  { titulo: 'Ciencia y conservación', texto: 'Todo empieza aquí. Estudiamos murciélagos sobre el terreno, generamos datos bioacústicos y trabajamos con metodología científica contrastada. El conocimiento no es un adorno: es la base desde la que se diseña cada servicio.', img: '/images/murcielago.webp', imgAlt: 'Murciélago en hábitat natural — base científica de MUMA', imgPos: 'object-center' },
+  { titulo: 'Tecnología e innovación', texto: 'La tecnología no es el fin, es el vehículo. La realidad virtual nos permite llevar la cueva a las personas sin pisar el hábitat. El monitoreo acústico nos permite medir lo que hacemos. Innovamos para que la naturaleza gane, no para impresionar.', img: '/images/chica-realidad-virtual.webp', imgAlt: 'Experiencia de realidad virtual inmersiva de MUMA', imgPos: 'object-top' },
+  { titulo: 'Comunidad e impacto social', texto: 'El murciélago ibérico no se protege solo con ciencia. Se protege cuando las personas lo entienden, cuando las instituciones lo integran y cuando las empresas ven su valor económico real. Construimos comunidad porque la conservación es un esfuerzo colectivo.', img: '/images/1batnights.webp', imgAlt: 'Bat Night — evento de MUMA con comunidad y participación pública', imgPos: 'object-center' },
+];
+
+const credenciales = [
+  { sigla: 'ST3ER', nombre: 'Proyecto europeo ST3ER', descripcion: 'Investigación en 3 países (España, Portugal, Eslovenia). Financiado por SMP COSME de la UE. Resultado: Batcave Experience es un producto comercial activo, con más de 700 personas en 2025, sin fase piloto.', img: '/images/Murcielagos-Malaga-ST3ER-Proyect-2-1024x266.webp', imgAlt: 'Logo Proyecto ST3ER — Murciélagos Málaga' },
+  { sigla: 'SECEMU', nombre: 'Sociedad Española para la Conservación del Murciélago', descripcion: 'Miembros activos de SECEMU. Colaboramos en el Atlas de Distribución de Quirópteros Ibéricos y en programas de seguimiento de colonias.', img: '/images/Logo_SECEMU.webp', imgAlt: 'Logo SECEMU' },
+  { sigla: 'EUROBATS', nombre: 'Acuerdo EUROBATS', descripcion: 'Alineados con el marco de conservación de murciélagos de la Unión Europea. Nuestros proyectos siguen los protocolos de monitorización reconocidos internacionalmente.', img: '/images/EUROBATS_logo.webp', imgAlt: 'Logo EUROBATS' },
+  { sigla: 'FEDER', nombre: 'La Brújula | Cámara de Comercio de Málaga', descripcion: 'Apoyo institucional de La Brújula (financiado FEDER). Validación por parte del ecosistema empresarial e institucional de Málaga.', img: '/images/La-Brujula-150x150.webp', imgAlt: 'Logo La Brújula — Cámara de Comercio de Málaga' },
+];
+
+const datosMurcielagos = [
+  { cifra: '3.000', titulo: 'insectos por noche', texto: 'Un solo murciélago. Sin coste operativo, sin pesticidas, sin residuos. Por eso instalamos refugios: cada colonia es un sistema de control de plagas permanente.' },
+  { cifra: 'Único', titulo: 'archivo bioacústico ibérico', texto: 'Grabaciones de ultrasonidos, mapas de distribución y datos de colonias recogidos en campo durante años. Hemos buscado equivalentes y no existe ninguno similar generado por una empresa privada en España.' },
+  { cifra: '+700', titulo: 'personas en experiencia VR', texto: 'En museos, reservas naturales y eventos culturales de España y Portugal durante 2025. La experiencia está terminada y es un producto comercial activado.' },
+  { cifra: 'En declive', titulo: 'sus poblaciones disminuyen', texto: 'Pesticidas, deforestación, pérdida de refugios. MUMA existe porque hay un problema real. Cada refugio instalado y cada persona formada es una respuesta directa.' },
+];
+
+const alianzasImagenes = [
+  { nombre: 'Junta de Andalucía', img: '/images/junta-andalucia.webp', url: 'https://www.juntadeandalucia.es' },
+  { nombre: 'Málaga TechPark', img: '/images/malaga-tech-park.webp', url: 'https://www.ptp.es' },
+  { nombre: 'Plaza Mayor Málaga', img: '/images/plaza-mayor.webp', url: 'https://www.plazamayor.es' },
+  { nombre: 'Centro Europeo de Empresas', img: '/images/centro-europeo-empresas.webp', url: 'https://www.ceei.es' },
+  { nombre: 'Polo de Contenido Digital', img: '/images/polo-contenido-digital.webp', url: '#' },
+  { nombre: 'Red de Emprendedores', img: '/images/red-emprendedores.webp', url: '#' },
+  { nombre: 'Unión Europea Proyecto ST3ER', img: '/images/europa.webp', url: '#' },
+];
 ---
-<BaseLayout
-  title="MUMA BAT COMPANY — Quiénes somos"
-  description="MUMA BAT COMPANY: empresa especializada en conservación de quirópteros mediante ciencia de campo, tecnología inmersiva y soluciones aplicadas. Proyecto europeo ST3ER, miembros de SECEMU."
-  canonical="https://mumabatcompany.com/nosotros"
->
-  <NosotrosPage client:visible />
+<BaseLayout title="MUMA BAT COMPANY — Quiénes somos" description="MUMA BAT COMPANY: empresa especializada en conservación de quirópteros mediante ciencia de campo, tecnología inmersiva y soluciones aplicadas. Proyecto europeo ST3ER, miembros de SECEMU." canonical="https://mumabatcompany.com/nosotros">
+  <main>
+    <section class="relative bg-fondo-base pt-64 pb-0 px-6 overflow-hidden">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full pointer-events-none" style="background: radial-gradient(ellipse, rgba(31,225,167,0.07) 0%, transparent 65%)" aria-hidden="true"></div>
+      <div class="relative z-10 max-w-4xl mx-auto text-center pb-16">
+        <p class="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-5">Polo Digital de Málaga · Desde 2018</p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-texto-titulo mb-6">Empezamos protegiendo murciélagos.<br /><span class="text-marca-principal">Hoy convertimos ese conocimiento en servicios reales.</span></h1>
+        <p class="text-lg sm:text-xl text-texto-secundario leading-relaxed max-w-2xl mx-auto mb-10">Todo lo que hacemos parte de la misma idea: no imponemos soluciones a la naturaleza, aprendemos de ella para colaborar con ella. MUMA nace de la cooperación y la escucha del campo, de las colonias, del territorio. No somos divulgadores ni una ONG. Somos una empresa especializada que trabaja con instituciones, administraciones y empresas que necesitan soluciones con base científica real.</p>
+        <div class="flex flex-wrap justify-center gap-8">
+          <div class="text-center"><p class="text-xl font-bold text-marca-principal">ST3ER</p><p class="text-xs text-texto-secundario mt-1 tracking-wide">Proyecto europeo UE</p></div>
+          <div class="text-center"><p class="text-xl font-bold text-marca-principal">+700</p><p class="text-xs text-texto-secundario mt-1 tracking-wide">personas en experiencia VR</p></div>
+          <div class="text-center"><p class="text-xl font-bold text-marca-principal">Único</p><p class="text-xs text-texto-secundario mt-1 tracking-wide">archivo bioacústico ibérico</p></div>
+        </div>
+      </div>
+      <div class="relative max-w-5xl mx-auto rounded-t-3xl overflow-hidden" style="height: 420px">
+        <img src="/images/colonia_murcielago01.webp" alt="Colonia de murciélagos en cueva natural" class="w-full h-full object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-t from-fondo-secundario via-transparent to-transparent"></div>
+        <div class="absolute bottom-5 left-6 bg-fondo-base/80 backdrop-blur-sm border border-marca-principal/20 rounded-xl px-4 py-2">
+          <p class="text-xs font-semibold text-marca-principal uppercase tracking-widest">Trabajo de campo real</p>
+          <p class="text-xs text-texto-secundario mt-0.5">Seguimiento de colonias · Proyecto ST3ER</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-fondo-secundario py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div>
+            <p class="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">De dónde venimos</p>
+            <h2 class="text-3xl sm:text-4xl font-bold text-texto-titulo mb-8">Empezamos con refugios de madera.<br />La tecnología nos abrió otro camino.</h2>
+            <blockquote class="border-l-2 border-marca-principal pl-5 mb-7">
+              <p class="text-texto-titulo font-semibold text-lg leading-snug">"No domesticas el murciélago construyendo un refugio. Aprendes de la naturaleza para colaborar con ella."</p>
+            </blockquote>
+            <div class="space-y-5 text-texto-secundario leading-relaxed text-base">
+              <p>Todo empezó en campo: construyendo refugios artesanales, estudiando colonias, midiendo ultrasonidos. Pero rápido nos dimos cuenta de que el problema no era solo falta de hábitat era falta de conexión. La mayoría de las personas no saben lo que hacen los murciélagos ni por qué están desapareciendo.</p>
+              <p>Cuando empezamos a digitalizar cuevas reales en 3D, algo cambió. La tecnología nos abrió un campo de posibilidades que no habíamos planeado: llevar el hábitat a las personas sin pisarlo, medir en tiempo real lo que nunca se había medido, construir el primer archivo bioacústico colaborativo de quirópteros ibéricos. Un archivo que, hoy, no tiene equivalente en ningún otro sitio.</p>
+              <p>De ahí surgió el ecosistema completo de MUMA: experiencias inmersivas, consultoría bioacústica, control biológico de plagas, educación ambiental, Bat Nights. <span class="text-texto-titulo font-medium">Se llama company porque es exactamente eso:</span> muchas líneas de acción con el mismo punto de vista debajo.</p>
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden" style="height: 580px">
+            <img src="/images/solucion-ecologica-murcielagos-727x1024.webp" alt="Instalación de refugio ecológico" class="w-full h-full object-cover object-top" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-fondo-base py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14">
+          <p class="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Cómo trabajamos</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Tres pilares. Un mismo criterio.</h2>
+          <p class="text-texto-secundario max-w-xl mx-auto">No elegimos uno de los tres. Los tres están presentes en cada proyecto que hacemos.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {pilares.map(({ titulo, texto, img, imgAlt, imgPos }) => (
+            <div class="bg-fondo-superficie rounded-2xl overflow-hidden border border-white/5 hover:border-purple-400 transition-colors duration-300 group">
+              <div class="relative overflow-hidden" style="height: 240px">
+                <img src={img} alt={imgAlt} class={`w-full h-full object-cover ${imgPos} transition-transform duration-700 group-hover:scale-105`} />
+                <div class="absolute inset-0 bg-gradient-to-t from-fondo-superficie/80 via-fondo-superficie/10 to-transparent" />
+              </div>
+              <div class="p-7">
+                <h3 class="text-lg font-bold text-texto-titulo mb-3 leading-snug">{titulo}</h3>
+                <p class="text-sm text-texto-secundario leading-relaxed">{texto}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-fondo-secundario py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div class="relative rounded-2xl overflow-hidden order-last lg:order-first" style="height: 420px">
+            <img src="/images/Image_VRglases.webp" alt="Experiencia Batcave" class="w-full h-full object-cover object-top" />
+            <div class="absolute inset-0 bg-gradient-to-t from-fondo-secundario/60 via-transparent to-transparent" />
+            <div class="absolute top-5 left-5 flex items-center gap-2 bg-fondo-base/80 backdrop-blur-sm border border-marca-principal/30 rounded-xl px-4 py-2">
+              <span class="w-2 h-2 rounded-full bg-marca-principal animate-pulse shrink-0" />
+              <p class="text-xs font-semibold text-marca-principal tracking-wide">Producto activo · Disponible ahora</p>
+            </div>
+          </div>
+          <div>
+            <p class="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Tecnología aplicada</p>
+            <h2 class="text-3xl sm:text-4xl font-bold text-texto-titulo mb-6 leading-tight">Batcave Experience.<br /><span class="text-marca-principal">No es un prototipo. Está funcionando.</span></h2>
+            <div class="space-y-4 text-texto-secundario leading-relaxed text-base mb-8">
+              <p>La Batcave Experience es la experiencia de realidad virtual inmersiva de MUMA: una cueva real digitalizada en 3D, con murciélagos, ultrasonidos y datos de campo reales. La lleva el visitante sin pisar el hábitat.</p>
+              <p>No es una demo ni un prototipo. Está terminada, validada y ya ha pasado más de 700 personas en 2025 en museos, reservas naturales y eventos culturales de España y Portugal. Está disponible para instalación en cualquier espacio.</p>
+              <p class="text-texto-titulo font-medium">Es lo que separa a MUMA de cualquier centro de interpretación convencional: una experiencia que no museifica la ciencia, sino que la pone en tiempo real delante del visitante.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-fondo-secundario py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14">
+          <p class="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Avales y credenciales</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Base real</h2>
+          <p class="text-texto-secundario max-w-xl mx-auto">El proyecto europeo, las asociaciones científicas y los programas institucionales no son decoración. Son la base desde la que se toman decisiones.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {credenciales.map((cred) => (
+            <div class="bg-fondo-superficie rounded-2xl overflow-hidden border border-white/5 hover:border-marca-principal/25 transition-colors duration-300">
+              <div class="flex items-center justify-center px-8 py-6">
+                <div class="bg-white rounded-2xl flex items-center justify-center px-6 py-4 w-full" style="min-height: 90px">
+                  <img src={cred.img} alt={cred.imgAlt} class="max-h-[70px] max-w-full object-contain" />
+                </div>
+              </div>
+              <div class="p-6 flex gap-4">
+                <div class="shrink-0 mt-0.5"><span class="inline-block px-2 py-1 rounded-lg bg-marca-principal/10 text-marca-principal text-xs font-bold tracking-wide">{cred.sigla}</span></div>
+                <div><h3 class="text-sm font-bold text-texto-titulo mb-2 leading-snug">{cred.nombre}</h3><p class="text-sm text-texto-secundario leading-relaxed">{cred.descripcion}</p></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-fondo-base py-20 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <p class="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">El equipo</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-texto-titulo">Las personas detrás de MUMA</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="bg-fondo-superficie rounded-2xl overflow-hidden border border-white/5 hover:border-marca-principal/25 transition-colors duration-300">
+            <img src="/images/antonio-moret.webp" alt="Antonio Moret, CEO de MUMA BAT COMPANY" class="w-full h-64 object-cover object-top" />
+            <div class="p-7">
+              <p class="text-xs font-semibold text-marca-principal uppercase tracking-wider mb-1">Fundador · Investigador de quirópteros</p>
+              <h3 class="text-lg font-bold text-texto-titulo mb-3">Antonio Moret</h3>
+              <p class="text-sm text-texto-secundario leading-relaxed mb-4">Más de una década estudiando colonias de murciélagos sobre el terreno. Coinvestigador del proyecto europeo ST3ER en España, Portugal y Eslovenia. Responsable del único archivo bioacústico colaborativo de quirópteros ibéricos generado por una empresa privada en España.</p>
+            </div>
+          </div>
+          <div class="bg-fondo-superficie rounded-2xl overflow-hidden border border-white/5 hover:border-marca-principal/25 transition-colors duration-300">
+            <img src="/images/laura.webp" alt="Laura Smit, Manager de MUMA BAT COMPANY" class="w-full h-64 object-cover object-top" />
+            <div class="p-7">
+              <p class="text-xs font-semibold text-marca-principal uppercase tracking-wider mb-1">Manager · Coordinación</p>
+              <h3 class="text-lg font-bold text-texto-titulo mb-3">Laura Smit</h3>
+              <p class="text-sm text-texto-secundario leading-relaxed">Gestión de proyectos sostenibles e investigación científica. Coordina las alianzas institucionales de MUMA y supervisa la ejecución de los programas de conservación, educación ambiental y relaciones con entidades públicas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-fondo-base py-20 overflow-hidden">
+      <style>
+        @keyframes mumaScroll {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .muma-carrusel-track { animation: mumaScroll 32s linear infinite; }
+        .muma-carrusel-track:hover { animation-play-state: paused; }
+      </style>
+      <div class="px-6 text-center mb-12 max-w-4xl mx-auto">
+        <p class="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Red y visibilidad</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Instituciones que respaldan a MUMA</h2>
+      </div>
+      <div class="relative overflow-hidden mb-16">
+        <div class="flex overflow-hidden">
+          <div class="muma-carrusel-track flex gap-5 items-stretch" style="width: max-content">
+            {[...alianzasImagenes, ...alianzasImagenes].map((item) => (
+              <a href={item.url} target="_blank" rel="noopener noreferrer" class="block rounded-2xl overflow-hidden border border-white/5 hover:border-marca-principal/30 transition-colors duration-300 shrink-0" style="width: 300px; height: 200px" title={item.nombre}>
+                <img src={item.img} alt={item.nombre} class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <MediosCarrusel client:visible />
+    </section>
+
+  </main>
 </BaseLayout>

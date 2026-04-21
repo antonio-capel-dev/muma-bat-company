@@ -1,8 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import NotFoundPage from '../components/NotFoundPage'
 ---
 
 <BaseLayout title="Página no encontrada | MUMA BAT COMPANY">
-  <NotFoundPage client:only="react" />
+  <main class="min-h-screen bg-fondo-base flex flex-col items-center justify-center px-6 text-center">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <lottie-player 
+      src="/animations/The Bat.json" 
+      background="transparent" 
+      speed="1" 
+      style="width: 260px; height: 260px;" 
+      loop 
+      autoplay>
+    </lottie-player>
+    
+    <p class="text-xs font-bold tracking-[0.3em] text-marca-principal uppercase mb-4">Error 404</p>
+    <h1 class="text-4xl sm:text-5xl font-bold text-texto-titulo mb-4 leading-tight">
+      Este murciélago <br /> se ha perdido.
+    </h1>
+    <p class="text-texto-secundario text-lg mb-10 max-w-sm">
+      La página que buscas no existe o ha cambiado de ubicación.
+    </p>
+    <a href="/" class="inline-flex items-center gap-2 px-8 py-4 bg-marca-principal text-black font-bold rounded-xl hover:opacity-90 transition-opacity no-underline">
+      Volver al inicio 
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+  </main>
 </BaseLayout>

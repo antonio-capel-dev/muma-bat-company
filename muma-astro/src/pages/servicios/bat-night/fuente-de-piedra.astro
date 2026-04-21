@@ -1,7 +1,177 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro'
-import BatNightFuentePiedraPage from '../../../components/BatNightFuentePiedraPage'
+import FormularioMuma from '../../../components/formularioContacto'
+
+const destacados = [
+  'Reserva natural protegida de importancia internacional (humedal)',
+  'Programa completo de educación ambiental sobre quirópteros',
+  'Experiencia VR integrada en entorno natural',
+  'Público familiar y escolar como audiencia principal',
+  'Ecosistema de humedal: hábitat clave para murciélagos insectívoros',
+  'Conexión entre biodiversidad acuática y quiropterofauna local',
+  'Actividades adaptadas para todas las edades',
+]
+
+const fotos = [
+  { src: '/images/fotos_batnight/laguna-1.webp', alt: 'Actividad nocturna Bat Night en entorno natural' },
+  { src: '/images/fotos_batnight/laguna-2.webp', alt: 'Experiencia VR en entorno natural' },
+  { src: '/images/fotos_batnight/laguna-3.webp', alt: 'Laguna de Fuente de Piedra al atardecer' },
+  { src: '/images/fotos_batnight/laguna-4.webp', alt: 'Grupo escolar en taller de educación ambiental' },
+  { src: '/images/fotos_batnight/laguna-5.webp', alt: 'Familias observando murciélagos al anochecer' },
+  { src: '/images/fotos_batnight/laguna-6.webp', alt: 'Equipo MUMA con equipos de detección de ultrasonidos' },
+]
 ---
 <BaseLayout title="Bat Night Laguna de Fuente de Piedra | MUMA BAT COMPANY" description="Bat Night en la Laguna de Fuente de Piedra, reserva natural de Andalucía. Educación ambiental, detección de murciélagos y experiencia VR en entorno de humedal protegido. Público familiar y escolar.">
-  <BatNightFuentePiedraPage client:visible />
+  <main>
+
+    <div class="bg-fondo-base pt-24 pb-0 px-6">
+      <div class="max-w-6xl mx-auto">
+        <a href="/servicios/bat-night" class="inline-flex items-center gap-2 text-xs text-texto-secundario hover:text-marca-principal transition-colors duration-200 no-underline">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Volver a Bat Nights
+        </a>
+      </div>
+    </div>
+
+    <section class="relative min-h-[65vh] flex flex-col justify-center items-center text-center px-6 pt-12 pb-16 bg-fondo-base overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full pointer-events-none" style="background: radial-gradient(ellipse, rgba(31,225,167,0.07) 0%, transparent 70%)" aria-hidden="true"></div>
+      <div class="relative z-10 max-w-3xl mx-auto">
+        <p class="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-5">Bat Night · Reserva Natural Protegida</p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-texto-titulo mb-6">
+          Bat Night <span class="text-marca-principal">Laguna de</span><br />Fuente de Piedra
+        </h1>
+
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10">
+          <span class="flex items-center gap-1.5 text-sm text-texto-secundario">
+            <svg class="text-marca-principal" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Reserva Natural Protegida
+          </span>
+          <span class="flex items-center gap-1.5 text-sm text-texto-secundario">
+            <svg class="text-marca-principal" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Fuente de Piedra, Málaga
+          </span>
+          <span class="flex items-center gap-1.5 text-sm text-texto-secundario">
+            <svg class="text-marca-principal" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            Público familiar y escolar
+          </span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="#formulario" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline">
+            Quiero apuntarme a la próxima Bat Night
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-fondo-secundario py-20 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-12 text-center">
+          <p class="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">El evento</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-texto-titulo mb-6">Ciencia y naturaleza en estado puro</h2>
+        </div>
+        <div class="space-y-4 text-texto-secundario leading-relaxed text-left">
+          <p>La Laguna de Fuente de Piedra, conocida internacionalmente como el mayor enclave reproductor de flamencos de Europa continental, es también un ecosistema privilegiado para los murciélagos insectívoros. Esta reserva natural protegida, enclavada en la comarca de Antequera, fue el escenario de una de las Bat Nights más especiales de MUMA.</p>
+          <p>El entorno de humedal ofrece condiciones únicas para la observación de quirópteros: al anochecer, decenas de individuos de varias especies salen a cazar insectos sobre la superficie del agua, generando un espectáculo natural de gran valor científico y educativo. Con equipos de <strong class="text-texto-principal">detección de ultrasonidos en tiempo real</strong>, los participantes pudieron escuchar las llamadas de ecolocalización de los murciélagos y comprender su papel insustituible en el control de plagas de insectos acuáticos.</p>
+          <p>El programa se diseñó especialmente para <strong class="text-texto-principal">público familiar y escolar</strong>, con actividades adaptadas a todas las edades: desde talleres dinámicos para niños hasta charlas más técnicas para adultos y docentes. La integración de la <strong class="text-texto-principal">experiencia de realidad virtual</strong> en plena naturaleza ofreció un contraste único entre lo virtual y lo real.</p>
+          <p>Fuente de Piedra demostró que los espacios naturales protegidos son aliados estratégicos perfectos para el modelo de ecoturismo educativo de MUMA.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-fondo-base py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <p class="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Imágenes</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Galería del evento</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {fotos.map((foto) => (
+            <div class="rounded-2xl overflow-hidden aspect-video">
+              {foto.src ? (
+                <img src={foto.src} alt={foto.alt} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              ) : (
+                <div class="w-full h-full bg-fondo-superficie border border-white/5 flex flex-col items-center justify-center gap-3 p-6">
+                  <svg class="text-marca-principal/40" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                  <p class="text-xs text-texto-secundario/50 text-center leading-snug">Foto próximamente</p>
+                  <p class="text-xs text-texto-secundario/30 text-center leading-snug italic">{foto.alt}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-fondo-secundario py-20 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-12">
+          <p class="text-xs font-semibold tracking-widest text-marca-principal uppercase mb-3">Logros</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-texto-titulo mb-4">Puntos destacados</h2>
+          <p class="text-texto-secundario max-w-xl leading-relaxed">Lo que hicimos posible en esta edición.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {destacados.map((punto) => (
+            <div class="flex items-start gap-3 bg-fondo-superficie rounded-xl p-4 border border-white/5">
+              <svg class="text-marca-principal mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <p class="text-sm text-texto-secundario leading-relaxed">{punto}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-fondo-base py-20 px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-fondo-superficie rounded-2xl p-10 border border-marca-principal/20 text-center">
+          <svg class="text-marca-principal mx-auto mb-5" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <h2 class="text-2xl sm:text-3xl font-bold text-texto-titulo mb-4">¿Gestionas una reserva natural o espacio protegido?</h2>
+          <p class="text-texto-secundario leading-relaxed mb-8 max-w-lg mx-auto">
+            Podemos diseñar una Bat Night adaptada a tu ecosistema y a tu público. Trabajamos con parques naturales, reservas, ayuntamientos y centros de interpretación de toda España.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="mailto:info@murcielagosmalaga.com?subject=Quiero%20organizar%20una%20Bat%20Night%20en%20una%20reserva%20natural" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold bg-marca-principal text-texto-sobre-accion hover:bg-marca-principal-hover transition-colors duration-200 no-underline">
+              Solicitar propuesta por email
+            </a>
+            <a href="https://wa.me/34664213450" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/15 text-texto-principal hover:bg-fondo-secundario hover:border-white/25 transition-all duration-200 no-underline">
+              Consultar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="formulario" class="bg-fondo-secundario py-20 px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="mb-12">
+          <h2 class="text-3xl sm:text-4xl font-bold text-texto-titulo mb-5">¿Quieres apuntarte a la próxima edición?</h2>
+          <p class="text-texto-secundario leading-relaxed max-w-xl mx-auto">
+            Escríbenos y te avisamos cuando lancemos nuevas Bat Nights en Fuente de Piedra. Sin compromiso.
+          </p>
+        </div>
+
+        <div class="bg-fondo-base/50 backdrop-blur-md border border-white/5 rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden text-left">
+          <FormularioMuma 
+            client:visible
+            tablaBD="consultas_web"
+            asuntoCorreo="[Web Bat Night Fuente de Piedra] Interés en próxima edición"
+            textoBoton="AVÍSAME DE PRÓXIMAS EDICIONES"
+            mostrarOrganizacion={false}
+            mostrarTelefono={true}
+            mostrarMensaje={true}
+            placeholderMensaje="Cuéntanos si vienes solo, en familia o con algún interés específico..."
+            mostrarSelect={false}
+            mostrarFecha={false}
+            mostrarParticipantes={false}
+            nombreCampoNombre="nombre_contacto"
+            camposOcultos={{
+              tipo_solicitud: 'interes_batnight_evento',
+              evento_referencia: 'Málaga - Laguna de Fuente de Piedra',
+              origen: 'web_batnight_fuentedepiedra'
+            }}
+          />
+        </div>
+      </div>
+    </section>
+
+  </main>
 </BaseLayout>

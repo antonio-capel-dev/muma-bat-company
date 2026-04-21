@@ -29,6 +29,7 @@
     "@astrojs/check": "^0.9.8",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "supabase": "^2.93.0",
     "typescript": "^5.9.3"
   }
 }
