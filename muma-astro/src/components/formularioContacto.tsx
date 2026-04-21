@@ -147,8 +147,11 @@ export default function FormularioMuma({
     }
 
     try {
-      const { error: dbError } = await supabase.from(tablaBD).insert([datosBD]);
-      if (dbError) throw dbError;
+      const { error: functionError } = await supabase.functions.invoke('validar-formulario', {
+        body: { tablaBD: tablaBD, datosBD: datosBD }
+      });
+
+      if (functionError) throw functionError;
 
       const cuerpo = [
         `Nombre: ${nombre}`,

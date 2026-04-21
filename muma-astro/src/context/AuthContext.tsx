@@ -52,12 +52,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const { data: { session }, error } = await supabase.auth.getSession()
 
         if (session && !error) {
-          // Sesión válida. Intentamos cargar datos desde localStorage
-          const userData = localStorage.getItem('user')
-          if (userData) {
-            setUser(JSON.parse(userData))
-          } else {
-            // No hay datos en localStorage pero sí sesión de Supabase.
             // Construimos el usuario mínimo desde la sesión para evitar el loop.
             setUser({
               id: session.user.id,
@@ -66,16 +60,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               apellidos: '',
               rol_id: null,
             })
-          }
+          
         } else {
-          // No hay sesión válida → limpiamos
-          localStorage.removeItem('access_token')
-          localStorage.removeItem('user')
+          
         }
       } catch {
-        // Error al validar la sesión → limpiamos
-        localStorage.removeItem('access_token')
-        localStorage.removeItem('user')
       } finally {
         setLoading(false)
       }
@@ -87,8 +76,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Función para cerrar sesión
   const signOut = async () => {
     await supabase.auth.signOut()
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('user')
     setUser(null)
     window.location.replace('/login')
   }

@@ -85,18 +85,6 @@ export default function LoginForm() {
         .eq('correo', email)
         .single()
 
-      // PASO 3: Combinar datos de Auth + tabla usuarios y guardar
-      // Mezclamos el token de Auth con los datos de perfil de la tabla.
-      const userToSave = {
-        id: data.user.id,
-        email: data.user.email,
-        nombre: usuarioData?.nombre || '',
-        apellidos: usuarioData?.apellidos || '',
-        rol_id: usuarioData?.rol_id || null,
-      }
-
-      localStorage.setItem('access_token', data.session.access_token)
-      localStorage.setItem('user', JSON.stringify(userToSave))
       window.location.replace('/admin')
 
     } catch (err: any) {
